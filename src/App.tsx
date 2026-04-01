@@ -435,9 +435,23 @@ export default function App() {
               <div style={{ background: '#ffffff', border: '1.5px solid #e8e4fc', borderRadius: 22, padding: 28, boxShadow: '0 4px 24px #7c3aed08' }}>
                 <h3 style={{ fontSize: 20, fontWeight: 700, color: '#1a1a2e', marginBottom: 18 }}>Redes sociales</h3>
                 <div style={{ display: 'flex', gap: 12 }}>
-                  {[FaGithub, FaInstagram,FaLinkedin].map((Icon, i) => (
-                    <div key={i} className="social-btn"><Icon size={20} /></div>
-                  ))}
+                  <a href="https://github.com/DanielMafla320" target="_blank" rel="noopener noreferrer">
+                    <div className="social-btn">
+                      <FaGithub size={20} />
+                    </div>
+                  </a>
+
+                  <a href="https://www.linkedin.com/in/daniel-mafla-782541317/?skipRedirect=true" target="_blank" rel="noopener noreferrer">
+                    <div className="social-btn">
+                      <FaLinkedin size={20} />
+                    </div>
+                  </a>
+
+                  <a href="https://www.instagram.com/daniel_mafla05/?hl=es" target="_blank" rel="noopener noreferrer">
+                    <div className="social-btn">
+                      <FaInstagram size={20} />
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>
@@ -477,11 +491,25 @@ export default function App() {
             </div>
             <div>
               <div style={{ fontSize: 11, fontWeight: 700, color: '#1a1a2e', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16 }}>Sígueme</div>
-              <div style={{ display: 'flex', gap: 10 }}>
-                {[FaGithub, FaInstagram,FaLinkedin].map((Icon, i) => (
-                  <div key={i} className="social-btn" style={{ width: 38, height: 38, borderRadius: 10 }}><Icon size={16} /></div>
-                ))}
-              </div>
+              <div style={{ display: 'flex', gap: 12 }}>
+                  <a href="https://github.com/DanielMafla320" target="_blank" rel="noopener noreferrer">
+                    <div className="social-btn">
+                      <FaGithub size={20} />
+                    </div>
+                  </a>
+
+                  <a href="https://www.linkedin.com/in/daniel-mafla-782541317/?skipRedirect=true" target="_blank" rel="noopener noreferrer">
+                    <div className="social-btn">
+                      <FaLinkedin size={20} />
+                    </div>
+                  </a>
+
+                  <a href="https://www.instagram.com/daniel_mafla05/?hl=es" target="_blank" rel="noopener noreferrer">
+                    <div className="social-btn">
+                      <FaInstagram size={20} />
+                    </div>
+                  </a>
+                </div>
             </div>
           </div>
           <div style={{ borderTop: '1px solid #e0dcf8', paddingTop: 24, textAlign: 'center' }}>
