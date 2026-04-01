@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Download,
   Mail,
@@ -14,6 +14,46 @@ import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState<string>('inicio');
+  const [text, setText] = useState("");
+  useEffect(() => {
+    const words = [
+      "Software Engineering Student",
+      "Frontend Developer",
+      "Backend Developer",
+      "Problem Solver"
+    ];
+  
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+  
+    const speed = 80;
+    const deleteSpeed = 40;
+    const delayBetweenWords = 1500;
+  
+    const type = () => {
+      const currentWord = words[wordIndex];
+  
+      if (isDeleting) {
+        setText(currentWord.substring(0, charIndex - 1));
+        charIndex--;
+      } else {
+        setText(currentWord.substring(0, charIndex + 1));
+        charIndex++;
+      }
+  
+      if (!isDeleting && charIndex === currentWord.length) {
+        setTimeout(() => (isDeleting = true), delayBetweenWords);
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+      }
+    };
+  
+    const interval = setInterval(type, isDeleting ? deleteSpeed : speed);
+  
+    return () => clearInterval(interval);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
     setActiveSection(sectionId);
@@ -162,6 +202,16 @@ export default function App() {
           width: 2px;
           background: linear-gradient(to bottom, #7c3aed, #a855f744);
         }
+
+        .cursor {
+        color: #7c3aed;
+        animation: blink 1s infinite;
+      }
+
+      @keyframes blink {
+        0%, 50%, 100% { opacity: 1; }
+        25%, 75% { opacity: 0; }
+      }
       `}</style>
 
       {/* NAVBAR */}
@@ -196,7 +246,8 @@ export default function App() {
               Daniel<br /><span className="grad">Mafla</span>
             </h1>
             <h2 style={{ fontSize: 20, fontWeight: 600, color: '#9090b0', marginBottom: 24 }}>
-              Software Engineering Student
+              {text}
+              <span className="cursor">|</span>
             </h2>
             <p style={{ fontSize: 15, lineHeight: 1.85, color: '#6868a0', marginBottom: 36, maxWidth: 460 }}>
               Estudiante apasionado por el aprendizaje continuo y los retos técnicos.
@@ -490,7 +541,7 @@ export default function App() {
               ))}
             </div>
             <div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: '#1a1a2e', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16 }}>Sígueme</div>
+              <div style={{ fontSize: 11, fontWeight: 700, color: '#1a1a2e', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 10 }}>Sígueme</div>
               <div style={{ display: 'flex', gap: 12 }}>
                   <a href="https://github.com/DanielMafla320" target="_blank" rel="noopener noreferrer">
                     <div className="social-btn">
