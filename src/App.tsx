@@ -284,16 +284,13 @@ export default function App() {
             <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 50, fontWeight: 800, color: '#1a1a2e', marginBottom: 10 }}>
               Mis <span className="grad">Proyectos</span>
             </h2>
-            <p style={{ color: '#9090b0', fontSize: 15 }}>Una selección de mis trabajos más recientes y destacados</p>
+            <p style={{ color: '#9090b0', fontSize: 15 }}>Proyectos desarrollados aplicando mis conocimientos en programación y desarrollo web.</p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 22 }}>
             {[
-              { img: '/reproductor xsound.png', title: 'XSOUND', desc: 'Reproductor de musica de manera local o online', tags: ['Typescript',"next.js","CSS"] },
+              { img: '/reproductor xsound.png', title: 'XSOUND', desc: 'Reproductor de musica de manera local o online', tags: ['Typescript',"CSS"] },
               { img: 'https://images.unsplash.com/photo-1661246627162-feb0269e0c07?w=600&q=80', title: 'Saborify', desc: 'Aplicación que te ayuda a cocinar y te recomienda recetas dependiendo tus necesidades', tags: ['TypeScript', 'Css'] },
-              { img: 'https://images.unsplash.com/photo-1658297063569-162817482fb6?w=600&q=80', title: 'E-commerce', desc: 'Tienda online con carrito de compras, pasarela de pago y panel de administración.', tags: ['Next.js', 'Java', 'PostgreSQL'] },
-              { img: 'https://images.unsplash.com/photo-1759752394755-1241472b589d?w=600&q=80', title: 'Dashboard Analytics', desc: 'Panel de control con visualización de datos en tiempo real y reportes personalizados.', tags: ['React', 'Python', 'Next.js'] },
-              { img: 'https://images.unsplash.com/photo-1762787863004-767d5d7eac07?w=600&q=80', title: 'API REST', desc: 'API REST con autenticación JWT, documentación completa y tests unitarios.', tags: ['Java', 'Spring Boot', 'PostgreSQL'] },
-              { img: 'https://images.unsplash.com/photo-1772272935464-2e90d8218987?w=600&q=80', title: 'App de Gestión', desc: 'Herramienta de gestión de tareas con tableros Kanban y notificaciones en tiempo real.', tags: ['Next.js', 'Python', 'MongoDB'] },
+              
             ].map((p, i) => (
               <div key={i} className="card">
                 <div style={{ height: 185, overflow: 'hidden', position: 'relative', borderRadius: '20px 20px 0 0' }}>
