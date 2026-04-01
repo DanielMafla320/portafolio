@@ -212,6 +212,18 @@ export default function App() {
         0%, 50%, 100% { opacity: 1; }
         25%, 75% { opacity: 0; }
       }
+
+
+      @keyframes float {
+              0% { transform: translateY(0px); }
+              50% { transform: translateY(-12px); }
+              100% { transform: translateY(0px); }
+            }
+
+        .profile-img:hover {
+          transform: scale(1.05);
+        }
+
       `}</style>
 
       {/* NAVBAR */}
@@ -261,10 +273,12 @@ export default function App() {
 
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <div style={{ position: 'relative' }}>
-              <div style={{
+              <div className="profile-img"
+              style={{
                 width: 340, height: 340, borderRadius: '50%', padding: 3,
                 background: 'linear-gradient(135deg, #7c3aed, #a855f7, #c084fc)',
                 boxShadow: '0 0 80px #7c3aed25, 0 0 140px #a855f715',
+                animation: 'float 4s ease-in-out infinite',
               }}>
                 <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', background: '#ede9fe' }}>
                   <img src="https://via.placeholder.com/300" alt="Daniel Mafla" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
