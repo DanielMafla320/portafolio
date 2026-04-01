@@ -1,11 +1,15 @@
 import { useState } from 'react';
-import { Download, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  User, 
-  Globe, 
-  Send  } from 'lucide-react';
+import {
+  Download,
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+} from 'lucide-react';
+
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
+
+
 
 
 export default function App() {
@@ -431,7 +435,7 @@ export default function App() {
               <div style={{ background: '#ffffff', border: '1.5px solid #e8e4fc', borderRadius: 22, padding: 28, boxShadow: '0 4px 24px #7c3aed08' }}>
                 <h3 style={{ fontSize: 20, fontWeight: 700, color: '#1a1a2e', marginBottom: 18 }}>Redes sociales</h3>
                 <div style={{ display: 'flex', gap: 12 }}>
-                  {[Globe, User].map((Icon, i) => (
+                  {[FaGithub, FaInstagram,FaLinkedin].map((Icon, i) => (
                     <div key={i} className="social-btn"><Icon size={20} /></div>
                   ))}
                 </div>
@@ -474,7 +478,7 @@ export default function App() {
             <div>
               <div style={{ fontSize: 11, fontWeight: 700, color: '#1a1a2e', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16 }}>Sígueme</div>
               <div style={{ display: 'flex', gap: 10 }}>
-                {[User,Globe].map((Icon, i) => (
+                {[FaGithub, FaInstagram,FaLinkedin].map((Icon, i) => (
                   <div key={i} className="social-btn" style={{ width: 38, height: 38, borderRadius: 10 }}><Icon size={16} /></div>
                 ))}
               </div>
