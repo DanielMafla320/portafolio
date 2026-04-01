@@ -288,8 +288,8 @@ export default function App() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 22 }}>
             {[
-              { img: 'https://images.unsplash.com/photo-1750056393300-102f7c4b8bc2?w=600&q=80', title: 'Plataforma E-learning', desc: 'Plataforma educativa moderna con sistema de cursos interactivos y seguimiento de progreso.', tags: ['React', 'Node.js', 'MongoDB'] },
-              { img: 'https://images.unsplash.com/photo-1661246627162-feb0269e0c07?w=600&q=80', title: 'App de Fitness', desc: 'Aplicación para seguimiento de rutinas de ejercicio y nutrición personalizada.', tags: ['React Native', 'Firebase', 'Python'] },
+              { img: '/reproductor xsound.png', title: 'XSOUND', desc: 'Reproductor de musica de manera local o online', tags: ['Typescript',"next.js","CSS"] },
+              { img: 'https://images.unsplash.com/photo-1661246627162-feb0269e0c07?w=600&q=80', title: 'Saborify', desc: 'Aplicación que te ayuda a cocinar y te recomienda recetas dependiendo tus necesidades', tags: ['TypeScript', 'Css'] },
               { img: 'https://images.unsplash.com/photo-1658297063569-162817482fb6?w=600&q=80', title: 'E-commerce', desc: 'Tienda online con carrito de compras, pasarela de pago y panel de administración.', tags: ['Next.js', 'Java', 'PostgreSQL'] },
               { img: 'https://images.unsplash.com/photo-1759752394755-1241472b589d?w=600&q=80', title: 'Dashboard Analytics', desc: 'Panel de control con visualización de datos en tiempo real y reportes personalizados.', tags: ['React', 'Python', 'Next.js'] },
               { img: 'https://images.unsplash.com/photo-1762787863004-767d5d7eac07?w=600&q=80', title: 'API REST', desc: 'API REST con autenticación JWT, documentación completa y tests unitarios.', tags: ['Java', 'Spring Boot', 'PostgreSQL'] },
