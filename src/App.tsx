@@ -1,5 +1,12 @@
 import { useState } from 'react';
-import { Download, Mail, Phone, MapPin, Linkedin, Github, Twitter, Instagram, Send } from 'lucide-react';
+import { Download, 
+  Mail, 
+  Phone, 
+  MapPin, 
+  User, 
+  Globe, 
+  Send  } from 'lucide-react';
+
 
 export default function App() {
   const [activeSection, setActiveSection] = useState<string>('inicio');
@@ -205,7 +212,7 @@ export default function App() {
                 boxShadow: '0 0 80px #7c3aed25, 0 0 140px #a855f715',
               }}>
                 <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', background: '#ede9fe' }}>
-                  <img src="" alt="Daniel Mafla" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="https://via.placeholder.com/300" alt="Daniel Mafla" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
               </div>
               <div style={{
@@ -427,7 +434,7 @@ export default function App() {
               <div style={{ background: '#ffffff', border: '1.5px solid #e8e4fc', borderRadius: 22, padding: 28, boxShadow: '0 4px 24px #7c3aed08' }}>
                 <h3 style={{ fontSize: 20, fontWeight: 700, color: '#1a1a2e', marginBottom: 18 }}>Redes sociales</h3>
                 <div style={{ display: 'flex', gap: 12 }}>
-                  {[Github, Linkedin, Twitter, Instagram].map((Icon, i) => (
+                  {[Globe, User].map((Icon, i) => (
                     <div key={i} className="social-btn"><Icon size={20} /></div>
                   ))}
                 </div>
@@ -470,7 +477,7 @@ export default function App() {
             <div>
               <div style={{ fontSize: 11, fontWeight: 700, color: '#1a1a2e', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16 }}>Sígueme</div>
               <div style={{ display: 'flex', gap: 10 }}>
-                {[Github, Linkedin, Twitter, Instagram].map((Icon, i) => (
+                {[User,Globe].map((Icon, i) => (
                   <div key={i} className="social-btn" style={{ width: 38, height: 38, borderRadius: 10 }}><Icon size={16} /></div>
                 ))}
               </div>
