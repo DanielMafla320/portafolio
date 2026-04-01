@@ -224,6 +224,27 @@ export default function App() {
           transform: scale(1.05);
         }
 
+
+        .profile-img {
+          transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .profile-img:hover {
+          transform: scale(1.06) rotate(1deg);
+          box-shadow: 0 20px 60px #7c3aed55;
+        }
+
+
+        .profile-img:hover::after {
+          content: "";
+          position: absolute;
+          inset: -10px;
+          border-radius: 50%;
+          background: radial-gradient(circle, #a855f733, transparent 70%);
+          z-index: -1;
+        }
+
+
       `}</style>
 
       {/* NAVBAR */}
@@ -281,7 +302,7 @@ export default function App() {
                 animation: 'float 4s ease-in-out infinite',
               }}>
                 <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', background: '#ede9fe' }}>
-                  <img src="https://via.placeholder.com/300" alt="Daniel Mafla" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="/foto mia.jpg" alt="Daniel Mafla" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
               </div>
               <div style={{
