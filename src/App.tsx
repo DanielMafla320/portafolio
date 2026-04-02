@@ -288,6 +288,28 @@ export default function App() {
         }
 
 
+        /* 📱 Responsive */
+          @media (max-width: 900px) {
+            .hero-grid {
+              grid-template-columns: 1fr !important;
+              text-align: center;
+            }
+
+            .about-grid {
+              grid-template-columns: 1fr !important;
+            }
+
+            .projects-grid {
+              grid-template-columns: 1fr !important;
+            }
+
+            .skills-grid {
+              grid-template-columns: 1fr !important;
+            }
+          }
+
+
+
 
 
       `}</style>
@@ -317,7 +339,7 @@ export default function App() {
         <div className="blob" style={{ width: 600, height: 600, background: '#7c3aed', top: -200, left: -150 }} />
         <div className="blob" style={{ width: 350, height: 350, background: '#a855f7', bottom: -80, right: 60 }} />
 
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center', position: 'relative' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 80, alignItems: 'center', position: 'relative' }}>
           <div>
             <div className="pill">✦ Disponible para proyectos</div>
             <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: 76, fontWeight: 800, lineHeight: 1, color: '#1a1a2e', marginBottom: 16 }}>
@@ -370,7 +392,7 @@ export default function App() {
       {/* ── ACERCA ── */}
       <section id="acerca" className="bg-dots-alt" style={{ padding: '100px 0', position: 'relative', overflow: 'hidden' }}>
         <div className="blob" style={{ width: 400, height: 400, background: '#7c3aed', top: -80, right: -80 }} />
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'start', position: 'relative' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 64, alignItems: 'start', position: 'relative' }}>
           <div>
             <div style={{ borderRadius: 24, overflow: 'hidden', height: 540, position: 'relative', background: '#ede9fe' }}>
               <img src="" alt="About" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
