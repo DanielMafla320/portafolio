@@ -321,7 +321,7 @@ export default function App() {
         borderBottom: '1px solid #e8e4fc',
         boxShadow: '0 1px 20px #7c3aed08',
       }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: 64 }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'flex',gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', justifyContent: 'space-between', alignItems: 'center', height: 64 }}>
           <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 22, fontWeight: 800 }}>
             <span style={{ color: '#1a1a2e' }}>Daniel </span>
             <span className="grad">Mafla</span>
@@ -339,7 +339,7 @@ export default function App() {
         <div className="blob" style={{ width: 600, height: 600, background: '#7c3aed', top: -200, left: -150 }} />
         <div className="blob" style={{ width: 350, height: 350, background: '#a855f7', bottom: -80, right: 60 }} />
 
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 80, alignItems: 'center', position: 'relative' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 80, alignItems: 'center', position: 'relative' }}>
           <div>
             <div className="pill">✦ Disponible para proyectos</div>
             <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: 76, fontWeight: 800, lineHeight: 1, color: '#1a1a2e', marginBottom: 16 }}>
@@ -395,7 +395,7 @@ export default function App() {
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 64, alignItems: 'start', position: 'relative' }}>
           <div>
             <div style={{ borderRadius: 24, overflow: 'hidden', height: 540, position: 'relative', background: '#ede9fe' }}>
-              <img src="" alt="About" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src="/foto mia.jpg" alt="About" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #f4f3fff0 0%, transparent 55%)' }} />
               <div style={{ position: 'absolute', bottom: 24, left: 20, right: 20, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 {['Python', 'Java', 'Next.js', 'Django'].map(t => (
