@@ -55,6 +55,29 @@ export default function App() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const elements = document.querySelectorAll('.reveal');
+  
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2, // 👈 MÁS ALTO = aparece más tarde
+        rootMargin: "0px 0px -100px 0px" // 👈 empuja el trigger hacia abajo
+      }
+    );
+  
+    elements.forEach((el) => observer.observe(el));
+  
+    return () => observer.disconnect();
+  }, []);
+
   const scrollToSection = (sectionId: string) => {
     setActiveSection(sectionId);
     const element = document.getElementById(sectionId);
@@ -376,6 +399,17 @@ export default function App() {
             }
           }
 
+          .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+          }
+
+          .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
 
 
 
@@ -473,7 +507,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="fade-up">
+          <div className="fade-up reveal">
             <div className="pill">✦ Sobre mí</div>
             <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 50, fontWeight: 800, color: '#1a1a2e', lineHeight: 1.08, marginBottom: 22 }}>
               Acerca <br />de <span className="grad-subtle">mí</span>
@@ -520,7 +554,7 @@ export default function App() {
               { img: 'https://images.unsplash.com/photo-1661246627162-feb0269e0c07?w=600&q=80', title: 'Saborify', desc: 'Aplicación que te ayuda a cocinar y te recomienda recetas dependiendo tus necesidades', tags: ['TypeScript', 'Css'] },
               
             ].map((p, i) => (
-              <div key={i} className="card">
+              <div key={i} className="card reveal">
                 <div style={{ height: 185, overflow: 'hidden', position: 'relative', borderRadius: '20px 20px 0 0' }}>
                   <img src={p.img} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #ffffffdd, transparent 60%)' }} />
@@ -549,16 +583,16 @@ export default function App() {
             </h2>
             <p style={{ color: '#9090b0', fontSize: 15 }}>Lo que dicen mis compañeros y colaboradores</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 22 }}>
+          <div className="reveal" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 22 }}>
             {[
               { text: 'Daniel es un desarrollador muy dedicado. Su capacidad para aprender rápido y aplicar lo aprendido en proyectos reales lo hace un colaborador valioso en cualquier equipo.', name: 'Ana Martínez', role: 'Profesora de Ingeniería de Software', avatar: 'https://images.unsplash.com/photo-1581065178047-8ee15951ede6?w=100&q=80' },
               { text: 'Trabajar con Daniel fue una experiencia muy positiva. Su entusiasmo por la tecnología y su compromiso con cada tarea hacen que los proyectos siempre salgan adelante.', name: 'Carlos Ruiz', role: 'Compañero de proyecto universitario', avatar: 'https://images.unsplash.com/photo-1723537742563-15c3d351dbf2?w=100&q=80' },
               { text: 'Daniel tiene una gran curiosidad intelectual y siempre está buscando nuevas formas de mejorar. Es el tipo de estudiante que marca la diferencia en un equipo.', name: 'Laura Fernández', role: 'Mentora de desarrollo web', avatar: 'https://images.unsplash.com/photo-1610387694365-19fafcc86d86?w=100&q=80' },
             ].map((t, i) => (
-              <div key={i} style={{ background: '#ffffff', border: '1.5px solid #e8e4fc', borderRadius: 20, padding: 28, position: 'relative', overflow: 'hidden', boxShadow: '0 2px 16px #7c3aed08' }}>
+              <div key={i} style={{ background: '#ffffff', border: '1.5px solid #e8e4fc', borderRadius: 20, padding: 28, position: 'relative', overflow: 'hidden', boxShadow: '0 2px 16px #7c3aed08',transitionDelay: `${i * 0.15}s` }}>
                 <div className="testi-quote">"</div>
                 <div style={{ display: 'flex', gap: 3, marginBottom: 16 }}>
-                  {[...Array(5)].map((_, j) => <span key={j} style={{ color: '#a855f7', fontSize: 14 }}>★</span>)}
+                  {[...Array(5)].map((_, j) => <span key={j} style={{ color: '#a855f7', fontSize: 14,  transitionDelay: `${i * 0.2}s` }}>★</span>)}
                 </div>
                 <p style={{ fontSize: 14, lineHeight: 1.8, color: '#6868a0', marginBottom: 22 }}>"{t.text}"</p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -587,7 +621,7 @@ export default function App() {
             </h2>
             <p style={{ color: '#9090b0', fontSize: 15 }}>Mi trayectoria profesional y formación académica</p>
           </div>
-          <div style={{ maxWidth: 720, margin: '0 auto', position: 'relative' }}>
+          <div className="reveal" style={{ maxWidth: 720, margin: '0 auto', position: 'relative' }}>
             <div className="timeline-line" />
             {[
               { type: 'Académica', date: '2022 - Presente', title: 'Ingeniería de Software', company: 'Universidad — En curso', desc: 'Formación en desarrollo de software, estructuras de datos, algoritmos, bases de datos y arquitectura de sistemas. Participación activa en proyectos académicos.' },
@@ -625,7 +659,7 @@ export default function App() {
             </h2>
             <p style={{ color: '#9090b0', fontSize: 15 }}>¿Tienes un proyecto en mente? Escríbeme</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28 }}>
+          <div  className="reveal" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28 }}>
             <div style={{ background: '#ffffff', border: '1.5px solid #e8e4fc', borderRadius: 22, padding: 36, boxShadow: '0 4px 24px #7c3aed08' }}>
               <h3 style={{ fontSize: 22, fontWeight: 700, color: '#1a1a2e', marginBottom: 28 }}>Envíame un mensaje</h3>
               <label className="form-label">Nombre completo</label>
