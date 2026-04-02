@@ -245,6 +245,15 @@ export default function App() {
         }
 
 
+        .img-inner {
+          transition: transform 0.4s ease;
+        }
+
+        .profile-img:hover .img-inner {
+          transform: scale(1.08);
+        }
+
+
       `}</style>
 
       {/* NAVBAR */}
@@ -301,7 +310,10 @@ export default function App() {
                 boxShadow: '0 0 80px #7c3aed25, 0 0 140px #a855f715',
                 animation: 'float 4s ease-in-out infinite',
               }}>
-                <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', background: '#ede9fe' }}>
+                <div
+                  className="img-inner"
+                  style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', background: '#ede9fe' }}
+                >
                   <img src="/foto mia.jpg" alt="Daniel Mafla" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
               </div>
@@ -348,10 +360,10 @@ export default function App() {
             <p style={{ fontSize: 15, lineHeight: 1.85, color: '#6868a0', marginBottom: 32 }}>Soy una persona sociable, disfruto conocer gente y trabajar en equipo. Además, me interesa la edición de video y el contenido digital, lo que complementa mi perfil con un enfoque creativo</p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
               {[
-                { title: 'Lenguajes', skills: ['Python', 'Java', 'HTML5', 'CSS3'] },
-                { title: 'Frontend', skills: ['Next.js', 'Tailwind CSS', 'TypeScript'] },
-                { title: 'Backend', skills: ['SQL', 'Django', 'API REST'] },
-                { title: 'Herramientas', skills: ['Git & GitHub', 'VS Code', 'Postman'] },
+                { title: 'Lenguajes', skills: ['Python', 'Java', 'JavaScript' ,'HTML5', 'CSS3'] },
+                { title: 'Frontend', skills: ['Next.js', 'Tailwind CSS', 'TypeScript',"React"] },
+                { title: 'Backend', skills: [ 'Django',"nextjs", 'API REST'] },
+                { title: 'Herramientas', skills: ['Git & GitHub',"Figma", 'VS Code', 'Postman'] },
               ].map(card => (
                 <div key={card.title} style={{ background: '#ffffff', border: '1.5px solid #e8e4fc', borderRadius: 18, padding: 18, boxShadow: '0 2px 12px #7c3aed06' }}>
                   <div style={{ fontSize: 11, fontWeight: 700, color: '#7c3aed', letterSpacing: '0.09em', textTransform: 'uppercase', marginBottom: 12 }}>{card.title}</div>
