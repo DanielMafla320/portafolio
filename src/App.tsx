@@ -254,6 +254,42 @@ export default function App() {
         }
 
 
+        .chip {
+          font-size: 13px;
+          font-weight: 600;
+          padding: 6px 12px;
+          border-radius: 10px;
+          background: #ede9fe;
+          color: #6d28d9;
+          border: 1px solid #c4b5fd44;
+          transition: all 0.25s ease;
+          cursor: pointer;
+        }
+
+        .chip:hover {
+          transform: translateY(-4px) scale(1.05);
+          background: linear-gradient(135deg, #7c3aed, #a855f7);
+          color: white;
+          box-shadow: 0 10px 20px #7c3aed33;
+        }
+
+
+        .fade-up {
+          opacity: 0;
+          transform: translateY(30px);
+          animation: fadeUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeUp {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+
+
+
       `}</style>
 
       {/* NAVBAR */}
@@ -347,7 +383,7 @@ export default function App() {
             </div>
           </div>
 
-          <div>
+          <div className="fade-up">
             <div className="pill">✦ Sobre mí</div>
             <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 50, fontWeight: 800, color: '#1a1a2e', lineHeight: 1.08, marginBottom: 22 }}>
               Acerca <br />de <span className="grad-subtle">mí</span>
@@ -358,7 +394,7 @@ export default function App() {
               y encontrar formas creativas de resolver problemas a través del código.
             </p>
             <p style={{ fontSize: 15, lineHeight: 1.85, color: '#6868a0', marginBottom: 32 }}>Soy una persona sociable, disfruto conocer gente y trabajar en equipo. Además, me interesa la edición de video y el contenido digital, lo que complementa mi perfil con un enfoque creativo</p>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+            <div className="fade-up" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
               {[
                 { title: 'Lenguajes', skills: ['Python', 'Java', 'JavaScript' ,'HTML5', 'CSS3'] },
                 { title: 'Frontend', skills: ['Next.js', 'Tailwind CSS', 'TypeScript',"React"] },
