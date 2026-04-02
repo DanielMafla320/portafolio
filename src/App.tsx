@@ -288,23 +288,91 @@ export default function App() {
         }
 
 
-        /* 📱 Responsive */
+        /* 📱 Responsive PRO */
           @media (max-width: 900px) {
+            
+            /* Layout general */
+            section {
+              padding: 70px 0 !important;
+            }
+
+            /* NAVBAR */
+            nav div {
+              padding: 0 12px !important;
+            }
+
+            nav div div:last-child {
+              overflow-x: auto;
+              gap: 6px !important;
+            }
+
+            /* HERO */
             .hero-grid {
               grid-template-columns: 1fr !important;
               text-align: center;
+              gap: 40px !important;
             }
 
+            h1 {
+              font-size: 42px !important;
+              line-height: 1.1 !important;
+            }
+
+            h2 {
+              font-size: 18px !important;
+            }
+
+            p {
+              font-size: 14px !important;
+            }
+
+            /* Imagen */
+            .profile-img {
+              width: 240px !important;
+              height: 240px !important;
+            }
+
+            /* ABOUT */
             .about-grid {
+              grid-template-columns: 1fr !important;
+              gap: 40px !important;
+            }
+
+            /* Cards skills */
+            .skills-grid {
               grid-template-columns: 1fr !important;
             }
 
+            /* PROYECTOS */
             .projects-grid {
               grid-template-columns: 1fr !important;
             }
 
-            .skills-grid {
+            /* TESTIMONIOS */
+            #testimonios div[style*="grid-template-columns"] {
               grid-template-columns: 1fr !important;
+            }
+
+            /* EXPERIENCIA */
+            #experiencia div[style*="max-width: 720px"] {
+              padding: 0 10px;
+            }
+
+            /* CONTACTO */
+            #contacto div[style*="grid-template-columns: 1fr 1fr"] {
+              grid-template-columns: 1fr !important;
+            }
+
+            /* FOOTER */
+            footer div[style*="grid-template-columns: repeat(4, 1fr)"] {
+              grid-template-columns: 1fr !important;
+              gap: 30px !important;
+            }
+
+            /* Botones */
+            .btn-primary {
+              width: 100%;
+              justify-content: center;
             }
           }
 
@@ -342,7 +410,7 @@ export default function App() {
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 80, alignItems: 'center', position: 'relative' }}>
           <div>
             <div className="pill">✦ Disponible para proyectos</div>
-            <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: 76, fontWeight: 800, lineHeight: 1, color: '#1a1a2e', marginBottom: 16 }}>
+            <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(42px, 8vw, 76px)', fontWeight: 800, lineHeight: 1, color: '#1a1a2e', marginBottom: 16 }}>
               Daniel<br /><span className="grad">Mafla</span>
             </h1>
             <h2 style={{ fontSize: 20, fontWeight: 600, color: '#9090b0', marginBottom: 24 }}>
