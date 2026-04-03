@@ -710,10 +710,9 @@ export default function App() {
           <div style={{ maxWidth: 720, margin: '0 auto', position: 'relative' }}>
             <div className="timeline-line" />
             {[
-              { type: 'Académica', date: '2022 - Presente', title: 'Ingeniería de Software', company: 'Universidad — En curso', desc: 'Formación en desarrollo de software, estructuras de datos, algoritmos, bases de datos y arquitectura de sistemas. Participación activa en proyectos académicos.' },
-              { type: 'Laboral', date: '2024', title: 'Proyecto Freelance – Aplicación Web', company: 'Proyecto independiente', desc: 'Desarrollo de una aplicación web usando Next.js y Python. Funcionalidades CRUD, autenticación de usuarios e integración con base de datos.' },
-              { type: 'Académica', date: '2023', title: 'Curso de Desarrollo Web Full Stack', company: 'Formación complementaria', desc: 'Aprendizaje de HTML, CSS, JavaScript, React y Node.js. Construcción de proyectos reales como parte del proceso de aprendizaje.' },
-              { type: 'Académica', date: '2022', title: 'Fundamentos de Programación', company: 'Universidad', desc: 'Introducción a la programación orientada a objetos con Java y Python. Desarrollo de lógica computacional y resolución de problemas.' },
+              { type: 'Académica', date: '2026 - Presente', title: 'Ingeniería de Software', company: 'Universidad — En curso', desc: 'Formación en desarrollo de software, estructuras de datos, algoritmos, bases de datos y arquitectura de sistemas. Participación activa en proyectos académicos.' },
+              { type: 'Academica', date: '2022', title: 'Técnico en mantenimiento de equipos de cómputo', company: 'Sena', desc: 'Técnico en mantenimiento de equipos de cómputo con conocimientos en diagnóstico de hardware y software, instalación de sistemas operativos, ensamblaje de equipos, solución de fallas y soporte técnico.' },
+              { type: 'Académica', date: '2023', title: 'bootcamp en programacion con python', company: 'TalentoTech', desc: 'Formación en fundamentos de programación utilizando Python, incluyendo lógica de programación, estructuras de control, funciones y resolución de problemas.' },
             ].map((item, i) => (
               <div key={i} className={`reveal reveal-d${i + 1}`} style={{ display: 'flex', gap: 28, marginBottom: 24, paddingLeft: 4 }}>
                 <div style={{ width: 26, height: 26, borderRadius: '50%', background: '#ede9fe', border: '2px solid #7c3aed', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 6, zIndex: 1 }}>
