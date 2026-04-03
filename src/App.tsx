@@ -6,12 +6,12 @@ import {
   MapPin,
   Send,
 } from 'lucide-react';
-
+ 
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
-
-
-
-
+ 
+ 
+ 
+ 
 export default function App() {
   const [activeSection, setActiveSection] = useState<string>('inicio');
   const [text, setText] = useState("");
@@ -54,30 +54,32 @@ export default function App() {
   
     return () => clearInterval(interval);
   }, []);
-
+ 
   useEffect(() => {
-    const elements = document.querySelectorAll('.reveal');
-  
-    const observer = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.2, // 👈 MÁS ALTO = aparece más tarde
-        rootMargin: "0px 0px -100px 0px" // 👈 empuja el trigger hacia abajo
-      }
-    );
-  
-    elements.forEach((el) => observer.observe(el));
-  
+    const observe = () => {
+      const elements = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.15,
+          rootMargin: "0px 0px -60px 0px"
+        }
+      );
+      elements.forEach((el) => observer.observe(el));
+      return observer;
+    };
+ 
+    const observer = observe();
     return () => observer.disconnect();
   }, []);
-
+ 
   const scrollToSection = (sectionId: string) => {
     setActiveSection(sectionId);
     const element = document.getElementById(sectionId);
@@ -85,15 +87,14 @@ export default function App() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
+ 
   return (
     <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", background: '#fafafa', minHeight: '100vh', color: '#1a1a2e' }}>
-
+ 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        /* Fondos con textura de puntos */
+ 
         .bg-dots {
           background-color: #fafafa;
           background-image: radial-gradient(circle, #7c3aed18 1px, transparent 1px);
@@ -104,15 +105,12 @@ export default function App() {
           background-image: radial-gradient(circle, #7c3aed12 1px, transparent 1px);
           background-size: 30px 30px;
         }
-
-        /* Gradiente principal morado */
+ 
         .grad { background: linear-gradient(135deg, #7c3aed, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .grad-subtle { background: linear-gradient(135deg, #6d28d9, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-
-        /* Blob decorativo */
+ 
         .blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.10; pointer-events: none; }
-
-        /* Pill etiqueta de sección */
+ 
         .pill {
           display: inline-flex; align-items: center; gap: 6px;
           font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
@@ -120,8 +118,7 @@ export default function App() {
           background: #7c3aed14; border: 1px solid #7c3aed33; color: #7c3aed;
           margin-bottom: 18px;
         }
-
-        /* Navbar */
+ 
         .nav-btn {
           background: none; border: none;
           font-size: 14px; font-weight: 600; color: #9090b0;
@@ -132,8 +129,7 @@ export default function App() {
         }
         .nav-btn:hover { color: #1a1a2e; background: #7c3aed08; }
         .nav-btn.active { color: #7c3aed; background: #7c3aed12; }
-
-        /* Botón primario */
+ 
         .btn-primary {
           display: inline-flex; align-items: center; gap: 10px;
           background: linear-gradient(135deg, #7c3aed, #a855f7);
@@ -144,7 +140,7 @@ export default function App() {
           font-family: 'Plus Jakarta Sans', sans-serif;
         }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 42px #7c3aed44; }
-
+ 
         .btn-send {
           display: flex; align-items: center; justify-content: center; gap: 10px;
           width: 100%;
@@ -156,8 +152,7 @@ export default function App() {
           font-family: 'Plus Jakarta Sans', sans-serif;
         }
         .btn-send:hover { transform: translateY(-2px); box-shadow: 0 14px 42px #7c3aed44; }
-
-        /* Card base */
+ 
         .card {
           background: #ffffff;
           border: 1px solid #e8e4fc;
@@ -170,23 +165,20 @@ export default function App() {
           transform: translateY(-4px);
           box-shadow: 0 20px 50px #7c3aed14;
         }
-
-        /* Chip de skill */
+ 
         .chip {
           font-size: 13px; font-weight: 600;
           padding: 6px 12px; border-radius: 10px;
           background: #ede9fe; color: #6d28d9;
           border: 1px solid #c4b5fd44;
         }
-
-        /* Tag de proyecto */
+ 
         .proj-tag {
           font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
           padding: 4px 10px; border-radius: 8px;
           background: #ede9fe; color: #7c3aed; border: 1px solid #c4b5fd55;
         }
-
-        /* Inputs */
+ 
         .form-label { display: block; font-size: 12px; font-weight: 700; color: #9090b0; margin-bottom: 6px; letter-spacing: 0.04em; text-transform: uppercase; }
         .form-input {
           width: 100%; background: #f8f7ff; border: 1.5px solid #e8e4fc;
@@ -197,8 +189,7 @@ export default function App() {
         }
         .form-input:focus { border-color: #7c3aed88; background: #f3f0ff; box-shadow: 0 0 0 3px #7c3aed18; }
         .form-input::placeholder { color: #c4c4da; }
-
-        /* Social */
+ 
         .social-btn {
           width: 44px; height: 44px; border-radius: 12px;
           display: flex; align-items: center; justify-content: center;
@@ -210,73 +201,53 @@ export default function App() {
           border-color: transparent; color: white;
           transform: translateY(-3px); box-shadow: 0 10px 28px #7c3aed33;
         }
-
-        /* Testimonial quote */
+ 
         .testi-quote {
           position: absolute; top: -10px; right: 18px;
           font-size: 120px; font-weight: 900;
           font-family: Georgia, serif; line-height: 1;
           color: #7c3aed; opacity: 0.06; pointer-events: none;
         }
-
-        /* Timeline */
+ 
         .timeline-line {
           position: absolute; left: 12px; top: 26px; bottom: 0;
           width: 2px;
           background: linear-gradient(to bottom, #7c3aed, #a855f744);
         }
-
+ 
         .cursor {
-        color: #7c3aed;
-        animation: blink 1s infinite;
-      }
-
-      @keyframes blink {
-        0%, 50%, 100% { opacity: 1; }
-        25%, 75% { opacity: 0; }
-      }
-
-
-      @keyframes float {
-              0% { transform: translateY(0px); }
-              50% { transform: translateY(-12px); }
-              100% { transform: translateY(0px); }
-            }
-
-        .profile-img:hover {
-          transform: scale(1.05);
+          color: #7c3aed;
+          animation: blink 1s infinite;
         }
-
-
+ 
+        @keyframes blink {
+          0%, 50%, 100% { opacity: 1; }
+          25%, 75% { opacity: 0; }
+        }
+ 
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-12px); }
+          100% { transform: translateY(0px); }
+        }
+ 
         .profile-img {
           transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
-
+ 
         .profile-img:hover {
           transform: scale(1.06) rotate(1deg);
           box-shadow: 0 20px 60px #7c3aed55;
         }
-
-
-        .profile-img:hover::after {
-          content: "";
-          position: absolute;
-          inset: -10px;
-          border-radius: 50%;
-          background: radial-gradient(circle, #a855f733, transparent 70%);
-          z-index: -1;
-        }
-
-
+ 
         .img-inner {
           transition: transform 0.4s ease;
         }
-
+ 
         .profile-img:hover .img-inner {
           transform: scale(1.08);
         }
-
-
+ 
         .chip {
           font-size: 13px;
           font-weight: 600;
@@ -288,134 +259,66 @@ export default function App() {
           transition: all 0.25s ease;
           cursor: pointer;
         }
-
+ 
         .chip:hover {
           transform: translateY(-4px) scale(1.05);
           background: linear-gradient(135deg, #7c3aed, #a855f7);
           color: white;
           box-shadow: 0 10px 20px #7c3aed33;
         }
-
-
+ 
         .fade-up {
           opacity: 0;
           transform: translateY(30px);
           animation: fadeUp 0.8s ease forwards;
         }
-
+ 
         @keyframes fadeUp {
           to {
             opacity: 1;
             transform: translateY(0);
           }
         }
-
-
-        /* 📱 Responsive PRO */
-          @media (max-width: 900px) {
-            
-            /* Layout general */
-            section {
-              padding: 70px 0 !important;
-            }
-
-            /* NAVBAR */
-            nav div {
-              padding: 0 12px !important;
-            }
-
-            nav div div:last-child {
-              overflow-x: auto;
-              gap: 6px !important;
-            }
-
-            /* HERO */
-            .hero-grid {
-              grid-template-columns: 1fr !important;
-              text-align: center;
-              gap: 40px !important;
-            }
-
-            h1 {
-              font-size: 42px !important;
-              line-height: 1.1 !important;
-            }
-
-            h2 {
-              font-size: 18px !important;
-            }
-
-            p {
-              font-size: 14px !important;
-            }
-
-            /* Imagen */
-            .profile-img {
-              width: 240px !important;
-              height: 240px !important;
-            }
-
-            /* ABOUT */
-            .about-grid {
-              grid-template-columns: 1fr !important;
-              gap: 40px !important;
-            }
-
-            /* Cards skills */
-            .skills-grid {
-              grid-template-columns: 1fr !important;
-            }
-
-            /* PROYECTOS */
-            .projects-grid {
-              grid-template-columns: 1fr !important;
-            }
-
-            /* TESTIMONIOS */
-            #testimonios div[style*="grid-template-columns"] {
-              grid-template-columns: 1fr !important;
-            }
-
-            /* EXPERIENCIA */
-            #experiencia div[style*="max-width: 720px"] {
-              padding: 0 10px;
-            }
-
-            /* CONTACTO */
-            #contacto div[style*="grid-template-columns: 1fr 1fr"] {
-              grid-template-columns: 1fr !important;
-            }
-
-            /* FOOTER */
-            footer div[style*="grid-template-columns: repeat(4, 1fr)"] {
-              grid-template-columns: 1fr !important;
-              gap: 30px !important;
-            }
-
-            /* Botones */
-            .btn-primary {
-              width: 100%;
-              justify-content: center;
-            }
-          }
-
-          .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease;
-          }
-
-          .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-          }
-
-
-
-
-
+ 
+        /* ── REVEAL: cada tarjeta aparece sola ── */
+        .reveal {
+          opacity: 0;
+          transform: translateY(40px);
+          transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+ 
+        .reveal.active {
+          opacity: 1;
+          transform: translateY(0);
+        }
+ 
+        /* Delays escalonados para grupos de tarjetas */
+        .reveal-d1 { transition-delay: 0.05s; }
+        .reveal-d2 { transition-delay: 0.15s; }
+        .reveal-d3 { transition-delay: 0.25s; }
+        .reveal-d4 { transition-delay: 0.35s; }
+ 
+ 
+        @media (max-width: 900px) {
+          section { padding: 70px 0 !important; }
+          nav div { padding: 0 12px !important; }
+          nav div div:last-child { overflow-x: auto; gap: 6px !important; }
+          .hero-grid { grid-template-columns: 1fr !important; text-align: center; gap: 40px !important; }
+          h1 { font-size: 42px !important; line-height: 1.1 !important; }
+          h2 { font-size: 18px !important; }
+          p { font-size: 14px !important; }
+          .profile-img { width: 240px !important; height: 240px !important; }
+          .about-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .skills-grid { grid-template-columns: 1fr !important; }
+          .projects-grid { grid-template-columns: 1fr !important; }
+          #testimonios div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+          #experiencia div[style*="max-width: 720px"] { padding: 0 10px; }
+          #contacto div[style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
+          footer div[style*="grid-template-columns: repeat(4, 1fr)"] { grid-template-columns: 1fr !important; gap: 30px !important; }
+          .btn-primary { width: 100%; justify-content: center; }
+        }
       `}</style>
-
+ 
       {/* NAVBAR */}
       <nav style={{
         position: 'sticky', top: 0, zIndex: 50,
@@ -423,7 +326,7 @@ export default function App() {
         borderBottom: '1px solid #e8e4fc',
         boxShadow: '0 1px 20px #7c3aed08',
       }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'flex',gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', justifyContent: 'space-between', alignItems: 'center', height: 64 }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: 64 }}>
           <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 22, fontWeight: 800 }}>
             <span style={{ color: '#1a1a2e' }}>Daniel </span>
             <span className="grad">Mafla</span>
@@ -435,12 +338,12 @@ export default function App() {
           </div>
         </div>
       </nav>
-
+ 
       {/* ── HERO ── */}
       <section id="inicio" className="bg-dots" style={{ padding: '110px 0', position: 'relative', overflow: 'hidden' }}>
         <div className="blob" style={{ width: 600, height: 600, background: '#7c3aed', top: -200, left: -150 }} />
         <div className="blob" style={{ width: 350, height: 350, background: '#a855f7', bottom: -80, right: 60 }} />
-
+ 
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 80, alignItems: 'center', position: 'relative' }}>
           <div>
             <div className="pill">✦ Disponible para proyectos</div>
@@ -460,7 +363,7 @@ export default function App() {
               <Download size={18} /> Descargar CV
             </button>
           </div>
-
+ 
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <div style={{ position: 'relative' }}>
               <div className="profile-img"
@@ -490,12 +393,13 @@ export default function App() {
           </div>
         </div>
       </section>
-
+ 
       {/* ── ACERCA ── */}
       <section id="acerca" className="bg-dots-alt" style={{ padding: '100px 0', position: 'relative', overflow: 'hidden' }}>
         <div className="blob" style={{ width: 400, height: 400, background: '#7c3aed', top: -80, right: -80 }} />
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 64, alignItems: 'start', position: 'relative' }}>
-          <div>
+          {/* Imagen izquierda — reveal */}
+          <div className="reveal reveal-d1">
             <div style={{ borderRadius: 24, overflow: 'hidden', height: 540, position: 'relative', background: '#ede9fe' }}>
               <img src="/foto mia.jpg" alt="About" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #f4f3fff0 0%, transparent 55%)' }} />
@@ -506,8 +410,9 @@ export default function App() {
               </div>
             </div>
           </div>
-
-          <div className="fade-up reveal">
+ 
+          {/* Texto derecha — reveal */}
+          <div className="reveal reveal-d2">
             <div className="pill">✦ Sobre mí</div>
             <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 50, fontWeight: 800, color: '#1a1a2e', lineHeight: 1.08, marginBottom: 22 }}>
               Acerca <br />de <span className="grad-subtle">mí</span>
@@ -518,14 +423,14 @@ export default function App() {
               y encontrar formas creativas de resolver problemas a través del código.
             </p>
             <p style={{ fontSize: 15, lineHeight: 1.85, color: '#6868a0', marginBottom: 32 }}>Soy una persona sociable, disfruto conocer gente y trabajar en equipo. Además, me interesa la edición de video y el contenido digital, lo que complementa mi perfil con un enfoque creativo</p>
-            <div className="fade-up" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
               {[
                 { title: 'Lenguajes', skills: ['Python', 'Java', 'JavaScript' ,'HTML5', 'CSS3'] },
                 { title: 'Frontend', skills: ['Next.js', 'Tailwind CSS', 'TypeScript',"React"] },
                 { title: 'Backend', skills: [ 'Django',"nextjs", 'API REST'] },
                 { title: 'Herramientas', skills: ['Git & GitHub',"Figma", 'VS Code', 'Postman'] },
-              ].map(card => (
-                <div key={card.title} style={{ background: '#ffffff', border: '1.5px solid #e8e4fc', borderRadius: 18, padding: 18, boxShadow: '0 2px 12px #7c3aed06' }}>
+              ].map((card, i) => (
+                <div key={card.title} className={`reveal reveal-d${i + 1}`} style={{ background: '#ffffff', border: '1.5px solid #e8e4fc', borderRadius: 18, padding: 18, boxShadow: '0 2px 12px #7c3aed06' }}>
                   <div style={{ fontSize: 11, fontWeight: 700, color: '#7c3aed', letterSpacing: '0.09em', textTransform: 'uppercase', marginBottom: 12 }}>{card.title}</div>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
                     {card.skills.map(s => <span key={s} className="chip">{s}</span>)}
@@ -536,12 +441,12 @@ export default function App() {
           </div>
         </div>
       </section>
-
+ 
       {/* ── PROYECTOS ── */}
       <section id="proyectos" className="bg-dots" style={{ padding: '100px 0', position: 'relative', overflow: 'hidden' }}>
         <div className="blob" style={{ width: 450, height: 450, background: '#7c3aed', bottom: -100, left: -100 }} />
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', position: 'relative' }}>
-          <div style={{ textAlign: 'center', marginBottom: 60 }}>
+          <div style={{ textAlign: 'center', marginBottom: 60 }} className="reveal">
             <div className="pill" style={{ display: 'inline-flex' }}>✦ Portafolio</div>
             <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 50, fontWeight: 800, color: '#1a1a2e', marginBottom: 10 }}>
               Mis <span className="grad">Proyectos</span>
@@ -552,9 +457,8 @@ export default function App() {
             {[
               { img: '/reproductor xsound.png', title: 'XSOUND', desc: 'Reproductor de musica de manera local o online', tags: ['Typescript',"CSS"] },
               { img: 'https://images.unsplash.com/photo-1661246627162-feb0269e0c07?w=600&q=80', title: 'Saborify', desc: 'Aplicación que te ayuda a cocinar y te recomienda recetas dependiendo tus necesidades', tags: ['TypeScript', 'Css'] },
-              
             ].map((p, i) => (
-              <div key={i} className="card reveal">
+              <div key={i} className={`card reveal reveal-d${i + 1}`}>
                 <div style={{ height: 185, overflow: 'hidden', position: 'relative', borderRadius: '20px 20px 0 0' }}>
                   <img src={p.img} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #ffffffdd, transparent 60%)' }} />
@@ -571,28 +475,28 @@ export default function App() {
           </div>
         </div>
       </section>
-
+ 
       {/* ── TESTIMONIOS ── */}
       <section id="testimonios" className="bg-dots-alt" style={{ padding: '100px 0', position: 'relative', overflow: 'hidden' }}>
         <div className="blob" style={{ width: 350, height: 350, background: '#a855f7', top: -60, right: 100 }} />
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', position: 'relative' }}>
-          <div style={{ textAlign: 'center', marginBottom: 60 }}>
+          <div style={{ textAlign: 'center', marginBottom: 60 }} className="reveal">
             <div className="pill" style={{ display: 'inline-flex' }}>✦ Testimonios</div>
             <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 50, fontWeight: 800, color: '#1a1a2e', marginBottom: 10 }}>
               Lo que <span className="grad">dicen</span>
             </h2>
             <p style={{ color: '#9090b0', fontSize: 15 }}>Lo que dicen mis compañeros y colaboradores</p>
           </div>
-          <div className="reveal" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 22 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 22 }}>
             {[
               { text: 'Daniel es un desarrollador muy dedicado. Su capacidad para aprender rápido y aplicar lo aprendido en proyectos reales lo hace un colaborador valioso en cualquier equipo.', name: 'Ana Martínez', role: 'Profesora de Ingeniería de Software', avatar: 'https://images.unsplash.com/photo-1581065178047-8ee15951ede6?w=100&q=80' },
               { text: 'Trabajar con Daniel fue una experiencia muy positiva. Su entusiasmo por la tecnología y su compromiso con cada tarea hacen que los proyectos siempre salgan adelante.', name: 'Carlos Ruiz', role: 'Compañero de proyecto universitario', avatar: 'https://images.unsplash.com/photo-1723537742563-15c3d351dbf2?w=100&q=80' },
               { text: 'Daniel tiene una gran curiosidad intelectual y siempre está buscando nuevas formas de mejorar. Es el tipo de estudiante que marca la diferencia en un equipo.', name: 'Laura Fernández', role: 'Mentora de desarrollo web', avatar: 'https://images.unsplash.com/photo-1610387694365-19fafcc86d86?w=100&q=80' },
             ].map((t, i) => (
-              <div key={i} style={{ background: '#ffffff', border: '1.5px solid #e8e4fc', borderRadius: 20, padding: 28, position: 'relative', overflow: 'hidden', boxShadow: '0 2px 16px #7c3aed08',transitionDelay: `${i * 0.15}s` }}>
+              <div key={i} className={`reveal reveal-d${i + 1}`} style={{ background: '#ffffff', border: '1.5px solid #e8e4fc', borderRadius: 20, padding: 28, position: 'relative', overflow: 'hidden', boxShadow: '0 2px 16px #7c3aed08' }}>
                 <div className="testi-quote">"</div>
                 <div style={{ display: 'flex', gap: 3, marginBottom: 16 }}>
-                  {[...Array(5)].map((_, j) => <span key={j} style={{ color: '#a855f7', fontSize: 14,  transitionDelay: `${i * 0.2}s` }}>★</span>)}
+                  {[...Array(5)].map((_, j) => <span key={j} style={{ color: '#a855f7', fontSize: 14 }}>★</span>)}
                 </div>
                 <p style={{ fontSize: 14, lineHeight: 1.8, color: '#6868a0', marginBottom: 22 }}>"{t.text}"</p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -609,19 +513,19 @@ export default function App() {
           </div>
         </div>
       </section>
-
+ 
       {/* ── EXPERIENCIA ── */}
       <section id="experiencia" className="bg-dots" style={{ padding: '100px 0', position: 'relative', overflow: 'hidden' }}>
         <div className="blob" style={{ width: 380, height: 380, background: '#7c3aed', bottom: -60, right: -40 }} />
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', position: 'relative' }}>
-          <div style={{ textAlign: 'center', marginBottom: 60 }}>
+          <div style={{ textAlign: 'center', marginBottom: 60 }} className="reveal">
             <div className="pill" style={{ display: 'inline-flex' }}>✦ Trayectoria</div>
             <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 50, fontWeight: 800, color: '#1a1a2e', marginBottom: 10 }}>
               Experiencia <span className="grad-subtle">académica</span>
             </h2>
             <p style={{ color: '#9090b0', fontSize: 15 }}>Mi trayectoria profesional y formación académica</p>
           </div>
-          <div className="reveal" style={{ maxWidth: 720, margin: '0 auto', position: 'relative' }}>
+          <div style={{ maxWidth: 720, margin: '0 auto', position: 'relative' }}>
             <div className="timeline-line" />
             {[
               { type: 'Académica', date: '2022 - Presente', title: 'Ingeniería de Software', company: 'Universidad — En curso', desc: 'Formación en desarrollo de software, estructuras de datos, algoritmos, bases de datos y arquitectura de sistemas. Participación activa en proyectos académicos.' },
@@ -629,7 +533,7 @@ export default function App() {
               { type: 'Académica', date: '2023', title: 'Curso de Desarrollo Web Full Stack', company: 'Formación complementaria', desc: 'Aprendizaje de HTML, CSS, JavaScript, React y Node.js. Construcción de proyectos reales como parte del proceso de aprendizaje.' },
               { type: 'Académica', date: '2022', title: 'Fundamentos de Programación', company: 'Universidad', desc: 'Introducción a la programación orientada a objetos con Java y Python. Desarrollo de lógica computacional y resolución de problemas.' },
             ].map((item, i) => (
-              <div key={i} style={{ display: 'flex', gap: 28, marginBottom: 24, paddingLeft: 4 }}>
+              <div key={i} className={`reveal reveal-d${i + 1}`} style={{ display: 'flex', gap: 28, marginBottom: 24, paddingLeft: 4 }}>
                 <div style={{ width: 26, height: 26, borderRadius: '50%', background: '#ede9fe', border: '2px solid #7c3aed', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 6, zIndex: 1 }}>
                   <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#7c3aed' }} />
                 </div>
@@ -647,20 +551,21 @@ export default function App() {
           </div>
         </div>
       </section>
-
+ 
       {/* ── CONTACTO ── */}
       <section id="contacto" className="bg-dots-alt" style={{ padding: '100px 0', position: 'relative', overflow: 'hidden' }}>
         <div className="blob" style={{ width: 420, height: 420, background: '#7c3aed', bottom: -100, left: -80 }} />
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', position: 'relative' }}>
-          <div style={{ textAlign: 'center', marginBottom: 60 }}>
+          <div style={{ textAlign: 'center', marginBottom: 60 }} className="reveal">
             <div className="pill" style={{ display: 'inline-flex' }}>✦ Contacto</div>
             <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 50, fontWeight: 800, color: '#1a1a2e', marginBottom: 10 }}>
               Hablemos <span className="grad">juntos</span>
             </h2>
             <p style={{ color: '#9090b0', fontSize: 15 }}>¿Tienes un proyecto en mente? Escríbeme</p>
           </div>
-          <div  className="reveal" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28 }}>
-            <div style={{ background: '#ffffff', border: '1.5px solid #e8e4fc', borderRadius: 22, padding: 36, boxShadow: '0 4px 24px #7c3aed08' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28 }}>
+            {/* Formulario */}
+            <div className="reveal reveal-d1" style={{ background: '#ffffff', border: '1.5px solid #e8e4fc', borderRadius: 22, padding: 36, boxShadow: '0 4px 24px #7c3aed08' }}>
               <h3 style={{ fontSize: 22, fontWeight: 700, color: '#1a1a2e', marginBottom: 28 }}>Envíame un mensaje</h3>
               <label className="form-label">Nombre completo</label>
               <input className="form-input" type="text" placeholder="Tu nombre" style={{ marginBottom: 18 }} />
@@ -670,8 +575,9 @@ export default function App() {
               <textarea className="form-input" placeholder="Cuéntame sobre tu proyecto..." rows={5} style={{ resize: 'vertical', marginBottom: 22 }} />
               <button className="btn-send"><Send size={17} /> Enviar mensaje</button>
             </div>
+            {/* Info + Redes */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
-              <div style={{ background: '#ffffff', border: '1.5px solid #e8e4fc', borderRadius: 22, padding: 28, boxShadow: '0 4px 24px #7c3aed08' }}>
+              <div className="reveal reveal-d2" style={{ background: '#ffffff', border: '1.5px solid #e8e4fc', borderRadius: 22, padding: 28, boxShadow: '0 4px 24px #7c3aed08' }}>
                 <h3 style={{ fontSize: 20, fontWeight: 700, color: '#1a1a2e', marginBottom: 6 }}>Información de contacto</h3>
                 <p style={{ fontSize: 13, color: '#9090b0', marginBottom: 24 }}>Puedes escribirme por cualquiera de estos medios.</p>
                 {[
@@ -690,25 +596,17 @@ export default function App() {
                   </div>
                 ))}
               </div>
-              <div style={{ background: '#ffffff', border: '1.5px solid #e8e4fc', borderRadius: 22, padding: 28, boxShadow: '0 4px 24px #7c3aed08' }}>
+              <div className="reveal reveal-d3" style={{ background: '#ffffff', border: '1.5px solid #e8e4fc', borderRadius: 22, padding: 28, boxShadow: '0 4px 24px #7c3aed08' }}>
                 <h3 style={{ fontSize: 20, fontWeight: 700, color: '#1a1a2e', marginBottom: 18 }}>Redes sociales</h3>
                 <div style={{ display: 'flex', gap: 12 }}>
                   <a href="https://github.com/DanielMafla320" target="_blank" rel="noopener noreferrer">
-                    <div className="social-btn">
-                      <FaGithub size={20} />
-                    </div>
+                    <div className="social-btn"><FaGithub size={20} /></div>
                   </a>
-
                   <a href="https://www.linkedin.com/in/daniel-mafla-782541317/?skipRedirect=true" target="_blank" rel="noopener noreferrer">
-                    <div className="social-btn">
-                      <FaLinkedin size={20} />
-                    </div>
+                    <div className="social-btn"><FaLinkedin size={20} /></div>
                   </a>
-
                   <a href="https://www.instagram.com/daniel_mafla05/?hl=es" target="_blank" rel="noopener noreferrer">
-                    <div className="social-btn">
-                      <FaInstagram size={20} />
-                    </div>
+                    <div className="social-btn"><FaInstagram size={20} /></div>
                   </a>
                 </div>
               </div>
@@ -716,7 +614,7 @@ export default function App() {
           </div>
         </div>
       </section>
-
+ 
       {/* ── FOOTER ── */}
       <footer style={{ background: '#f0eeff', borderTop: '1px solid #e8e4fc', padding: '60px 0 28px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
@@ -750,24 +648,16 @@ export default function App() {
             <div>
               <div style={{ fontSize: 11, fontWeight: 700, color: '#1a1a2e', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 10 }}>Sígueme</div>
               <div style={{ display: 'flex', gap: 12 }}>
-                  <a href="https://github.com/DanielMafla320" target="_blank" rel="noopener noreferrer">
-                    <div className="social-btn">
-                      <FaGithub size={20} />
-                    </div>
-                  </a>
-
-                  <a href="https://www.linkedin.com/in/daniel-mafla-782541317/?skipRedirect=true" target="_blank" rel="noopener noreferrer">
-                    <div className="social-btn">
-                      <FaLinkedin size={20} />
-                    </div>
-                  </a>
-
-                  <a href="https://www.instagram.com/daniel_mafla05/?hl=es" target="_blank" rel="noopener noreferrer">
-                    <div className="social-btn">
-                      <FaInstagram size={20} />
-                    </div>
-                  </a>
-                </div>
+                <a href="https://github.com/DanielMafla320" target="_blank" rel="noopener noreferrer">
+                  <div className="social-btn"><FaGithub size={20} /></div>
+                </a>
+                <a href="https://www.linkedin.com/in/daniel-mafla-782541317/?skipRedirect=true" target="_blank" rel="noopener noreferrer">
+                  <div className="social-btn"><FaLinkedin size={20} /></div>
+                </a>
+                <a href="https://www.instagram.com/daniel_mafla05/?hl=es" target="_blank" rel="noopener noreferrer">
+                  <div className="social-btn"><FaInstagram size={20} /></div>
+                </a>
+              </div>
             </div>
           </div>
           <div style={{ borderTop: '1px solid #e0dcf8', paddingTop: 24, textAlign: 'center' }}>
@@ -778,4 +668,3 @@ export default function App() {
     </div>
   );
 }
-
