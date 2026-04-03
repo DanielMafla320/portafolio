@@ -56,28 +56,36 @@ export default function App() {
   }, []);
  
   useEffect(() => {
-    const observe = () => {
-      const elements = document.querySelectorAll('.reveal');
-      const observer = new IntersectionObserver(
-        (entries, obs) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('active');
-              obs.unobserve(entry.target);
-            }
-          });
-        },
-        {
-          threshold: 0.15,
-          rootMargin: "0px 0px -60px 0px"
-        }
-      );
-      elements.forEach((el) => observer.observe(el));
-      return observer;
-    };
+    const elements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+    );
+    elements.forEach((el) => observer.observe(el));
  
-    const observer = observe();
-    return () => observer.disconnect();
+    // shimmer para la imagen del about
+    const imgWrap = document.querySelector('.about-img-wrap');
+    const shimmerObs = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('shimmer-active');
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    if (imgWrap) shimmerObs.observe(imgWrap);
+ 
+    return () => { observer.disconnect(); shimmerObs.disconnect(); };
   }, []);
  
   const scrollToSection = (sectionId: string) => {
@@ -298,6 +306,175 @@ export default function App() {
         .reveal-d3 { transition-delay: 0.25s; }
         .reveal-d4 { transition-delay: 0.35s; }
  
+        /* ── ABOUT IMAGE ── */
+        .about-img-wrap {
+          border-radius: 24px;
+          overflow: hidden;
+          height: 540px;
+          position: relative;
+          background: #ede9fe;
+        }
+ 
+        .about-img-wrap img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          will-change: transform;
+        }
+ 
+        .about-img-wrap:hover img {
+          transform: scale(1.04);
+        }
+ 
+        /* shimmer que recorre la imagen una vez al entrar */
+        .about-img-wrap::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            105deg,
+            transparent 30%,
+            rgba(255,255,255,0.18) 50%,
+            transparent 70%
+          );
+          background-size: 200% 100%;
+          background-position: -100% 0;
+          border-radius: 24px;
+          pointer-events: none;
+          transition: none;
+        }
+ 
+        .about-img-wrap.shimmer-active::after {
+          animation: shimmer-once 1.1s ease forwards;
+          animation-delay: 0.4s;
+        }
+ 
+        @keyframes shimmer-once {
+          0%   { background-position: -100% 0; opacity: 1; }
+          80%  { background-position: 200% 0;  opacity: 1; }
+          100% { background-position: 200% 0;  opacity: 0; }
+        }
+ 
+        /* línea morada animada en el borde izquierdo */
+        .about-img-wrap::before {
+          content: '';
+          position: absolute;
+          left: 0; top: 0;
+          width: 3px;
+          height: 0%;
+          background: linear-gradient(to bottom, #7c3aed, #a855f7, transparent);
+          border-radius: 0 0 4px 4px;
+          z-index: 2;
+          pointer-events: none;
+        }
+ 
+        .about-img-wrap.shimmer-active::before {
+          animation: line-grow 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+ 
+        @keyframes line-grow {
+          0%   { height: 0%; opacity: 1; }
+          100% { height: 100%; opacity: 1; }
+        }
+ 
+        /* ── PROJECT CARDS ── */
+        .proj-card {
+          background: #ffffff;
+          border: 1px solid #e8e4fc;
+          border-radius: 20px;
+          overflow: hidden;
+          position: relative;
+          box-shadow: 0 2px 12px #7c3aed08;
+          transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+        }
+ 
+        .proj-card:hover {
+          border-color: #a855f755;
+          transform: translateY(-6px);
+          box-shadow: 0 24px 56px #7c3aed18;
+        }
+ 
+        .proj-card-img {
+          height: 200px;
+          overflow: hidden;
+          position: relative;
+        }
+ 
+        .proj-card-img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          will-change: transform;
+        }
+ 
+        .proj-card:hover .proj-card-img img {
+          transform: scale(1.08);
+        }
+ 
+        /* overlay oscuro que sube al hacer hover */
+        .proj-card-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to top,
+            rgba(124, 58, 237, 0.82) 0%,
+            rgba(124, 58, 237, 0.3) 50%,
+            transparent 100%
+          );
+          opacity: 0;
+          transition: opacity 0.35s ease;
+          display: flex;
+          align-items: flex-end;
+          padding: 18px;
+        }
+ 
+        .proj-card:hover .proj-card-overlay {
+          opacity: 1;
+        }
+ 
+        .proj-card-overlay-text {
+          color: white;
+          font-size: 13px;
+          font-weight: 600;
+          transform: translateY(8px);
+          transition: transform 0.35s ease;
+          letter-spacing: 0.02em;
+        }
+ 
+        .proj-card:hover .proj-card-overlay-text {
+          transform: translateY(0);
+        }
+ 
+        /* punto de "disponible" pulsando en la tarjeta */
+        .proj-live-dot {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 11px;
+          font-weight: 700;
+          color: #7c3aed;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+        }
+ 
+        .proj-live-dot::before {
+          content: '';
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: #7c3aed;
+          box-shadow: 0 0 0 0 #7c3aed44;
+          animation: pulse-dot 2s infinite;
+        }
+ 
+        @keyframes pulse-dot {
+          0%   { box-shadow: 0 0 0 0 #7c3aed44; }
+          70%  { box-shadow: 0 0 0 7px transparent; }
+          100% { box-shadow: 0 0 0 0 transparent; }
+        }
+ 
  
         @media (max-width: 900px) {
           section { padding: 70px 0 !important; }
@@ -398,12 +575,12 @@ export default function App() {
       <section id="acerca" className="bg-dots-alt" style={{ padding: '100px 0', position: 'relative', overflow: 'hidden' }}>
         <div className="blob" style={{ width: 400, height: 400, background: '#7c3aed', top: -80, right: -80 }} />
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 64, alignItems: 'start', position: 'relative' }}>
-          {/* Imagen izquierda — reveal */}
+          {/* Imagen izquierda — reveal + shimmer */}
           <div className="reveal reveal-d1">
-            <div style={{ borderRadius: 24, overflow: 'hidden', height: 540, position: 'relative', background: '#ede9fe' }}>
-              <img src="/foto mia.jpg" alt="About" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #f4f3fff0 0%, transparent 55%)' }} />
-              <div style={{ position: 'absolute', bottom: 24, left: 20, right: 20, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <div className="about-img-wrap">
+              <img src="/foto mia.jpg" alt="About" />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #f4f3fff0 0%, transparent 55%)', pointerEvents: 'none' }} />
+              <div style={{ position: 'absolute', bottom: 24, left: 20, right: 20, display: 'flex', gap: 8, flexWrap: 'wrap', zIndex: 1 }}>
                 {['Python', 'Java', 'Next.js', 'Django'].map(t => (
                   <span key={t} style={{ background: '#fafafaee', border: '1.5px solid #a855f755', borderRadius: 10, padding: '7px 13px', fontSize: 12, fontWeight: 700, color: '#7c3aed' }}>{t}</span>
                 ))}
@@ -455,17 +632,22 @@ export default function App() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 22 }}>
             {[
-              { img: '/reproductor xsound.png', title: 'XSOUND', desc: 'Reproductor de musica de manera local o online', tags: ['Typescript',"CSS"] },
-              { img: 'https://images.unsplash.com/photo-1661246627162-feb0269e0c07?w=600&q=80', title: 'Saborify', desc: 'Aplicación que te ayuda a cocinar y te recomienda recetas dependiendo tus necesidades', tags: ['TypeScript', 'Css'] },
+              { img: '/reproductor xsound.png', title: 'XSOUND', desc: 'Reproductor de musica de manera local o online', tags: ['Typescript',"CSS"], cta: 'Ver proyecto' },
+              { img: 'https://images.unsplash.com/photo-1661246627162-feb0269e0c07?w=600&q=80', title: 'Saborify', desc: 'Aplicación que te ayuda a cocinar y te recomienda recetas dependiendo tus necesidades', tags: ['TypeScript', 'Css'], cta: 'Ver proyecto' },
             ].map((p, i) => (
-              <div key={i} className={`card reveal reveal-d${i + 1}`}>
-                <div style={{ height: 185, overflow: 'hidden', position: 'relative', borderRadius: '20px 20px 0 0' }}>
-                  <img src={p.img} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #ffffffdd, transparent 60%)' }} />
+              <div key={i} className={`proj-card reveal reveal-d${i + 1}`}>
+                <div className="proj-card-img">
+                  <img src={p.img} alt={p.title} />
+                  <div className="proj-card-overlay">
+                    <span className="proj-card-overlay-text">→ {p.cta}</span>
+                  </div>
                 </div>
-                <div style={{ padding: 20 }}>
-                  <h3 style={{ fontSize: 16, fontWeight: 700, color: '#1a1a2e', marginBottom: 8 }}>{p.title}</h3>
-                  <p style={{ fontSize: 13, color: '#8080aa', lineHeight: 1.65, marginBottom: 14 }}>{p.desc}</p>
+                <div style={{ padding: '20px 22px 22px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+                    <h3 style={{ fontSize: 16, fontWeight: 700, color: '#1a1a2e' }}>{p.title}</h3>
+                    <span className="proj-live-dot">Live</span>
+                  </div>
+                  <p style={{ fontSize: 13, color: '#8080aa', lineHeight: 1.65, marginBottom: 16 }}>{p.desc}</p>
                   <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                     {p.tags.map(t => <span key={t} className="proj-tag">{t}</span>)}
                   </div>
