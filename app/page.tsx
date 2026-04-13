@@ -162,7 +162,7 @@ export default function App() {
                   className="img-inner"
                   style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', background: '#ede9fe' }}
                 >
-                  <img src="/foto mia.jpg" alt="Daniel Mafla" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="/foto mia traje.jpeg" alt="Daniel Mafla" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
               </div>
               <div style={{
@@ -186,7 +186,7 @@ export default function App() {
           {/* Imagen izquierda — reveal + shimmer */}
           <div className="reveal reveal-d1">
             <div className="about-img-wrap">
-              <img src="/foto mia.jpg" alt="About" />
+              <img src="/foto mia traje.jpeg" alt="About" />
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #f4f3fff0 0%, transparent 55%)', pointerEvents: 'none' }} />
               <div style={{ position: 'absolute', bottom: 24, left: 20, right: 20, display: 'flex', gap: 8, flexWrap: 'wrap', zIndex: 1 }}>
                 {['Python', 'Java', 'Next.js', 'Django'].map(t => (
