@@ -484,3 +484,31 @@
           box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
           border-color: rgba(168, 85, 247, 0.4);
         }
+
+
+        .reveal-exp {
+          opacity: 0;
+          transform: translateY(40px) translateX(-20px);
+          transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        
+        .reveal-exp.active {
+          opacity: 1;
+          transform: translateY(0) translateX(0);
+        }
+
+        .exp-card.active {
+          animation: expGlow 0.8s ease;
+        }
+        
+        @keyframes expGlow {
+          0% {
+            box-shadow: 0 0 0 rgba(124, 58, 237, 0);
+          }
+          50% {
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.18);
+          }
+          100% {
+            box-shadow: 0 2px 12px rgba(124, 58, 237, 0.06);
+          }
+        }

@@ -52,6 +52,7 @@ export default function App() {
     const speed = 80;
     const deleteSpeed = 40;
     const delayBetweenWords = 1500;
+    
   
     const type = () => {
       const currentWord = words[wordIndex];
@@ -78,7 +79,8 @@ export default function App() {
   }, []);
  
   useEffect(() => {
-    const elements = document.querySelectorAll('.reveal');
+    const elements = document.querySelectorAll('.reveal, .reveal-exp');
+
     const observer = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {
@@ -349,7 +351,7 @@ export default function App() {
               { type: 'Academica', date: '2022', title: 'Técnico en mantenimiento de equipos de cómputo', company: 'Sena', desc: 'Técnico en mantenimiento de equipos de cómputo con conocimientos en diagnóstico de hardware y software, instalación de sistemas operativos, ensamblaje de equipos, solución de fallas y soporte técnico.' },
               { type: 'Académica', date: '2023', title: 'bootcamp en programacion con python', company: 'TalentoTech', desc: 'Formación en fundamentos de programación utilizando Python, incluyendo lógica de programación, estructuras de control, funciones y resolución de problemas.' },
             ].map((item, i) => (
-              <div key={i} className={`exp-card reveal reveal-d${i + 1}`} style={{ display: 'flex', gap: 28, marginBottom: 24, paddingLeft: 4 }}>
+              <div key={i} className={`exp-card reveal-exp reveal-d${i + 1}`} style={{ display: 'flex', gap: 28, marginBottom: 24, paddingLeft: 4 }}>
                 <div style={{ width: 26, height: 26, borderRadius: '50%', background: '#ede9fe', border: '2px solid #7c3aed', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 6, zIndex: 1 }}>
                   <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#7c3aed' }} />
                 </div>
