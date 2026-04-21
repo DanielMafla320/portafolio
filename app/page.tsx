@@ -163,14 +163,7 @@ export default function App() {
       </nav>
  
       {/* ── HERO ── */}
-      <motion.section
-  id="inicio"
-  className="bg-dots"
-  style={{ padding: '110px 0', position: 'relative', overflow: 'hidden' }}
-  variants={sectionVariant}
-  initial="hidden"
-  whileInView="show"
-  viewport={{ once: true, amount: 0.2 }}>
+      <section id="inicio" className="bg-dots" style={{ padding: '110px 0', position: 'relative', overflow: 'hidden' }}>
         <div className="blob" style={{ width: 600, height: 600, background: '#7c3aed', top: -200, left: -150 }} />
         <div className="blob" style={{ width: 350, height: 350, background: '#a855f7', bottom: -80, right: 60 }} />
  
