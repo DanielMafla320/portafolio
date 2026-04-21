@@ -501,49 +501,113 @@
           animation: expGlow 0.8s ease;
         }
 
-/* ── LANG TOGGLE BUTTON ── */
-.lang-toggle {
-  position: relative;
-  overflow: hidden;
-}
+        /* ── LANG TOGGLE BUTTON ── */
+        .lang-toggle {
+          position: relative;
+          overflow: hidden;
+        }
 
-/* ── FADE para textos al cambiar idioma ── */
-.lang-label {
-  display: inline-block;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
+        /* ── FADE para textos al cambiar idioma ── */
+        .lang-label {
+          display: inline-block;
+          transition: opacity 0.25s ease, transform 0.25s ease;
+        }
 
-.lang-out {
-  opacity: 0;
-  transform: translateY(-6px);
-  pointer-events: none;
-}
+        .lang-out {
+          opacity: 0;
+          transform: translateY(-6px);
+          pointer-events: none;
+        }
 
-.lang-in {
-  opacity: 1;
-  transform: translateY(0px);
-}
+        .lang-in {
+          opacity: 1;
+          transform: translateY(0px);
+        }
 
-/* fade-t: para elementos pequeños (pills, botones, labels) */
-.fade-t {
-  display: inline-block;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
+        /* fade-t: para elementos pequeños (pills, botones, labels) */
+        .fade-t {
+          display: inline-block;
+          transition: opacity 0.25s ease, transform 0.25s ease;
+        }
 
-/* fade-text ya lo tienes, pero si no está agrega: */
-.fade-text {
-  animation: fadeSlideIn 0.35s ease forwards;
-}
+        /* fade-text ya lo tienes, pero si no está agrega: */
+        .fade-text {
+          animation: fadeSlideIn 0.35s ease forwards;
+        }
 
-@keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+        @keyframes fadeSlideIn {
+          from {
+            opacity: 0;
+            transform: translateY(8px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .lang-toggle {
+          position: relative;
+          overflow: hidden;
+        }
+
+        /* ✨ HOVER GENERAL */
+        .lang-toggle:hover {
+          transform: translateY(-2px) scale(1.05);
+          box-shadow: 0 8px 25px #7c3aed33;
+          background: #f3f0ff;
+        }
+
+        /* ⚡ CLICK (feedback rápido) */
+        .lang-toggle:active {
+          transform: scale(0.95);
+        }
+
+        /* 🌍 ICONO ANIMACIÓN */
+        .lang-toggle svg {
+          transition: transform 0.3s ease;
+        }
+
+        .lang-toggle:hover svg {
+          transform: rotate(20deg) scale(1.15);
+        }
+
+        /* 🔤 TEXTO SUAVE */
+        .lang-label {
+          transition: all 0.25s ease;
+        }
+
+        /* 🔥 CUANDO CAMBIA IDIOMA */
+        .lang-out {
+          opacity: 0;
+          transform: translateY(-6px);
+        }
+
+        .lang-in {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        /* 💡 EFECTO BRILLO SUTIL */
+        .lang-toggle::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -75%;
+          width: 50%;
+          height: 100%;
+          background: linear-gradient(
+            120deg,
+            transparent,
+            rgba(255,255,255,0.5),
+            transparent
+          );
+          transform: skewX(-20deg);
+        }
+
+        .lang-toggle:hover::after {
+          left: 130%;
+          transition: 0.6s;
+        }
           
 
