@@ -274,8 +274,7 @@ export default function App() {
 
   const T = 'all 0.4s ease';
 
-  // FIXED: cardStyle ahora usa los valores correctos de c.card directamente
-  // sin depender de referencias stale
+
   const cardBg = darkMode ? '#16162a' : '#ffffff';
   const cardBorder = darkMode ? '#2a2a45' : '#e8e4fc';
 
