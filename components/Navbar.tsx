@@ -16,13 +16,7 @@ export default function Navbar({ activeSection, scrollToSection }: NavbarProps) 
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScroll = window.scrollY;
-      if (currentScroll > lastScrollY.current && currentScroll > 80) {
-        setShowNav(false);
-      } else {
         setShowNav(true);
-      }
-      lastScrollY.current = currentScroll;
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
