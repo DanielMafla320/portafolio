@@ -496,7 +496,6 @@ export default function App() {
             <p key={language + 'td'} className="fade-text" style={{ color: c.textMuted, fontSize: 15, transition: T }}>{t.testiDesc}</p>
           </div>
 
-          {/* grid con alignItems stretch para igualar alturas entre cards */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 22, alignItems: 'stretch' }}>
             {t.testimonials.map((testi, i) => (
               <div
@@ -514,7 +513,7 @@ export default function App() {
                   transition: 'box-shadow 0.35s ease, border-color 0.35s ease',
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'space-between',
+                  justifyContent: 'flex-start',  // ← CORRECCIÓN: contenido desde arriba
                   height: '100%',
                   boxSizing: 'border-box',
                 }}
@@ -529,8 +528,8 @@ export default function App() {
                   <p key={language + 'tm' + i} className="fade-text" style={{ fontSize: 14, lineHeight: 1.8, color: c.textSoft, transition: T }}>"{testi.text}"</p>
                 </div>
 
-                {/* bloque inferior: autor — siempre pegado al fondo */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 22 }}>
+                {/* bloque inferior: autor — marginTop: 'auto' lo empuja al fondo solo cuando hay espacio extra */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 'auto', paddingTop: 22 }}>
                   <div style={{ width: 42, height: 42, borderRadius: '50%', overflow: 'hidden', border: `2px solid ${darkMode ? '#4a4a80' : '#c4b5fd66'}`, flexShrink: 0 }}>
                     <img src={testi.avatar} alt={testi.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>

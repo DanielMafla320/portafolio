@@ -113,6 +113,8 @@
           font-size: 120px; font-weight: 900;
           font-family: Georgia, serif; line-height: 1;
           color: #7c3aed; opacity: 0.06; pointer-events: none;
+          /* No afecta el flujo del contenido porque es absolute */
+          z-index: 0;
         }
  
         .timeline-line {
@@ -424,7 +426,6 @@
         }
 
         /* ── GLASS ::before — solo para cards que NO son testimonial ni proj-card ── */
-        /* Se desactiva para .testimonial-card y .proj-card via override más abajo */
         .glass::before {
           content: '';
           position: absolute;
@@ -459,28 +460,28 @@
         }
 
         /* ────────────────────────────────────────────────────────────
-           TESTIMONIAL CARDS — brillo radial dinámico con mouse
-           El ::before se sobreescribe completamente aquí.
-           Las variables --x / --y las setea handleTilt en JS.
+           TESTIMONIAL CARDS
         ──────────────────────────────────────────────────────────── */
         .testimonial-card {
           --x: 50%;
           --y: 50%;
           position: relative;
           overflow: hidden;
-          /* El transform del tilt lo maneja inline desde JS */
           transition: box-shadow 0.35s ease, border-color 0.35s ease;
-          /* IMPORTANTE: NO pongas transition: transform aquí,
-             porque el tilt inline lo necesita sin conflicto */
+
+          /* ── FIX PRINCIPAL: contenido desde arriba ── */
+          display: flex !important;
+          flex-direction: column !important;
+          justify-content: flex-start !important;
+          align-items: stretch !important;
         }
 
-        /* Cancelamos el ::before heredado de .glass */
+        /* Cancelamos el ::before heredado de .glass y ponemos el radial dinámico */
         .testimonial-card::before {
           content: '';
           position: absolute;
           inset: 0;
           border-radius: inherit;
-          /* Gradiente radial grande — cubre toda la card desde el cursor */
           background: radial-gradient(
             circle 500px at var(--x) var(--y),
             rgba(168, 85, 247, 0.22),
@@ -488,11 +489,9 @@
             transparent 70%
           );
           opacity: 0;
-          /* Transición suave al aparecer Y al desaparecer */
           transition: opacity 0.35s ease;
           pointer-events: none;
           z-index: 0;
-          /* Sin animación de shine — solo el radial dinámico */
           animation: none !important;
         }
 
@@ -507,9 +506,15 @@
           z-index: 1;
         }
 
-        /* ── .glass override para testimonial-card: NO translateY en hover ── */
+        /* El autor se pega al fondo cuando la card es más alta que su contenido */
+        .testimonial-card .testi-author {
+          margin-top: auto !important;
+          padding-top: 22px;
+        }
+
+        /* Override: NO translateY en hover — el tilt inline maneja la transformación */
         .testimonial-card.glass:hover {
-          transform: none; /* el tilt inline maneja la transformación */
+          transform: none;
         }
 
 
@@ -582,7 +587,6 @@
           transition: opacity 0.25s ease, transform 0.25s ease;
         }
 
-        /* fade-text ya lo tienes, pero si no está agrega: */
         .fade-text {
           animation: fadeSlideIn 0.35s ease forwards;
         }
