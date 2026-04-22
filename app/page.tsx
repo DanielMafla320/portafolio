@@ -206,45 +206,26 @@ export default function App() {
  
   const t = translations[language];
  
-  // ── TILT HANDLER CORREGIDO ────────────────────────────────────────────────
-  // Actualiza --x y --y para el gradiente radial del brillo,
-  // añade la clase "hovering" para mostrar el ::before,
-  // y aplica el tilt 3D inline.
   const handleTilt = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
-
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-
-    // Posición del cursor para el gradiente radial del brillo
     card.style.setProperty('--x', `${x}px`);
     card.style.setProperty('--y', `${y}px`);
-
-    // Tilt 3D
     const centerX = rect.width  / 2;
     const centerY = rect.height / 2;
     const rotateX = -(y - centerY) / 12;
     const rotateY =  (x - centerX) / 12;
     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
-
-    // Activa el brillo
     card.classList.add('hovering');
   };
 
-  // ── RESET HANDLER CORREGIDO ───────────────────────────────────────────────
-  // Quita el tilt, elimina la clase "hovering" para que el ::before
-  // haga fade-out suave a opacity:0 via la transition definida en CSS.
   const resetTilt = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget;
-
-    // Reset del tilt 3D
     card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
-
-    // Quita la clase que muestra el brillo → el CSS hace el fade-out automáticamente
     card.classList.remove('hovering');
   };
-  // ─────────────────────────────────────────────────────────────────────────
  
   useEffect(() => {
     const words = ["Software Engineering Student", "Frontend Developer", "Backend Developer", "Problem Solver"];
@@ -514,12 +495,12 @@ export default function App() {
             </h2>
             <p key={language + 'td'} className="fade-text" style={{ color: c.textMuted, fontSize: 15, transition: T }}>{t.testiDesc}</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 22 }}>
+
+          {/* grid con alignItems stretch para igualar alturas entre cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 22, alignItems: 'stretch' }}>
             {t.testimonials.map((testi, i) => (
               <div
                 key={i}
-                // ↓ Se quitó la clase "hovering" del className estático;
-                //   ahora la añade/quita handleTilt y resetTilt dinámicamente.
                 className={`testimonial-card glass reveal reveal-d${i + 1}`}
                 onMouseMove={handleTilt}
                 onMouseLeave={resetTilt}
@@ -530,16 +511,26 @@ export default function App() {
                   overflow: 'hidden',
                   background: cardBg,
                   border: `1.5px solid ${cardBorder}`,
-                  // Sin "transition: transform" aquí para no interferir con el tilt inline
                   transition: 'box-shadow 0.35s ease, border-color 0.35s ease',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  height: '100%',
+                  boxSizing: 'border-box',
                 }}
               >
                 <div className="testi-quote" style={{ color: darkMode ? '#2a2a45' : undefined }}>"</div>
-                <div style={{ display: 'flex', gap: 3, marginBottom: 16 }}>
-                  {[...Array(5)].map((_, j) => <span key={j} style={{ color: '#a855f7', fontSize: 14 }}>★</span>)}
+
+                {/* bloque superior: estrellas + texto */}
+                <div>
+                  <div style={{ display: 'flex', gap: 3, marginBottom: 16 }}>
+                    {[...Array(5)].map((_, j) => <span key={j} style={{ color: '#a855f7', fontSize: 14 }}>★</span>)}
+                  </div>
+                  <p key={language + 'tm' + i} className="fade-text" style={{ fontSize: 14, lineHeight: 1.8, color: c.textSoft, transition: T }}>"{testi.text}"</p>
                 </div>
-                <p key={language + 'tm' + i} className="fade-text" style={{ fontSize: 14, lineHeight: 1.8, color: c.textSoft, marginBottom: 22, transition: T }}>"{testi.text}"</p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+
+                {/* bloque inferior: autor — siempre pegado al fondo */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 22 }}>
                   <div style={{ width: 42, height: 42, borderRadius: '50%', overflow: 'hidden', border: `2px solid ${darkMode ? '#4a4a80' : '#c4b5fd66'}`, flexShrink: 0 }}>
                     <img src={testi.avatar} alt={testi.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
@@ -596,9 +587,7 @@ export default function App() {
           </div>
  
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 28 }}>
- 
             <div ref={formRef} className="reveal reveal-d1" style={{ ...cardStyle, padding: 36, position: 'relative', overflow: 'hidden' }}>
- 
               {sendStatus === 'success' && (
                 <div style={{ position: 'absolute', inset: 0, zIndex: 10, borderRadius: 22, background: darkMode ? 'rgba(11,11,22,0.97)' : 'rgba(255,255,255,0.97)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, animation: 'fadeInUp 0.4s ease' }}>
                   <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'linear-gradient(135deg, #16a34a, #22c55e)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 32px #22c55e55' }}>
@@ -608,7 +597,6 @@ export default function App() {
                   <div style={{ fontSize: 14, color: c.textMuted }}>{t.successSub}</div>
                 </div>
               )}
- 
               {sendStatus === 'error' && (
                 <div style={{ position: 'absolute', inset: 0, zIndex: 10, borderRadius: 22, background: darkMode ? 'rgba(11,11,22,0.97)' : 'rgba(255,255,255,0.97)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, animation: 'fadeInUp 0.4s ease' }}>
                   <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'linear-gradient(135deg, #dc2626, #ef4444)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 32px #ef444455' }}>
@@ -618,27 +606,22 @@ export default function App() {
                   <div style={{ fontSize: 14, color: c.textMuted }}>{t.errorSub}</div>
                 </div>
               )}
- 
               <h3 style={{ fontSize: 22, fontWeight: 700, color: c.text, marginBottom: 28, transition: T }}>
                 <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>{t.contactFormTitle}</span>
               </h3>
- 
               <label style={{ color: c.textMuted, display: 'block', marginBottom: 8, fontSize: 13, fontWeight: 600 }}>
                 <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>{t.contactName}</span>
               </label>
               <input style={{ ...inputStyle, marginBottom: 18 }} type="text" placeholder={t.contactNamePH}
                 value={formName} onChange={e => setFormName(e.target.value)} disabled={sendStatus === 'sending'} />
- 
               <label style={{ color: c.textMuted, display: 'block', marginBottom: 8, fontSize: 13, fontWeight: 600 }}>{t.contactEmail}</label>
               <input style={{ ...inputStyle, marginBottom: 18 }} type="email" placeholder={t.contactEmailPH}
                 value={formEmail} onChange={e => setFormEmail(e.target.value)} disabled={sendStatus === 'sending'} />
- 
               <label style={{ color: c.textMuted, display: 'block', marginBottom: 8, fontSize: 13, fontWeight: 600 }}>
                 <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>{t.contactMsg}</span>
               </label>
               <textarea style={{ ...inputStyle, resize: 'vertical', marginBottom: 22 }} placeholder={t.contactMsgPH} rows={5}
                 value={formMessage} onChange={e => setFormMessage(e.target.value)} disabled={sendStatus === 'sending'} />
- 
               <button onClick={handleSend} disabled={sendStatus === 'sending' || isFormEmpty}
                 style={{
                   display: 'flex', alignItems: 'center', gap: 10, padding: '14px 28px',

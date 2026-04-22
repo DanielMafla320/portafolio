@@ -423,8 +423,8 @@
           border: 1px solid rgba(124, 58, 237, 0.4);
         }
 
-        /* ── GLASS ::before — solo para cards que NO son testimonial ── */
-        /* Se desactiva para .testimonial-card via override más abajo */
+        /* ── GLASS ::before — solo para cards que NO son testimonial ni proj-card ── */
+        /* Se desactiva para .testimonial-card y .proj-card via override más abajo */
         .glass::before {
           content: '';
           position: absolute;
@@ -451,6 +451,13 @@
           to   { transform: translateX(100%); }
         }
 
+        /* Las proj-card tienen clase .glass pero NO deben heredar el shine pegado */
+        .proj-card::before {
+          display: none !important;
+          content: none !important;
+          animation: none !important;
+        }
+
         /* ────────────────────────────────────────────────────────────
            TESTIMONIAL CARDS — brillo radial dinámico con mouse
            El ::before se sobreescribe completamente aquí.
@@ -473,10 +480,11 @@
           position: absolute;
           inset: 0;
           border-radius: inherit;
-          /* Gradiente radial centrado en el cursor */
+          /* Gradiente radial grande — cubre toda la card desde el cursor */
           background: radial-gradient(
-            circle 180px at var(--x) var(--y),
-            rgba(168, 85, 247, 0.18),
+            circle 500px at var(--x) var(--y),
+            rgba(168, 85, 247, 0.22),
+            rgba(124, 58, 237, 0.08) 40%,
             transparent 70%
           );
           opacity: 0;
