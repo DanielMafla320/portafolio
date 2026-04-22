@@ -677,3 +677,13 @@
             transform: scale(1);
           }
         }
+
+        @media (max-width: 768px) {
+          .desktop-menu {
+            display: none !important;
+          }
+
+          .hamburger {
+            display: block !important;
+          }
+        }
