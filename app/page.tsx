@@ -245,8 +245,8 @@ export default function App() {
     card.style.setProperty('--y', `${y}px`);
     const centerX = rect.width  / 2;
     const centerY = rect.height / 2;
-    const rotateX = -(y - centerY) / 12;
-    const rotateY =  (x - centerX) / 12;
+    const rotateX = -(y - centerY) / 35;
+    const rotateY =  (x - centerX) / 35;
     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
     card.classList.add('hovering');
   };
