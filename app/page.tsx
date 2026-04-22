@@ -16,13 +16,11 @@ export default function App() {
 
   const handleDownload = () => {
     setDownloading(true);
-  
     setTimeout(() => {
       setDownloading(false);
     }, 600);
   };
 
-  // ── COLOR TOKENS ──
   const c = darkMode ? {
     bg: '#0b0b16',
     bgAlt: '#0b0b16',
@@ -283,7 +281,6 @@ export default function App() {
 
   const T = 'all 0.4s ease';
 
-
   const cardBg = darkMode ? '#16162a' : '#ffffff';
   const cardBorder = darkMode ? '#2a2a45' : '#e8e4fc';
 
@@ -319,6 +316,8 @@ export default function App() {
     minHeight: '100vh',
     color: c.text,
     transition: T,
+    // FIX 1: Elimina la línea blanca del lado derecho en mobile
+    overflowX: 'hidden',
   };
 
   return (
@@ -389,14 +388,13 @@ export default function App() {
             </h2>
             <p key={language} className="fade-text" style={{ fontSize: 15, lineHeight: 1.85, color: c.textSoft, marginBottom: 36, maxWidth: 460, transition: T }}>{t.heroDesc}</p>
             <a href="/cv.pdf" download onClick={handleDownload}>
-            <button className={`btn-primary ${downloading ? 'download-anim' : ''}`}>
-              <Download size={18} />
-              <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>
-                {t.downloadCV}
-              </span>
-            </button>
-          </a>
-
+              <button className={`btn-primary ${downloading ? 'download-anim' : ''}`}>
+                <Download size={18} />
+                <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>
+                  {t.downloadCV}
+                </span>
+              </button>
+            </a>
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <div style={{ position: 'relative' }}>
@@ -470,7 +468,8 @@ export default function App() {
             </h2>
             <p key={language + 'pd'} className="fade-text" style={{ color: c.textMuted, fontSize: 15, transition: T }}>{t.projectsDesc}</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 22 }}>
+          {/* FIX 2: Grid de proyectos responsive — de repeat(3,1fr) fijo a auto-fit */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 22 }}>
             {t.projects.map((p, i) => {
               const meta = projectMeta[i];
               return (
@@ -510,7 +509,8 @@ export default function App() {
             </h2>
             <p key={language + 'td'} className="fade-text" style={{ color: c.textMuted, fontSize: 15, transition: T }}>{t.testiDesc}</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 22 }}>
+          {/* Testimonios también responsive */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 22 }}>
             {t.testimonials.map((testi, i) => (
               <div key={i} className={`testimonial-card glass reveal reveal-d${i + 1}`}
                 onMouseMove={handleTilt} onMouseLeave={resetTilt}
@@ -611,7 +611,8 @@ export default function App() {
             </h2>
             <p key={language + 'cd'} className="fade-text" style={{ color: c.textMuted, fontSize: 15, transition: T }}>{t.contactDesc}</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28 }}>
+          {/* FIX 3: Grid de contacto responsive — de '1fr 1fr' fijo a auto-fit */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 28 }}>
             <div className="reveal reveal-d1" style={{ ...cardStyle, padding: 36 }}>
               <h3 style={{ fontSize: 22, fontWeight: 700, color: c.text, marginBottom: 28, transition: T }}>
                 <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>{t.contactFormTitle}</span>
@@ -678,9 +679,10 @@ export default function App() {
       </section>
 
       {/* ── FOOTER ── */}
+      {/* FIX 4: Footer responsive — de repeat(4,1fr) fijo a auto-fit */}
       <footer style={{ background: darkMode ? '#08080f' : '#ede9fe', borderTop: `1px solid ${c.border}`, padding: '60px 0 28px', transition: T }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 40, marginBottom: 48 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 40, marginBottom: 48 }}>
             <div>
               <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 20, fontWeight: 800, marginBottom: 14 }}>
                 <span style={{ color: c.text, transition: T }}>Daniel </span><span className="grad">Mafla</span>
