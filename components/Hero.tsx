@@ -9,42 +9,51 @@ export default function Hero() {
 
   return (
     <section id="inicio" className="hero section-anchor">
-      <div className="wrap hero-grid">
-        <div className="hero-copy">
-          <p className="eyebrow"><span className="eyebrow-mark" />{t.available}</p>
-          <h1>Daniel<br /><span className="serif-word">Mafla</span><span className="heading-period">.</span></h1>
-          <p className="hero-role">{language === 'es' ? 'Estudiante de Ingeniería de Software' : 'Software Engineering Student'}</p>
-          <p className="hero-description">{t.heroDesc}</p>
-          <div className="hero-actions">
-            <a className="button button-primary" href="#proyectos">
-              {language === 'es' ? 'Explorar proyectos' : 'Explore projects'}<ArrowRight size={17} aria-hidden="true" />
-            </a>
-            <a className="button button-secondary" href="/cv.pdf" download>
-              <Download size={16} aria-hidden="true" />{t.downloadCV}
-            </a>
-          </div>
-          <a className="hero-contact-link" href="#contacto">
-            {language === 'es' ? 'Hablemos de una idea' : 'Let’s talk about an idea'}<ArrowDownRight size={15} aria-hidden="true" />
-          </a>
+      <div className="wrap hero-masthead" data-reveal="hero">
+        <p className="eyebrow"><span className="eyebrow-mark" />{t.available}</p>
+        <p className="hero-edition">{language === 'es' ? 'PORTAFOLIO PERSONAL' : 'PERSONAL PORTFOLIO'} <span>—</span> 2026</p>
+        <p className="hero-location">PASTO, COLOMBIA</p>
+      </div>
+
+      <div className="wrap hero-composition">
+        <div className="hero-title-block" data-reveal="hero">
+          <span className="hero-index" aria-hidden="true">01 / DM</span>
+          <h1><span>Daniel</span><span className="hero-name-last">Mafla<span className="heading-period">.</span></span></h1>
+          <span className="hero-title-note">{language === 'es' ? 'PERSONA · CÓDIGO · IDEA' : 'PERSON · CODE · IDEA'}</span>
         </div>
 
-        <div className="hero-visual" aria-label={language === 'es' ? 'Retrato de Daniel Mafla' : 'Portrait of Daniel Mafla'}>
-          <div className="portrait-frame">
-            <Image
-              src="/foto mia traje.jpeg"
-              alt={language === 'es' ? 'Daniel Mafla con traje' : 'Daniel Mafla wearing a suit'}
-              fill
-              priority
-              sizes="(max-width: 760px) 72vw, 390px"
-              className="portrait-image"
-            />
+        <div className="hero-lower" data-reveal="hero">
+          <figure className="hero-portrait">
+            <div className="portrait-frame">
+              <Image
+                src="/foto mia traje.jpeg"
+                alt={language === 'es' ? 'Retrato de Daniel Mafla con traje' : 'Portrait of Daniel Mafla wearing a suit'}
+                fill
+                priority
+                sizes="(max-width: 760px) 42vw, 310px"
+                className="portrait-image"
+              />
+            </div>
+            <figcaption><span>FIG. 01</span>{language === 'es' ? 'Un retrato, Pasto' : 'A portrait, Pasto'}</figcaption>
+          </figure>
+
+          <div className="hero-intro">
+            <p className="hero-role">{language === 'es' ? 'Estudiante de Ingeniería de Software' : 'Software Engineering Student'}</p>
+            <p className="hero-description">{t.heroDesc}</p>
+            <div className="hero-actions">
+              <a className="button button-primary" href="#proyectos">
+                {language === 'es' ? 'Explorar proyectos' : 'Explore projects'}<ArrowRight size={17} aria-hidden="true" />
+              </a>
+              <a className="button button-secondary" href="#contacto">
+                {language === 'es' ? 'Contacto' : 'Contact'}<ArrowDownRight size={16} aria-hidden="true" />
+              </a>
+            </div>
+            <a className="hero-cv-link" href="/cv.pdf" download><Download size={14} aria-hidden="true" />{t.downloadCV}</a>
           </div>
-          <span className="portrait-index">FIG. 01 / DANIEL M.</span>
-          <span className="portrait-caption">Pasto, Colombia <span>—</span> {t.inProgress}</span>
-          <span className="hero-orbit" aria-hidden="true">DM<span>✳</span></span>
+
+          <p className="hero-margin-note"><span>SCROLL</span><span aria-hidden="true">↓</span>{language === 'es' ? 'PARA EXPLORAR' : 'TO EXPLORE'}</p>
         </div>
       </div>
-      <div className="hero-bottomline wrap" aria-hidden="true"><span>{language === 'es' ? 'PORTAFOLIO' : 'PORTFOLIO'} 2026</span><span>{language === 'es' ? 'INGENIERÍA · CREATIVIDAD · CÓDIGO' : 'ENGINEERING · CREATIVITY · CODE'}</span></div>
     </section>
   );
 }

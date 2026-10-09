@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, useSyncExternalStore, type ReactNode } from 'react';
 import { translations } from '@/data/translations';
 import { Language } from '@/types';
 
@@ -11,74 +11,67 @@ interface ThemeContextType {
   changeLanguage: () => void;
   isChanging: boolean;
   t: typeof translations['es'];
-  c: ReturnType<typeof buildColors>;
-  T: string;
 }
 
-function buildColors(darkMode: boolean) {
-  return darkMode ? {
-    bg: '#0f0e13', bgAlt: '#131219', surface: '#17161d',
-    border: '#2d2b38', borderLight: '#24222d',
-    text: '#eceaf2', textMuted: '#b4b0c0', textSoft: '#a5a2b2',
-    pill:         { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
-    chip:         { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
-    card:         { bg: '#17161d', border: '#2d2b38' },
-    navBg: '#0f0e13eF', footer: '#0b0a0f',
-    badge:        { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
-    skillCard:    { bg: '#17161d', border: '#2d2b38' },
-    contactInput: { bg: '#131219', border: '#393743' },
-    timelineLine: '#393743',
-    aboutGrad: 'linear-gradient(to top, #0f0e13 0%, transparent 70%)',
-    tagBg: '#211d2d', tagColor: '#c7b2ff', tagBorder: '#393149',
-    socialBtn:    { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
-    langBtn:      { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
-    iconCircle: '#211d2d', dotNode: '#211d2d',
-    expBadge:     { bg: '#211d2d', border: '#393149' },
-    blobOpacity: 0.22, sectionDivider: 'transparent',
-  } : {
-    bg: '#f4f2ee', bgAlt: '#efede8', surface: '#ffffff',
-    border: '#d9d5ce', borderLight: '#e8e5df',
-    text: '#16151a', textMuted: '#5c5966', textSoft: '#5c5966',
-    pill:         { bg: '#eee8f8', border: '#d7c8ed', color: '#5b21b6' },
-    chip:         { bg: '#f4f2ee', border: '#d9d5ce', color: '#5b21b6' },
-    card:         { bg: '#ffffff', border: '#d9d5ce' },
-    navBg: '#f4f2eeed', footer: '#eeece7',
-    badge:        { bg: '#eee8f8', border: '#d7c8ed', color: '#5b21b6' },
-    skillCard:    { bg: '#ffffff', border: '#d9d5ce' },
-    contactInput: { bg: '#f8f7f4', border: '#d9d5ce' },
-    timelineLine: '#d9d5ce',
-    aboutGrad: 'linear-gradient(to top, #f4f2ee 0%, transparent 70%)',
-    tagBg: '#eee8f8', tagColor: '#5b21b6', tagBorder: '#d7c8ed',
-    socialBtn:    { bg: '#ffffff', border: '#d9d5ce', color: '#5b21b6' },
-    langBtn:      { bg: '#ffffff', border: '#d9d5ce', color: '#5b21b6' },
-    iconCircle: '#eee8f8', dotNode: '#eee8f8',
-    expBadge:     { bg: '#eee8f8', border: '#d7c8ed' },
-    blobOpacity: 1, sectionDivider: '#d9d5ce',
+const THEME_STORAGE_KEY = 'daniel-portfolio-theme';
+let sessionPreference: boolean | null = null;
+
+function getThemeSnapshot() {
+  if (sessionPreference !== null) return sessionPreference;
+  try {
+    const saved = window.localStorage.getItem(THEME_STORAGE_KEY);
+    if (saved === 'dark') return true;
+    if (saved === 'light') return false;
+  } catch {
+    // The operating system preference is the fallback.
+  }
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
+function subscribeToTheme(callback: () => void) {
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+  const notify = () => callback();
+  const handleStorage = () => {
+    sessionPreference = null;
+    callback();
+  };
+  media.addEventListener('change', notify);
+  window.addEventListener('storage', handleStorage);
+  window.addEventListener('portfolio-theme-change', notify);
+  return () => {
+    media.removeEventListener('change', notify);
+    window.removeEventListener('storage', handleStorage);
+    window.removeEventListener('portfolio-theme-change', notify);
   };
 }
-
-export { buildColors };
 
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [darkMode, setDarkMode]       = useState(false);
-  const [language, setLanguage]       = useState<Language>('es');
-  const [isChanging, setIsChanging]   = useState(false);
+  const darkMode = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, () => false);
+  const [language, setLanguage] = useState<Language>('es');
+  const [isChanging, setIsChanging] = useState(false);
 
-  const toggleDark = () => setDarkMode(prev => !prev);
+  const toggleDark = () => {
+    const next = !darkMode;
+    sessionPreference = next;
+    try {
+      window.localStorage.setItem(THEME_STORAGE_KEY, next ? 'dark' : 'light');
+    } catch {
+      // The selected theme still applies for this session if storage is unavailable.
+    }
+    window.dispatchEvent(new Event('portfolio-theme-change'));
+  };
 
   const changeLanguage = () => {
     setIsChanging(true);
-    setTimeout(() => {
-      setLanguage(prev => prev === 'es' ? 'en' : 'es');
+    window.setTimeout(() => {
+      setLanguage(previous => previous === 'es' ? 'en' : 'es');
       setIsChanging(false);
     }, 250);
   };
 
-  const t    = translations[language];
-  const c    = buildColors(darkMode);
-  const T    = 'color 180ms ease, background-color 180ms ease, border-color 180ms ease';
+  const t = translations[language];
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -87,14 +80,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, [darkMode, language]);
 
   return (
-    <ThemeContext.Provider value={{ darkMode, toggleDark, language, changeLanguage, isChanging, t, c, T }}>
+    <ThemeContext.Provider value={{ darkMode, toggleDark, language, changeLanguage, isChanging, t }}>
       {children}
     </ThemeContext.Provider>
   );
 }
 
 export function useTheme() {
-  const ctx = useContext(ThemeContext);
-  if (!ctx) throw new Error('useTheme must be used inside ThemeProvider');
-  return ctx;
+  const context = useContext(ThemeContext);
+  if (!context) throw new Error('useTheme must be used inside ThemeProvider');
+  return context;
 }

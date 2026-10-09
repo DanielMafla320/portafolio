@@ -8,7 +8,7 @@ export default function Testimonials() {
   return (
     <section id="testimonios" className="section section-anchor">
       <div className="wrap">
-        <div className="section-heading section-heading-split">
+        <div className="section-heading section-heading-split" data-reveal>
           <div>
             <p className="section-kicker">{t.testiPill}</p>
             <h2 className="section-title">{t.testiTitle}{t.testiTitleGrad}<span className="heading-period">.</span></h2>
@@ -18,7 +18,7 @@ export default function Testimonials() {
 
         <div className="testimonials-grid">
           {t.testimonials.map((testimonial, index) => (
-            <figure className={`testimonial${index === 0 ? ' testimonial-featured' : ''}`} key={testimonial.name}>
+            <figure className={`testimonial${index === 0 ? ' testimonial-featured' : ''}`} key={testimonial.name} data-reveal>
               <span className="testimonial-index">0{index + 1} / {language === 'es' ? 'NOTA' : 'NOTE'}</span>
               <blockquote>{testimonial.text}</blockquote>
               <figcaption>

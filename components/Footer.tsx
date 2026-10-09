@@ -15,8 +15,8 @@ export default function Footer() {
           <a className="footer-brand" href="#inicio">Daniel Mafla<span>.</span></a>
           <p>{t.footerDesc}</p>
           <div className="footer-socials">
-            <a href="https://github.com/DanielMafla320" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)"><FaGithub size={18} aria-hidden="true" /></a>
-            <a href="https://www.linkedin.com/in/daniel-mafla-782541317/?skipRedirect=true" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)"><FaLinkedin size={18} aria-hidden="true" /></a>
+            <a href="https://github.com/DanielMafla320" target="_blank" rel="noopener noreferrer" aria-label={language === 'es' ? 'GitHub, abre en una pestaña nueva' : 'GitHub, opens in a new tab'}><FaGithub size={18} aria-hidden="true" /></a>
+            <a href="https://www.linkedin.com/in/daniel-mafla-782541317/?skipRedirect=true" target="_blank" rel="noopener noreferrer" aria-label={language === 'es' ? 'LinkedIn, abre en una pestaña nueva' : 'LinkedIn, opens in a new tab'}><FaLinkedin size={18} aria-hidden="true" /></a>
           </div>
         </div>
         <div className="footer-bottom">

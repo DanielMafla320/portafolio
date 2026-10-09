@@ -1,2639 +1,969 @@
 diff --git a/app/globals.css b/app/globals.css
-index 05ef420..0f61ee2 100644
+index 0f61ee2..b80c257 100644
 --- a/app/globals.css
 +++ b/app/globals.css
-@@ -1,689 +1,285 @@
--@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap');
--        * { box-sizing: border-box; margin: 0; padding: 0; }
-- 
--        .bg-dots {
--          background-color: #fafafa;
--          background-image: radial-gradient(circle, #7c3aed18 1px, transparent 1px);
--          background-size: 30px 30px;
--        }
--        .bg-dots-alt {
--          background-color: #f4f3ff;
--          background-image: radial-gradient(circle, #7c3aed12 1px, transparent 1px);
--          background-size: 30px 30px;
--        }
-- 
--        .grad { background: linear-gradient(135deg, #7c3aed, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
--        .grad-subtle { background: linear-gradient(135deg, #6d28d9, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-- 
--        .blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.10; pointer-events: none; }
-- 
--        .pill {
--          display: inline-flex; align-items: center; gap: 6px;
--          font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
--          padding: 6px 14px; border-radius: 999px;
--          background: #7c3aed14; border: 1px solid #7c3aed33; color: #7c3aed;
--          margin-bottom: 18px;
--        }
-- 
--        .nav-btn {
--          background: none; border: none;
--          font-size: 14px; font-weight: 600; color: #9090b0;
--          padding: 8px 14px; border-radius: 10px;
--          cursor: pointer; transition: all 0.2s;
--          font-family: 'Plus Jakarta Sans', sans-serif;
--          text-transform: capitalize;
--        }
--        .nav-btn:hover { color: #1a1a2e; background: #7c3aed08; }
--        .nav-btn.active { color: #7c3aed; background: #7c3aed12; }
-- 
--        .btn-primary {
--          display: inline-flex; align-items: center; gap: 10px;
--          background: linear-gradient(135deg, #7c3aed, #a855f7);
--          color: white; font-weight: 700; font-size: 15px;
--          padding: 14px 28px; border-radius: 14px; border: none;
--          cursor: pointer; transition: all 0.25s;
--          box-shadow: 0 8px 32px #7c3aed30;
--          font-family: 'Plus Jakarta Sans', sans-serif;
--        }
--        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 42px #7c3aed44; }
-- 
--        .btn-send {
--          display: flex; align-items: center; justify-content: center; gap: 10px;
--          width: 100%;
--          background: linear-gradient(135deg, #7c3aed, #a855f7);
--          color: white; font-weight: 700; font-size: 15px;
--          padding: 14px 28px; border-radius: 14px; border: none;
--          cursor: pointer; transition: all 0.25s;
--          box-shadow: 0 8px 28px #7c3aed30;
--          font-family: 'Plus Jakarta Sans', sans-serif;
--        }
--        .btn-send:hover { transform: translateY(-2px); box-shadow: 0 14px 42px #7c3aed44; }
-- 
--        .card {
--          background: #ffffff;
--          border: 1px solid #e8e4fc;
--          border-radius: 20px;
--          transition: all 0.3s;
--          box-shadow: 0 2px 12px #7c3aed08;
--        }
--        .card:hover {
--          border-color: #a855f755;
--          transform: translateY(-4px);
--          box-shadow: 0 20px 50px #7c3aed14;
--        }
-- 
--        .chip {
--          font-size: 13px; font-weight: 600;
--          padding: 6px 12px; border-radius: 10px;
--          background: #ede9fe; color: #6d28d9;
--          border: 1px solid #c4b5fd44;
--        }
-- 
--        .proj-tag {
--          font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
--          padding: 4px 10px; border-radius: 8px;
--          background: #ede9fe; color: #7c3aed; border: 1px solid #c4b5fd55;
--        }
-- 
--        .form-label { display: block; font-size: 12px; font-weight: 700; color: #9090b0; margin-bottom: 6px; letter-spacing: 0.04em; text-transform: uppercase; }
--        .form-input {
--          width: 100%; background: #f8f7ff; border: 1.5px solid #e8e4fc;
--          border-radius: 12px; padding: 12px 16px;
--          color: #1a1a2e; font-size: 14px;
--          font-family: 'Plus Jakarta Sans', sans-serif;
--          outline: none; transition: all 0.2s; display: block;
--        }
--        .form-input:focus { border-color: #7c3aed88; background: #f3f0ff; box-shadow: 0 0 0 3px #7c3aed18; }
--        .form-input::placeholder { color: #c4c4da; }
-- 
--        .social-btn {
--          width: 44px; height: 44px; border-radius: 12px;
--          display: flex; align-items: center; justify-content: center;
--          cursor: pointer; transition: all 0.25s;
--          background: #f4f3ff; border: 1.5px solid #e8e4fc; color: #a0a0c0;
--        }
--        .social-btn:hover {
--          background: linear-gradient(135deg, #7c3aed, #a855f7);
--          border-color: transparent; color: white;
--          transform: translateY(-3px); box-shadow: 0 10px 28px #7c3aed33;
--        }
-- 
--        .testi-quote {
--          position: absolute; top: -10px; right: 18px;
--          font-size: 120px; font-weight: 900;
--          font-family: Georgia, serif; line-height: 1;
--          color: #7c3aed; opacity: 0.06; pointer-events: none;
--          /* No afecta el flujo del contenido porque es absolute */
--          z-index: 0;
--        }
-- 
--        .timeline-line {
--          position: absolute; left: 12px; top: 26px; bottom: 0;
--          width: 2px;
--          background: linear-gradient(to bottom, #7c3aed, #a855f744);
--        }
-- 
--        .cursor {
--          color: #7c3aed;
--          animation: blink 1s infinite;
--        }
-- 
--        @keyframes blink {
--          0%, 50%, 100% { opacity: 1; }
--          25%, 75% { opacity: 0; }
--        }
-- 
--        @keyframes float {
--          0% { transform: translateY(0px); }
--          50% { transform: translateY(-12px); }
--          100% { transform: translateY(0px); }
--        }
-- 
--        .profile-img {
--          transition: transform 0.4s ease, box-shadow 0.4s ease;
--        }
-- 
--        .profile-img:hover {
--          transform: scale(1.06) rotate(1deg);
--          box-shadow: 0 20px 60px #7c3aed55;
--        }
-- 
--        .img-inner {
--          transition: transform 0.4s ease;
--        }
-- 
--        .profile-img:hover .img-inner {
--          transform: scale(1.08);
--        }
-- 
--        .chip {
--          font-size: 13px;
--          font-weight: 600;
--          padding: 6px 12px;
--          border-radius: 10px;
--          background: #ede9fe;
--          color: #6d28d9;
--          border: 1px solid #c4b5fd44;
--          transition: all 0.25s ease;
--          cursor: pointer;
--        }
-- 
--        .chip:hover {
--          transform: translateY(-4px) scale(1.05);
--          background: linear-gradient(135deg, #7c3aed, #a855f7);
--          color: white;
--          box-shadow: 0 10px 20px #7c3aed33;
--        }
-- 
--        .fade-up {
--          opacity: 0;
--          transform: translateY(30px);
--          animation: fadeUp 0.8s ease forwards;
--        }
-- 
--        @keyframes fadeUp {
--          to {
--            opacity: 1;
--            transform: translateY(0);
--          }
--        }
-- 
--        /* ── REVEAL: cada tarjeta aparece sola ── */
--        .reveal {
--          opacity: 0;
--          transform: translateY(40px) scale(0.98);
--          transition: opacity 0.7s ease, transform 0.7s ease;
--        }
--        
--        .reveal.active {
--          opacity: 1;
--          transform: translateY(0) scale(1);
--        }
-- 
--        /* Delays escalonados para grupos de tarjetas */
--        .reveal-d1 { transition-delay: 0.05s; }
--        .reveal-d2 { transition-delay: 0.15s; }
--        .reveal-d3 { transition-delay: 0.25s; }
--        .reveal-d4 { transition-delay: 0.35s; }
-- 
--        /* ── ABOUT IMAGE ── */
--        .about-img-wrap {
--          border-radius: 24px;
--          overflow: hidden;
--          height: 540px;
--          position: relative;
--          background: #ede9fe;
--        }
-- 
--        .about-img-wrap img {
--          width: 100%;
--          height: 100%;
--          object-fit: cover;
--          transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
--          will-change: transform;
--        }
-- 
--        .about-img-wrap:hover img {
--          transform: scale(1.04);
--        }
-- 
--        /* shimmer que recorre la imagen una vez al entrar */
--        .about-img-wrap::after {
--          content: '';
--          position: absolute;
--          inset: 0;
--          background: linear-gradient(
--            105deg,
--            transparent 30%,
--            rgba(255,255,255,0.18) 50%,
--            transparent 70%
--          );
--          background-size: 200% 100%;
--          background-position: -100% 0;
--          border-radius: 24px;
--          pointer-events: none;
--          transition: none;
--        }
-- 
--        .about-img-wrap.shimmer-active::after {
--          animation: shimmer-once 1.1s ease forwards;
--          animation-delay: 0.4s;
--        }
-- 
--        @keyframes shimmer-once {
--          0%   { background-position: -100% 0; opacity: 1; }
--          80%  { background-position: 200% 0;  opacity: 1; }
--          100% { background-position: 200% 0;  opacity: 0; }
--        }
-- 
--        /* línea morada animada en el borde izquierdo */
--        .about-img-wrap::before {
--          content: '';
--          position: absolute;
--          left: 0; top: 0;
--          width: 3px;
--          height: 0%;
--          background: linear-gradient(to bottom, #7c3aed, #a855f7, transparent);
--          border-radius: 0 0 4px 4px;
--          z-index: 2;
--          pointer-events: none;
--        }
-- 
--        .about-img-wrap.shimmer-active::before {
--          animation: line-grow 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
--        }
-- 
--        @keyframes line-grow {
--          0%   { height: 0%; opacity: 1; }
--          100% { height: 100%; opacity: 1; }
--        }
-- 
--        /* ── PROJECT CARDS ── */
--        .proj-card {
--          background: #ffffff;
--          border: 1px solid #e8e4fc;
--          border-radius: 20px;
--          overflow: hidden;
--          position: relative;
--          box-shadow: 0 2px 12px #7c3aed08;
--          transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
--        }
-- 
--        .proj-card:hover {
--          border-color: #a855f755;
--          transform: translateY(-6px);
--          box-shadow: 0 24px 56px #7c3aed18;
--        }
-- 
--        .proj-card-img {
--          height: 200px;
--          overflow: hidden;
--          position: relative;
--        }
-- 
--        .proj-card-img img {
--          width: 100%;
--          height: 100%;
--          object-fit: cover;
--          transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
--          will-change: transform;
--        }
-- 
--        .proj-card:hover .proj-card-img img {
--          transform: scale(1.08);
--        }
-- 
--        /* overlay oscuro que sube al hacer hover */
--        .proj-card-overlay {
--          position: absolute;
--          inset: 0;
--          background: linear-gradient(
--            to top,
--            rgba(124, 58, 237, 0.82) 0%,
--            rgba(124, 58, 237, 0.3) 50%,
--            transparent 100%
--          );
--          opacity: 0;
--          transition: opacity 0.35s ease;
--          display: flex;
--          align-items: flex-end;
--          padding: 18px;
--        }
-- 
--        .proj-card:hover .proj-card-overlay {
--          opacity: 1;
--        }
-- 
--        .proj-card-overlay-text {
--          color: white;
--          font-size: 13px;
--          font-weight: 600;
--          transform: translateY(8px);
--          transition: transform 0.35s ease;
--          letter-spacing: 0.02em;
--        }
-- 
--        .proj-card:hover .proj-card-overlay-text {
--          transform: translateY(0);
--        }
-- 
--        /* punto de "disponible" pulsando en la tarjeta */
--        .proj-live-dot {
--          display: inline-flex;
--          align-items: center;
--          gap: 6px;
--          font-size: 11px;
--          font-weight: 700;
--          color: #7c3aed;
--          letter-spacing: 0.04em;
--          text-transform: uppercase;
--        }
-- 
--        .proj-live-dot::before {
--          content: '';
--          width: 7px;
--          height: 7px;
--          border-radius: 50%;
--          background: #7c3aed;
--          box-shadow: 0 0 0 0 #7c3aed44;
--          animation: pulse-dot 2s infinite;
--        }
-- 
--        @keyframes pulse-dot {
--          0%   { box-shadow: 0 0 0 0 #7c3aed44; }
--          70%  { box-shadow: 0 0 0 7px transparent; }
--          100% { box-shadow: 0 0 0 0 transparent; }
--        }
-- 
-- 
--        @media (max-width: 900px) {
--          section { padding: 70px 0 !important; }
--          nav div { padding: 0 12px !important; }
--          nav div div:last-child { overflow-x: auto; gap: 6px !important; }
--          .hero-grid { grid-template-columns: 1fr !important; text-align: center; gap: 40px !important; }
--          h1 { font-size: 42px !important; line-height: 1.1 !important; }
--          h2 { font-size: 18px !important; }
--          p { font-size: 14px !important; }
--          .profile-img { width: 240px !important; height: 240px !important; }
--          .about-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
--          .skills-grid { grid-template-columns: 1fr !important; }
--          .projects-grid { grid-template-columns: 1fr !important; }
--          #testimonios div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
--          #experiencia div[style*="max-width: 720px"] { padding: 0 10px; }
--          #contacto div[style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
--          footer div[style*="grid-template-columns: repeat(4, 1fr)"] { grid-template-columns: 1fr !important; gap: 30px !important; }
--          .btn-primary { width: 100%; justify-content: center; }
--        }
--
--
--        .cursor-glow {
--          position: fixed;
--          width: 250px;
--          height: 250px;
--          border-radius: 50%;
--          pointer-events: none;
--          background: radial-gradient(circle, rgba(124,58,237,0.15), transparent 60%);
--          transform: translate(-50%, -50%);
--          z-index: 9999;
--          transition: transform 0.08s ease;
--        }
--
--
--        /* ── GLASS BASE ── */
--        .glass {
--          background: rgba(255, 255, 255, 0.6);
--          backdrop-filter: blur(14px);
--          -webkit-backdrop-filter: blur(14px);
--          border: 1px solid rgba(255, 255, 255, 0.3);
--          box-shadow: 0 4px 20px rgba(124, 58, 237, 0.08);
--          transition: all 0.3s ease;
--        }
--
--        .glass:hover {
--          transform: translateY(-6px);
--          box-shadow: 0 12px 40px rgba(124, 58, 237, 0.25);
--          border: 1px solid rgba(124, 58, 237, 0.4);
--        }
--
--        /* ── GLASS ::before — solo para cards que NO son testimonial ni proj-card ── */
--        .glass::before {
--          content: '';
--          position: absolute;
--          inset: 0;
--          border-radius: inherit;
--          background: linear-gradient(
--            120deg,
--            transparent 30%,
--            rgba(255, 255, 255, 0.5),
--            transparent 70%
--          );
--          opacity: 0;
--          transition: opacity 0.4s ease;
--          pointer-events: none;
--        }
--
--        .glass:hover::before {
--          opacity: 1;
--          animation: shine 1s ease;
--        }
--
--        @keyframes shine {
--          from { transform: translateX(-100%); }
--          to   { transform: translateX(100%); }
--        }
--
--        /* Las proj-card tienen clase .glass pero NO deben heredar el shine pegado */
--        .proj-card::before {
--          display: none !important;
--          content: none !important;
--          animation: none !important;
--        }
--
--        /* ────────────────────────────────────────────────────────────
--           TESTIMONIAL CARDS
--        ──────────────────────────────────────────────────────────── */
--        .testimonial-card {
--          --x: 50%;
--          --y: 50%;
--          position: relative;
--          overflow: hidden;
--          transition: box-shadow 0.35s ease, border-color 0.35s ease;
--
--          /* ── FIX PRINCIPAL: contenido desde arriba ── */
--          display: flex !important;
--          flex-direction: column !important;
--          justify-content: flex-start !important;
--          align-items: stretch !important;
--        }
--
--        /* Cancelamos el ::before heredado de .glass y ponemos el radial dinámico */
--        .testimonial-card::before {
--          content: '';
--          position: absolute;
--          inset: 0;
--          border-radius: inherit;
--          background: radial-gradient(
--            circle 500px at var(--x) var(--y),
--            rgba(168, 85, 247, 0.22),
--            rgba(124, 58, 237, 0.08) 40%,
--            transparent 70%
--          );
--          opacity: 0;
--          transition: opacity 0.35s ease;
--          pointer-events: none;
--          z-index: 0;
--          animation: none !important;
--        }
--
--        /* Cuando el mouse está encima, se muestra el brillo */
--        .testimonial-card.hovering::before {
--          opacity: 1;
--        }
--
--        /* Todo el contenido interno por encima del brillo */
--        .testimonial-card > * {
--          position: relative;
--          z-index: 1;
--        }
--
--        /* El autor se pega al fondo cuando la card es más alta que su contenido */
--        .testimonial-card .testi-author {
--          margin-top: auto !important;
--          padding-top: 22px;
--        }
--
--        /* Override: NO translateY en hover — el tilt inline maneja la transformación */
--        .testimonial-card.glass:hover {
--          transform: none;
--        }
--
--
--        .bg-dots-alt {
--          background: radial-gradient(circle at 20% 30%, #c4b5fd 0%, transparent 40%),
--                      radial-gradient(circle at 80% 70%, #a78bfa 0%, transparent 40%),
--                      #ede9fe;
--          
--          background-image: radial-gradient(circle, #7c3aed12 1px, transparent 1px);
--          background-size: 30px 30px;
--        }
--
--        .exp-card {
--          background: rgba(255, 255, 255, 0.75);
--          backdrop-filter: blur(14px);
--          border: 1px solid rgba(124, 58, 237, 0.15);
--          border-radius: 18px;
--          padding: 24px;
--          transition: all 0.3s ease;
--        }
--        
--        .exp-card:hover {
--          transform: translateY(-6px) scale(1.02);
--          box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
--          border-color: rgba(168, 85, 247, 0.4);
--        }
--
--
--        .reveal-exp {
--          opacity: 0;
--          transform: translateY(40px) translateX(-20px);
--          transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
--        }
--        
--        .reveal-exp.active {
--          opacity: 1;
--          transform: translateY(0) translateX(0);
--        }
--
--        .exp-card.active {
--          animation: expGlow 0.8s ease;
--        }
--
--        /* ── LANG TOGGLE BUTTON ── */
--        .lang-toggle {
--          position: relative;
--          overflow: hidden;
--        }
--
--        /* ── FADE para textos al cambiar idioma ── */
--        .lang-label {
--          display: inline-block;
--          transition: opacity 0.25s ease, transform 0.25s ease;
--        }
--
--        .lang-out {
--          opacity: 0;
--          transform: translateY(-6px);
--          pointer-events: none;
--        }
--
--        .lang-in {
--          opacity: 1;
--          transform: translateY(0px);
--        }
--
--        /* fade-t: para elementos pequeños (pills, botones, labels) */
--        .fade-t {
--          display: inline-block;
--          transition: opacity 0.25s ease, transform 0.25s ease;
--        }
--
--        .fade-text {
--          animation: fadeSlideIn 0.35s ease forwards;
--        }
--
--        @keyframes fadeSlideIn {
--          from {
--            opacity: 0;
--            transform: translateY(8px);
--          }
--          to {
--            opacity: 1;
--            transform: translateY(0);
--          }
--        }
--
--        /* ✨ HOVER GENERAL */
--        .lang-toggle:hover {
--          transform: translateY(-2px) scale(1.05);
--          box-shadow: 0 8px 25px #7c3aed33;
--          background: #f3f0ff;
--        }
--
--        /* ⚡ CLICK (feedback rápido) */
--        .lang-toggle:active {
--          transform: scale(0.95);
--        }
--
--        /* 🌍 ICONO ANIMACIÓN */
--        .lang-toggle svg {
--          transition: transform 0.3s ease;
--        }
--
--        .lang-toggle:hover svg {
--          transform: rotate(20deg) scale(1.15);
--        }
--
--        /* 🔤 TEXTO SUAVE */
--        .lang-label {
--          transition: all 0.25s ease;
--        }
--
--        /* 🔥 CUANDO CAMBIA IDIOMA */
--        .lang-out {
--          opacity: 0;
--          transform: translateY(-6px);
--        }
--
--        .lang-in {
--          opacity: 1;
--          transform: translateY(0);
--        }
--
--        /* 💡 EFECTO BRILLO SUTIL */
--        .lang-toggle::after {
--          content: "";
--          position: absolute;
--          top: 0;
--          left: -75%;
--          width: 50%;
--          height: 100%;
--          background: linear-gradient(
--            120deg,
--            transparent,
--            rgba(255,255,255,0.5),
--            transparent
--          );
--          transform: skewX(-20deg);
--        }
--
--        .lang-toggle:hover::after {
--          left: 130%;
--          transition: 0.6s;
--        }
--
--        .download-anim {
--          transform: scale(0.95);
--          animation: pulseDownload 0.6s ease;
--        }
--        
--        @keyframes pulseDownload {
--          0% {
--            transform: scale(1);
--          }
--          50% {
--            transform: scale(0.92);
--          }
--          100% {
--            transform: scale(1);
--          }
--        }
--
--        @media (max-width: 768px) {
--          .desktop-menu {
--            display: none !important;
--          }
--
--          .hamburger {
--            display: block !important;
--          }
--        }
-\ No newline at end of file
-+:root {
-+  color-scheme: light;
-+  --page: #f4f2ee;
-+  --surface: #fff;
-+  --surface-muted: #eeece7;
-+  --ink: #16151a;
-+  --muted: #5c5966;
-+  --soft: #77737f;
-+  --accent: #6d28d9;
-+  --accent-hover: #5b21b6;
-+  --accent-wash: #eee8f8;
-+  --line: #d9d5ce;
-+  --line-soft: #e8e5df;
-+  --shadow: 0 18px 54px rgb(30 24 38 / 7%);
-+  --button-text: #fff;
-+  --font-sans: var(--font-geist-sans), "Segoe UI", sans-serif;
-+  --font-mono: var(--font-geist-mono), "SFMono-Regular", monospace;
-+  --font-editorial: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
-+  --wrap: 1160px;
-+  --header-height: 76px;
-+  --ease: cubic-bezier(.2, .7, .2, 1);
-+}
+@@ -9,7 +9,7 @@
+   --accent: #6d28d9;
+   --accent-hover: #5b21b6;
+   --accent-wash: #eee8f8;
+-  --line: #d9d5ce;
++  --line: #cfcbc3;
+   --line-soft: #e8e5df;
+   --shadow: 0 18px 54px rgb(30 24 38 / 7%);
+   --button-text: #fff;
+@@ -27,7 +27,7 @@
+   --surface: #17161d;
+   --surface-muted: #131219;
+   --ink: #eceaf2;
+-  --muted: #b4b0c0;
++  --muted: #a5a2b2;
+   --soft: #a5a2b2;
+   --accent: #b79cff;
+   --accent-hover: #d4c4ff;
+@@ -57,6 +57,7 @@ img { display: block; max-width: 100%; }
+ .skip-link:focus { transform: translateY(0); }
+ 
+ .site-header { height: var(--header-height); position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--page) 94%, transparent); border-bottom: 1px solid var(--line); backdrop-filter: blur(14px); }
++.site-header, .section-tinted, .section-contact, .site-footer, .testimonial, .icon-button { transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease; }
+ .nav-wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+ .brand, .footer-brand { color: var(--ink); text-decoration: none; font-family: var(--font-editorial); font-size: 25px; line-height: 1; letter-spacing: -.055em; font-weight: 700; white-space: nowrap; }
+ .brand-period, .heading-period, .footer-brand span { color: var(--accent); }
+@@ -75,87 +76,107 @@ img { display: block; max-width: 100%; }
+ .mobile-menu-inner { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px 18px; padding-block: 16px 22px; }
+ .mobile-nav-link { text-align: left; background: transparent; border: 0; border-bottom: 1px solid var(--line-soft); padding: 13px 4px; cursor: pointer; }
+ 
+-.hero { min-height: min(790px, calc(100svh - var(--header-height))); padding: clamp(64px, 9vw, 112px) 0 24px; display: flex; flex-direction: column; justify-content: center; position: relative; }
+-.hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr); align-items: center; gap: clamp(40px, 9vw, 128px); }
+-.hero-copy { position: relative; z-index: 2; padding-block: 25px; }
++.hero-masthead[data-reveal="hero"] { animation: hero-arrive 650ms var(--ease) both; }
++.hero-title-block[data-reveal="hero"] { animation: hero-arrive 700ms var(--ease) 80ms both; }
++.hero-lower[data-reveal="hero"] { animation: hero-arrive 720ms var(--ease) 170ms both; }
++@keyframes hero-arrive { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 +
-+:root[data-theme="dark"] {
-+  color-scheme: dark;
-+  --page: #0f0e13;
-+  --surface: #17161d;
-+  --surface-muted: #131219;
-+  --ink: #eceaf2;
-+  --muted: #b4b0c0;
-+  --soft: #a5a2b2;
-+  --accent: #b79cff;
-+  --accent-hover: #d4c4ff;
-+  --accent-wash: #211d2d;
-+  --line: #2d2b38;
-+  --line-soft: #24222d;
-+  --shadow: 0 18px 54px rgb(0 0 0 / 24%);
-+  --button-text: #17131d;
-+}
-+
-+*, *::before, *::after { box-sizing: border-box; }
-+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 20px); }
-+body { margin: 0; background: var(--page); color: var(--ink); font-family: var(--font-sans); font-size: 16px; line-height: 1.6; transition: background-color 180ms ease, color 180ms ease; }
-+body, button, input, textarea { font-family: var(--font-sans); }
-+button, a { -webkit-tap-highlight-color: transparent; }
-+button { color: inherit; }
-+a { color: inherit; }
-+img { display: block; max-width: 100%; }
-+::selection { color: #fff; background: #6d28d9; }
-+
-+.site-shell { min-height: 100vh; overflow: clip; }
-+.wrap { width: min(var(--wrap), calc(100% - 56px)); margin-inline: auto; }
-+.section { padding: clamp(82px, 10vw, 136px) 0; position: relative; }
-+.section-anchor { scroll-margin-top: calc(var(--header-height) + 18px); }
-+.section-tinted { background: var(--surface-muted); }
-+.skip-link { position: fixed; top: 10px; left: 10px; z-index: 100; padding: 10px 14px; color: #fff; background: var(--accent-hover); transform: translateY(-150%); border-radius: 4px; }
-+.skip-link:focus { transform: translateY(0); }
-+
-+.site-header { height: var(--header-height); position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--page) 94%, transparent); border-bottom: 1px solid var(--line); backdrop-filter: blur(14px); }
-+.nav-wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
-+.brand, .footer-brand { color: var(--ink); text-decoration: none; font-family: var(--font-editorial); font-size: 25px; line-height: 1; letter-spacing: -.055em; font-weight: 700; white-space: nowrap; }
-+.brand-period, .heading-period, .footer-brand span { color: var(--accent); }
-+.nav-links { display: flex; align-items: center; justify-content: center; gap: 4px; }
-+.nav-link { position: relative; padding: 10px 9px; border: 0; background: transparent; color: var(--muted); cursor: pointer; font-size: 12px; font-weight: 550; transition: color 160ms ease; white-space: nowrap; }
-+.nav-link::after { content: ""; position: absolute; left: 9px; right: 9px; bottom: 3px; height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 180ms var(--ease); }
-+.nav-link:hover, .nav-link.is-active { color: var(--ink); }
-+.nav-link.is-active::after { transform: scaleX(1); }
-+.nav-index { margin-right: 5px; font-family: var(--font-mono); color: var(--accent); font-size: 9px; }
-+.nav-tools { display: flex; align-items: center; gap: 7px; }
-+.icon-button { min-width: 38px; height: 38px; padding: 0 9px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface); color: var(--ink); cursor: pointer; transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease; }
-+.icon-button:hover { color: var(--accent); border-color: var(--accent); }
-+.language-button { font: 600 10px var(--font-mono); }
-+.menu-toggle { display: none; }
-+.mobile-menu { position: absolute; top: 100%; left: 0; right: 0; background: var(--page); border-bottom: 1px solid var(--line); box-shadow: var(--shadow); }
-+.mobile-menu-inner { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px 18px; padding-block: 16px 22px; }
-+.mobile-nav-link { text-align: left; background: transparent; border: 0; border-bottom: 1px solid var(--line-soft); padding: 13px 4px; cursor: pointer; }
-+
-+.hero { min-height: min(790px, calc(100svh - var(--header-height))); padding: clamp(64px, 9vw, 112px) 0 24px; display: flex; flex-direction: column; justify-content: center; position: relative; }
-+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr); align-items: center; gap: clamp(40px, 9vw, 128px); }
-+.hero-copy { position: relative; z-index: 2; padding-block: 25px; }
-+.eyebrow, .section-kicker { margin: 0 0 20px; font-family: var(--font-mono); color: var(--accent); font-size: 10px; font-weight: 500; letter-spacing: .085em; text-transform: uppercase; }
-+.eyebrow { display: flex; align-items: center; gap: 10px; }
-+.eyebrow-mark { display: inline-block; width: 7px; height: 7px; border: 1px solid var(--accent); transform: rotate(45deg); }
-+.hero h1 { margin: 0; font-size: clamp(66px, 9.7vw, 132px); line-height: .91; letter-spacing: -.095em; font-weight: 550; }
-+.serif-word { font-family: var(--font-editorial); font-weight: 500; font-style: italic; letter-spacing: -.09em; }
-+.heading-period { color: var(--accent); }
-+.hero-role { margin: 23px 0 0; color: var(--muted); font-size: clamp(16px, 2vw, 21px); letter-spacing: -.035em; }
-+.hero-description { max-width: 530px; margin: 20px 0 0; color: var(--muted); font-size: 15px; line-height: 1.85; }
-+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 31px; }
-+.button { min-height: 47px; padding: 0 18px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid transparent; border-radius: 4px; font-size: 12px; font-weight: 600; text-decoration: none; cursor: pointer; transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, transform 160ms ease; }
-+.button:hover { transform: translateY(-2px); }
-+.button-primary { background: var(--accent); color: var(--button-text); }
-+.button-primary:hover { background: var(--accent-hover); color: var(--button-text); }
-+.button-secondary { border-color: var(--line); background: transparent; color: var(--ink); }
-+.button-secondary:hover { border-color: var(--accent); color: var(--accent); }
-+.hero-contact-link { margin-top: 23px; display: inline-flex; gap: 7px; align-items: center; color: var(--muted); font-size: 12px; text-decoration: none; }
-+.hero-contact-link:hover { color: var(--accent); }
-+.hero-visual { width: min(100%, 430px); justify-self: center; position: relative; padding: 15px 15px 38px 28px; }
-+.portrait-frame { aspect-ratio: 4 / 5; overflow: hidden; position: relative; background: var(--accent-wash); border: 1px solid var(--line); }
++.hero { padding: clamp(30px, 5vw, 58px) 0 clamp(54px, 7vw, 86px); position: relative; }
++.hero-masthead { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--line); }
+ .eyebrow, .section-kicker { margin: 0 0 20px; font-family: var(--font-mono); color: var(--accent); font-size: 10px; font-weight: 500; letter-spacing: .085em; text-transform: uppercase; }
+-.eyebrow { display: flex; align-items: center; gap: 10px; }
++.eyebrow { display: flex; align-items: center; gap: 10px; margin: 0; }
+ .eyebrow-mark { display: inline-block; width: 7px; height: 7px; border: 1px solid var(--accent); transform: rotate(45deg); }
+-.hero h1 { margin: 0; font-size: clamp(66px, 9.7vw, 132px); line-height: .91; letter-spacing: -.095em; font-weight: 550; }
+-.serif-word { font-family: var(--font-editorial); font-weight: 500; font-style: italic; letter-spacing: -.09em; }
++.hero-edition, .hero-location { margin: 0; color: var(--soft); font: 9px var(--font-mono); letter-spacing: .08em; }
++.hero-location { text-align: right; }
++.hero-composition { padding-top: clamp(42px, 6.5vw, 82px); }
++.hero-title-block { position: relative; display: grid; grid-template-columns: 46px minmax(0, 1fr) 42px; align-items: start; }
++.hero-index { padding-top: 12px; color: var(--accent); font: 9px var(--font-mono); letter-spacing: .07em; }
++.hero h1 { grid-column: 2; margin: 0; font-size: clamp(90px, 16.8vw, 208px); line-height: .76; letter-spacing: -.105em; font-weight: 520; }
++.hero h1 > span { display: block; }
++.hero-name-last { margin-left: clamp(78px, 13vw, 180px); }
+ .heading-period { color: var(--accent); }
+-.hero-role { margin: 23px 0 0; color: var(--muted); font-size: clamp(16px, 2vw, 21px); letter-spacing: -.035em; }
+-.hero-description { max-width: 530px; margin: 20px 0 0; color: var(--muted); font-size: 15px; line-height: 1.85; }
+-.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 31px; }
++.hero-title-note { justify-self: end; margin-top: 6px; color: var(--soft); font: 8px var(--font-mono); letter-spacing: .08em; writing-mode: vertical-rl; }
++.hero-lower { display: grid; grid-template-columns: minmax(220px, 3.5fr) minmax(0, 6fr) 24px; align-items: end; gap: clamp(28px, 5vw, 72px); margin-top: clamp(30px, 5vw, 62px); }
++.hero-portrait { width: min(100%, 310px); margin: 0; }
++.portrait-frame { aspect-ratio: 4 / 5; overflow: hidden; position: relative; background: var(--surface-muted); border: 1px solid var(--line); }
 +.portrait-frame::after { content: ""; position: absolute; inset: 12px -12px -12px 12px; border: 1px solid var(--accent); pointer-events: none; }
 +.portrait-image { object-fit: cover; object-position: 50% 35%; filter: saturate(.84); }
-+.portrait-index, .portrait-caption { position: absolute; z-index: 1; color: var(--muted); font: 9px var(--font-mono); letter-spacing: .06em; }
-+.portrait-index { top: 0; right: 0; writing-mode: vertical-rl; }
-+.portrait-caption { bottom: 2px; left: 28px; }
-+.portrait-caption span { color: var(--accent); padding-inline: 4px; }
-+.hero-orbit { position: absolute; top: 13%; left: 0; width: 62px; height: 62px; display: grid; place-items: center; color: var(--accent); background: var(--page); border: 1px solid var(--line); border-radius: 50%; font-family: var(--font-editorial); font-size: 18px; font-style: italic; }
-+.hero-orbit span { position: absolute; top: -5px; right: -7px; font: 16px var(--font-sans); }
-+.hero-bottomline { margin-top: auto; padding-top: 35px; display: flex; justify-content: space-between; color: var(--soft); font: 9px var(--font-mono); letter-spacing: .07em; }
-+
-+.about-grid { display: grid; grid-template-columns: minmax(250px, .8fr) minmax(0, 1.2fr); gap: clamp(48px, 8vw, 112px); align-items: start; }
-+.about-portrait { min-height: 520px; position: relative; overflow: hidden; background: var(--accent-wash); }
-+.about-portrait img { object-fit: cover; object-position: center 30%; filter: saturate(.78); }
-+.about-portrait::after { content: ""; position: absolute; inset: auto 0 0; height: 35%; background: linear-gradient(transparent, rgb(0 0 0 / .56)); }
-+.about-image-note { position: absolute; z-index: 1; left: 20px; bottom: 18px; color: #fff; font: 9px var(--font-mono); letter-spacing: .1em; }
-+.about-image-note span { color: #d0b7ff; }
-+.section-title { margin: 0; color: var(--ink); font-size: clamp(36px, 5.2vw, 62px); font-weight: 500; line-height: 1.06; letter-spacing: -.075em; }
-+.about-copy .section-title { margin-bottom: 28px; }
-+.body-copy { margin: 0 0 14px; color: var(--muted); font-size: 14px; line-height: 1.9; transition: opacity 140ms ease; }
-+.body-copy.is-changing { opacity: .45; }
-+.skills-grid { margin-top: 38px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-+.skill-group { min-height: 116px; padding: 16px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-+.mono-label { margin: 0 0 13px; color: var(--soft); font: 9px var(--font-mono); letter-spacing: .055em; text-transform: uppercase; }
-+.skill-list, .project-tags { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
-+.skill-list li, .project-tags li { padding: 4px 7px; background: var(--accent-wash); color: var(--accent-hover); font-size: 10px; line-height: 1.35; }
-+:root[data-theme="dark"] .skill-list li, :root[data-theme="dark"] .project-tags li { color: var(--accent); }
-+
-+.section-heading { margin-bottom: 47px; }
-+.section-heading-split { display: flex; align-items: end; justify-content: space-between; gap: 32px; }
-+.section-heading .section-kicker { margin-bottom: 13px; }
-+.section-intro { max-width: 360px; margin: 0 0 6px; color: var(--muted); font-size: 13px; line-height: 1.8; }
-+.projects-list { border-top: 1px solid var(--line); }
-+.project-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); min-height: 320px; border-bottom: 1px solid var(--line); color: inherit; text-decoration: none; }
-+.project-art { min-height: 300px; position: relative; overflow: hidden; background: #17141d; }
-+.project-art img { object-fit: cover; object-position: center; transition: transform 500ms var(--ease); }
-+.project-row:hover .project-art img { transform: scale(1.035); }
-+.project-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgb(16 13 20 / .56), transparent 42%); pointer-events: none; }
-+.project-art-saborify { display: grid; place-items: center; background: #d9d1c5; }
-+:root[data-theme="dark"] .project-art-saborify { background: #26232d; }
-+.saborify-mark { width: 164px; height: 164px; position: relative; display: grid; place-items: center; border: 1px solid rgb(22 21 26 / .35); border-radius: 50%; color: #28202c; font: italic 90px/.9 var(--font-editorial); }
-+:root[data-theme="dark"] .saborify-mark { color: #eee5d7; border-color: rgb(238 234 242 / .35); }
-+.saborify-mark i { position: absolute; width: 1px; height: 208px; background: rgb(22 21 26 / .25); transform: rotate(45deg); }
-+.saborify-mark i:nth-of-type(2) { transform: rotate(-45deg); }
-+.saborify-mark i:nth-of-type(3) { width: 208px; height: 1px; }
-+.project-number, .project-art-caption { position: absolute; z-index: 1; color: #fff; font: 9px var(--font-mono); letter-spacing: .1em; }
-+.project-number { top: 17px; left: 19px; }
-+.project-art-caption { bottom: 18px; left: 19px; }
-+.project-content { align-self: center; padding: 35px clamp(24px, 5vw, 72px); }
-+.project-topline, .project-bottomline { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
-+.project-topline .mono-label { margin: 0; }
-+.project-status { display: inline-flex; align-items: center; gap: 5px; color: var(--accent); font: 9px var(--font-mono); text-transform: uppercase; }
-+.project-status.is-upcoming { color: var(--muted); }
-+.project-content h3 { margin: 24px 0 10px; font-size: clamp(26px, 3vw, 39px); line-height: 1.1; letter-spacing: -.06em; font-weight: 500; }
-+.project-description { min-height: 48px; max-width: 420px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
-+.project-bottomline { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--line-soft); }
-+.project-tags li { font-family: var(--font-mono); font-size: 9px; }
-+.project-link-label { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 11px; font-weight: 600; white-space: nowrap; }
-+.project-link-muted { color: var(--muted); font-weight: 450; }
-+.project-row.is-not-link { cursor: default; }
-+
-+.testimonials-grid { display: grid; grid-template-columns: 1.08fr .92fr; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-+.testimonial { min-height: 260px; margin: 0; padding: 26px clamp(19px, 3vw, 38px); display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-+.testimonial-featured { grid-row: span 2; min-height: 100%; padding: clamp(27px, 4vw, 48px); background: var(--accent-wash); }
-+.testimonial-index { color: var(--accent); font: 9px var(--font-mono); letter-spacing: .06em; }
-+.testimonial blockquote { margin: 24px 0 30px; color: var(--ink); font-family: var(--font-editorial); font-size: clamp(19px, 2.2vw, 26px); line-height: 1.55; letter-spacing: -.018em; }
-+.testimonial:not(.testimonial-featured) blockquote { font-size: clamp(17px, 1.8vw, 21px); }
-+.testimonial figcaption { margin-top: auto; display: flex; align-items: center; gap: 11px; }
-+.testimonial-initial { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--accent); font: italic 17px var(--font-editorial); }
-+.testimonial figcaption strong, .testimonial figcaption small { display: block; }
-+.testimonial figcaption strong { color: var(--ink); font-size: 11px; font-weight: 600; }
-+.testimonial figcaption small { margin-top: 2px; color: var(--muted); font-size: 10px; }
-+
-+.experience-list { max-width: 920px; margin: 0 auto; padding: 0; list-style: none; border-top: 1px solid var(--line); }
-+.experience-item { display: grid; grid-template-columns: 78px 1fr; gap: 20px; border-bottom: 1px solid var(--line); }
-+.experience-index { padding-top: 27px; color: var(--accent); font: 10px var(--font-mono); }
-+.experience-entry { padding: 24px 0 28px; }
-+.experience-meta { display: flex; gap: 15px; align-items: center; color: var(--muted); font: 9px var(--font-mono); text-transform: uppercase; letter-spacing: .05em; }
-+.experience-meta span { color: var(--accent); }
-+.experience-meta time { padding-left: 15px; border-left: 1px solid var(--line); }
-+.experience-entry h3 { margin: 11px 0 2px; font-size: 19px; line-height: 1.3; font-weight: 550; letter-spacing: -.035em; }
-+.experience-company { margin: 0; color: var(--accent); font-size: 11px; }
-+.experience-description { max-width: 680px; margin: 12px 0 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
-+
-+.section-contact { padding-bottom: clamp(90px, 12vw, 150px); }
-+.contact-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 22px; align-items: start; }
-+.contact-panel { padding: clamp(23px, 4vw, 40px); background: var(--surface); border: 1px solid var(--line); }
-+.contact-panel h3 { margin: 0 0 27px; font-size: 18px; font-weight: 500; letter-spacing: -.035em; }
-+.contact-form { display: grid; grid-template-columns: 1fr; }
-+.contact-form label { margin: 0 0 7px; color: var(--muted); font: 10px var(--font-mono); text-transform: uppercase; letter-spacing: .045em; }
-+.contact-form input, .contact-form textarea { width: 100%; min-height: 46px; margin: 0 0 19px; padding: 12px 13px; border: 1px solid var(--line); border-radius: 3px; outline: none; background: var(--page); color: var(--ink); font-size: 12px; transition: border-color 140ms ease, background-color 140ms ease; }
-+.contact-form textarea { min-height: 125px; resize: vertical; }
-+.contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--soft); opacity: .8; }
-+.contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent); }
-+.contact-form .contact-submit { justify-self: start; min-width: 165px; }
-+.contact-submit:disabled { cursor: wait; opacity: .75; }
-+.contact-submit.status-success { background: #24734d; color: white; }
-+.contact-submit.status-error { background: #a83240; color: white; }
-+.form-status { min-height: 19px; margin: 10px 0 0; color: var(--muted); font-size: 11px; }
-+.spin { animation: spin 900ms linear infinite; }
-+@keyframes spin { to { transform: rotate(360deg); } }
-+.contact-aside { display: grid; gap: 14px; }
-+.contact-details .mono-label, .contact-socials .mono-label { color: var(--ink); margin-bottom: 9px; }
-+.contact-aside-copy { margin: 0 0 21px; color: var(--muted); font-size: 11px; }
-+.contact-detail { padding: 13px 0; display: flex; align-items: center; gap: 13px; border-top: 1px solid var(--line-soft); color: var(--accent); }
-+.contact-detail div { min-width: 0; }
-+.contact-detail span, .contact-detail a, .contact-detail strong { display: block; }
-+.contact-detail span { margin-bottom: 2px; color: var(--muted); font: 9px var(--font-mono); text-transform: uppercase; }
-+.contact-detail a, .contact-detail strong { overflow-wrap: anywhere; color: var(--ink); font-size: 12px; font-weight: 500; text-decoration: none; }
-+.contact-detail a:hover { color: var(--accent); }
-+.social-links { display: flex; gap: 9px; }
-+.social-links a { min-height: 39px; padding: 0 12px; display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); color: var(--muted); font-size: 11px; text-decoration: none; transition: color 150ms ease, border-color 150ms ease; }
-+.social-links a:hover { color: var(--accent); border-color: var(--accent); }
-+
-+.site-footer { padding: 44px 0 18px; border-top: 1px solid var(--line); background: var(--surface-muted); }
-+.footer-main { max-width: 510px; padding-bottom: 35px; }
-+.footer-brand { display: inline-block; font-size: 29px; }
-+.footer-main > p { max-width: 430px; margin: 14px 0 19px; color: var(--muted); font-size: 12px; line-height: 1.8; }
-+.footer-socials { display: flex; gap: 8px; }
-+.footer-socials a { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--line); color: var(--muted); transition: color 140ms ease, border-color 140ms ease; }
-+.footer-socials a:hover { color: var(--accent); border-color: var(--accent); }
-+.footer-bottom { padding-top: 15px; display: flex; align-items: center; justify-content: space-between; gap: 18px; border-top: 1px solid var(--line); color: var(--soft); font: 9px var(--font-mono); }
-+.footer-bottom p { margin: 0; }
-+.footer-bottom a { display: inline-flex; align-items: center; gap: 4px; color: inherit; text-decoration: none; }
-+.footer-bottom a:hover { color: var(--accent); }
-+
-+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-+[hidden] { display: none !important; }
-+
-+@media (max-width: 1000px) {
-+  .nav-links { gap: 0; }
-+  .nav-link { padding-inline: 6px; font-size: 11px; }
-+  .nav-index { display: none; }
-+}
-+
-+@media (max-width: 780px) {
-+  :root { --header-height: 66px; }
-+  .wrap { width: min(var(--wrap), calc(100% - 40px)); }
-+  .nav-links { display: none; }
-+  .menu-toggle { display: inline-flex; }
-+  .hero { min-height: auto; padding-top: 64px; }
-+  .hero-grid { grid-template-columns: 1fr; gap: 45px; }
-+  .hero-copy { padding: 0; }
-+  .hero h1 { font-size: clamp(70px, 15vw, 112px); }
-+  .hero-visual { width: min(80%, 390px); }
-+  .hero-bottomline { margin-top: 55px; }
-+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
-+  .about-portrait { min-height: 0; aspect-ratio: 4 / 3; }
-+  .section-heading-split { align-items: start; flex-direction: column; gap: 12px; }
-+  .section-intro { max-width: 520px; }
-+  .project-row { grid-template-columns: 1fr; }
-+  .project-art { min-height: 0; aspect-ratio: 1.55; }
-+  .project-content { padding: 24px 3px 30px; }
-+  .project-content h3 { margin-top: 17px; }
-+  .testimonials-grid { grid-template-columns: 1fr 1fr; }
-+  .testimonial-featured { grid-row: auto; grid-column: 1 / -1; min-height: 270px; }
-+  .contact-layout { grid-template-columns: 1fr; }
-+}
-+
-+@media (max-width: 520px) {
-+  .wrap { width: calc(100% - 36px); }
-+  .section { padding-block: 76px; }
-+  .hero { padding-top: 52px; }
-+  .hero h1 { font-size: clamp(65px, 18vw, 90px); }
-+  .hero-description { font-size: 13px; }
-+  .hero-actions { align-items: stretch; }
-+  .hero-actions .button { flex: 1; padding-inline: 11px; font-size: 10px; }
-+  .hero-visual { width: 86%; }
-+  .hero-bottomline { font-size: 8px; gap: 18px; }
-+  .hero-bottomline span:last-child { max-width: 150px; text-align: right; }
-+  .about-portrait { aspect-ratio: 1 / 1.03; }
-+  .section-title { font-size: clamp(37px, 11vw, 52px); }
-+  .skills-grid { grid-template-columns: 1fr; }
-+  .skill-group { min-height: 0; padding: 14px; }
-+  .testimonials-grid { grid-template-columns: 1fr; }
-+  .testimonial-featured { grid-column: auto; }
-+  .testimonial { min-height: 230px; }
-+  .experience-item { grid-template-columns: 35px 1fr; gap: 8px; }
-+  .experience-meta { flex-wrap: wrap; gap: 9px; }
-+  .experience-meta time { padding-left: 9px; }
-+  .contact-panel { padding: 22px 18px; }
-+  .footer-bottom { align-items: flex-start; flex-direction: column; gap: 8px; }
-+}
-+
-+@media (prefers-reduced-motion: reduce) {
-+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-+}
++.hero-portrait figcaption { display: flex; justify-content: space-between; gap: 12px; margin-top: 11px; color: var(--soft); font: 8px var(--font-mono); letter-spacing: .055em; text-transform: uppercase; }
++.hero-portrait figcaption span { color: var(--accent); }
++.hero-intro { max-width: 620px; padding-bottom: 17px; }
++.hero-role { margin: 0; color: var(--ink); font-size: clamp(18px, 2.2vw, 25px); letter-spacing: -.045em; }
++.hero-description { max-width: 510px; margin: 14px 0 0; color: var(--muted); font-size: 14px; line-height: 1.85; }
++.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+ .button { min-height: 47px; padding: 0 18px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid transparent; border-radius: 4px; font-size: 12px; font-weight: 600; text-decoration: none; cursor: pointer; transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, transform 160ms ease; }
+ .button:hover { transform: translateY(-2px); }
+ .button-primary { background: var(--accent); color: var(--button-text); }
+ .button-primary:hover { background: var(--accent-hover); color: var(--button-text); }
+ .button-secondary { border-color: var(--line); background: transparent; color: var(--ink); }
+ .button-secondary:hover { border-color: var(--accent); color: var(--accent); }
+-.hero-contact-link { margin-top: 23px; display: inline-flex; gap: 7px; align-items: center; color: var(--muted); font-size: 12px; text-decoration: none; }
+-.hero-contact-link:hover { color: var(--accent); }
+-.hero-visual { width: min(100%, 430px); justify-self: center; position: relative; padding: 15px 15px 38px 28px; }
+-.portrait-frame { aspect-ratio: 4 / 5; overflow: hidden; position: relative; background: var(--accent-wash); border: 1px solid var(--line); }
+-.portrait-frame::after { content: ""; position: absolute; inset: 12px -12px -12px 12px; border: 1px solid var(--accent); pointer-events: none; }
+-.portrait-image { object-fit: cover; object-position: 50% 35%; filter: saturate(.84); }
+-.portrait-index, .portrait-caption { position: absolute; z-index: 1; color: var(--muted); font: 9px var(--font-mono); letter-spacing: .06em; }
+-.portrait-index { top: 0; right: 0; writing-mode: vertical-rl; }
+-.portrait-caption { bottom: 2px; left: 28px; }
+-.portrait-caption span { color: var(--accent); padding-inline: 4px; }
+-.hero-orbit { position: absolute; top: 13%; left: 0; width: 62px; height: 62px; display: grid; place-items: center; color: var(--accent); background: var(--page); border: 1px solid var(--line); border-radius: 50%; font-family: var(--font-editorial); font-size: 18px; font-style: italic; }
+-.hero-orbit span { position: absolute; top: -5px; right: -7px; font: 16px var(--font-sans); }
+-.hero-bottomline { margin-top: auto; padding-top: 35px; display: flex; justify-content: space-between; color: var(--soft); font: 9px var(--font-mono); letter-spacing: .07em; }
++.hero-cv-link { display: inline-flex; align-items: center; gap: 7px; margin-top: 16px; color: var(--muted); font-size: 11px; text-decoration: none; }
++.hero-cv-link:hover { color: var(--accent); }
++.hero-margin-note { align-self: center; justify-self: end; margin: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--soft); font: 8px var(--font-mono); letter-spacing: .07em; writing-mode: vertical-rl; }
++.hero-margin-note span:nth-child(2) { color: var(--accent); font-size: 15px; }
+ 
+ .about-grid { display: grid; grid-template-columns: minmax(250px, .8fr) minmax(0, 1.2fr); gap: clamp(48px, 8vw, 112px); align-items: start; }
+ .about-portrait { min-height: 520px; position: relative; overflow: hidden; background: var(--accent-wash); }
+ .about-portrait img { object-fit: cover; object-position: center 30%; filter: saturate(.78); }
+ .about-portrait::after { content: ""; position: absolute; inset: auto 0 0; height: 35%; background: linear-gradient(transparent, rgb(0 0 0 / .56)); }
+ .about-image-note { position: absolute; z-index: 1; left: 20px; bottom: 18px; color: #fff; font: 9px var(--font-mono); letter-spacing: .1em; }
+-.about-image-note span { color: #d0b7ff; }
++.about-image-note span { color: var(--accent); }
+ .section-title { margin: 0; color: var(--ink); font-size: clamp(36px, 5.2vw, 62px); font-weight: 500; line-height: 1.06; letter-spacing: -.075em; }
+ .about-copy .section-title { margin-bottom: 28px; }
+ .body-copy { margin: 0 0 14px; color: var(--muted); font-size: 14px; line-height: 1.9; transition: opacity 140ms ease; }
+ .body-copy.is-changing { opacity: .45; }
+-.skills-grid { margin-top: 38px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+-.skill-group { min-height: 116px; padding: 16px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
++.skills-list { margin-top: 36px; border-top: 1px solid var(--line); }
++.skill-row { min-height: 66px; display: grid; grid-template-columns: 36px 120px 1fr; align-items: center; gap: 13px; border-bottom: 1px solid var(--line); }
++.skill-index { color: var(--accent); font: 9px var(--font-mono); }
++.skill-row h3 { margin: 0; color: var(--muted); font: 10px var(--font-mono); letter-spacing: .055em; text-transform: uppercase; }
+ .mono-label { margin: 0 0 13px; color: var(--soft); font: 9px var(--font-mono); letter-spacing: .055em; text-transform: uppercase; }
+-.skill-list, .project-tags { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+-.skill-list li, .project-tags li { padding: 4px 7px; background: var(--accent-wash); color: var(--accent-hover); font-size: 10px; line-height: 1.35; }
+-:root[data-theme="dark"] .skill-list li, :root[data-theme="dark"] .project-tags li { color: var(--accent); }
++.skill-list, .project-tags { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px 13px; }
++.skill-list li { color: var(--ink); font-size: 11px; line-height: 1.5; }
++.project-tags li { padding: 4px 7px; background: var(--accent-wash); color: var(--accent-hover); font-size: 9px; line-height: 1.35; }
++:root[data-theme="dark"] .project-tags li { color: var(--accent); }
+ 
+ .section-heading { margin-bottom: 47px; }
+ .section-heading-split { display: flex; align-items: end; justify-content: space-between; gap: 32px; }
++.is-revealed { animation: enter-section 620ms var(--ease) both; }
++.project-entry-secondary.is-revealed, .contact-aside.is-revealed { animation-delay: 90ms; }
++@keyframes enter-section { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+ .section-heading .section-kicker { margin-bottom: 13px; }
+ .section-intro { max-width: 360px; margin: 0 0 6px; color: var(--muted); font-size: 13px; line-height: 1.8; }
+-.projects-list { border-top: 1px solid var(--line); }
+-.project-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); min-height: 320px; border-bottom: 1px solid var(--line); color: inherit; text-decoration: none; }
+-.project-art { min-height: 300px; position: relative; overflow: hidden; background: #17141d; }
++.projects-composition { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr); align-items: start; gap: clamp(24px, 4vw, 52px); }
++.project-entry { min-width: 0; border-top: 1px solid var(--line); }
++.project-entry-feature { grid-column: 1; }
++.project-entry-secondary { grid-column: 2; margin-top: 72px; }
++.project-art { aspect-ratio: 1.68; position: relative; overflow: hidden; background: var(--surface-muted); }
++.project-entry-secondary .project-art { aspect-ratio: 1.34; }
+ .project-art img { object-fit: cover; object-position: center; transition: transform 500ms var(--ease); }
+-.project-row:hover .project-art img { transform: scale(1.035); }
+-.project-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgb(16 13 20 / .56), transparent 42%); pointer-events: none; }
+-.project-art-saborify { display: grid; place-items: center; background: #d9d1c5; }
+-:root[data-theme="dark"] .project-art-saborify { background: #26232d; }
+-.saborify-mark { width: 164px; height: 164px; position: relative; display: grid; place-items: center; border: 1px solid rgb(22 21 26 / .35); border-radius: 50%; color: #28202c; font: italic 90px/.9 var(--font-editorial); }
+-:root[data-theme="dark"] .saborify-mark { color: #eee5d7; border-color: rgb(238 234 242 / .35); }
+-.saborify-mark i { position: absolute; width: 1px; height: 208px; background: rgb(22 21 26 / .25); transform: rotate(45deg); }
+-.saborify-mark i:nth-of-type(2) { transform: rotate(-45deg); }
+-.saborify-mark i:nth-of-type(3) { width: 208px; height: 1px; }
++.project-entry:hover .project-art img { transform: scale(1.025); }
++.project-art:not(.project-art-saborify)::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgb(16 13 20 / .52), transparent 42%); pointer-events: none; }
++.project-art-saborify { display: grid; place-items: center; border: 1px solid var(--line); background: var(--page); }
++.saborify-mark { width: 100%; height: 100%; position: relative; display: grid; place-items: center; overflow: hidden; color: var(--accent); font: italic clamp(120px, 17vw, 220px)/.8 var(--font-editorial); }
++.saborify-mark i { position: absolute; left: 12%; right: 12%; height: 1px; background: var(--line); }
++.saborify-mark i:nth-of-type(1) { top: 28%; }
++.saborify-mark i:nth-of-type(2) { top: 72%; }
++.saborify-mark i:nth-of-type(3) { left: 50%; right: auto; top: 10%; bottom: 10%; width: 1px; height: auto; }
+ .project-number, .project-art-caption { position: absolute; z-index: 1; color: #fff; font: 9px var(--font-mono); letter-spacing: .1em; }
+ .project-number { top: 17px; left: 19px; }
+ .project-art-caption { bottom: 18px; left: 19px; }
+-.project-content { align-self: center; padding: 35px clamp(24px, 5vw, 72px); }
++.project-entry-secondary .project-art-caption { color: var(--muted); }
++.project-content { padding: 19px 0 0; }
+ .project-topline, .project-bottomline { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+ .project-topline .mono-label { margin: 0; }
+ .project-status { display: inline-flex; align-items: center; gap: 5px; color: var(--accent); font: 9px var(--font-mono); text-transform: uppercase; }
+ .project-status.is-upcoming { color: var(--muted); }
+-.project-content h3 { margin: 24px 0 10px; font-size: clamp(26px, 3vw, 39px); line-height: 1.1; letter-spacing: -.06em; font-weight: 500; }
+-.project-description { min-height: 48px; max-width: 420px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+-.project-bottomline { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--line-soft); }
++.project-content h3 { margin: 14px 0 8px; font-size: clamp(25px, 3.4vw, 40px); line-height: 1.08; letter-spacing: -.06em; font-weight: 500; }
++.project-entry-secondary .project-content h3 { font-size: clamp(24px, 2.8vw, 32px); }
++.project-description { min-height: 44px; max-width: 510px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.75; }
++.project-bottomline { margin-top: 18px; padding-top: 13px; border-top: 1px solid var(--line-soft); }
+ .project-tags li { font-family: var(--font-mono); font-size: 9px; }
+-.project-link-label { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 11px; font-weight: 600; white-space: nowrap; }
++.project-link-label { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 11px; font-weight: 600; text-decoration: none; white-space: nowrap; }
++.project-link-label:hover { color: var(--accent-hover); }
+ .project-link-muted { color: var(--muted); font-weight: 450; }
+-.project-row.is-not-link { cursor: default; }
+ 
+ .testimonials-grid { display: grid; grid-template-columns: 1.08fr .92fr; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+ .testimonial { min-height: 260px; margin: 0; padding: 26px clamp(19px, 3vw, 38px); display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+@@ -180,10 +201,15 @@ img { display: block; max-width: 100%; }
+ .experience-company { margin: 0; color: var(--accent); font-size: 11px; }
+ .experience-description { max-width: 680px; margin: 12px 0 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
+ 
+-.section-contact { padding-bottom: clamp(90px, 12vw, 150px); }
+-.contact-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 22px; align-items: start; }
+-.contact-panel { padding: clamp(23px, 4vw, 40px); background: var(--surface); border: 1px solid var(--line); }
+-.contact-panel h3 { margin: 0 0 27px; font-size: 18px; font-weight: 500; letter-spacing: -.035em; }
++.section-contact { padding-block: clamp(88px, 12vw, 156px); background: var(--surface-muted); }
++.contact-heading { margin-bottom: clamp(42px, 8vw, 92px); }
++.contact-heading .section-kicker { margin-bottom: 16px; }
++.contact-display { max-width: 1050px; margin: 0; color: var(--ink); font-size: clamp(64px, 12.2vw, 148px); font-weight: 480; line-height: .9; letter-spacing: -.095em; }
++.contact-lead { max-width: 430px; margin: 22px 0 0; color: var(--muted); font-size: 14px; }
++.contact-layout { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(260px, .7fr); gap: clamp(42px, 9vw, 130px); align-items: start; }
++.contact-form-column, .contact-aside { padding-top: 20px; border-top: 1px solid var(--line); }
++.contact-form-column > .mono-label { margin-bottom: 10px; color: var(--accent); }
++.contact-form-column h3 { margin: 0 0 25px; font-size: 18px; font-weight: 500; letter-spacing: -.035em; }
+ .contact-form { display: grid; grid-template-columns: 1fr; }
+ .contact-form label { margin: 0 0 7px; color: var(--muted); font: 10px var(--font-mono); text-transform: uppercase; letter-spacing: .045em; }
+ .contact-form input, .contact-form textarea { width: 100%; min-height: 46px; margin: 0 0 19px; padding: 12px 13px; border: 1px solid var(--line); border-radius: 3px; outline: none; background: var(--page); color: var(--ink); font-size: 12px; transition: border-color 140ms ease, background-color 140ms ease; }
+@@ -197,8 +223,8 @@ img { display: block; max-width: 100%; }
+ .form-status { min-height: 19px; margin: 10px 0 0; color: var(--muted); font-size: 11px; }
+ .spin { animation: spin 900ms linear infinite; }
+ @keyframes spin { to { transform: rotate(360deg); } }
+-.contact-aside { display: grid; gap: 14px; }
+-.contact-details .mono-label, .contact-socials .mono-label { color: var(--ink); margin-bottom: 9px; }
++.contact-aside { display: grid; align-content: start; gap: 38px; }
++.contact-methods .mono-label, .contact-socials .mono-label { color: var(--ink); margin-bottom: 9px; }
+ .contact-aside-copy { margin: 0 0 21px; color: var(--muted); font-size: 11px; }
+ .contact-detail { padding: 13px 0; display: flex; align-items: center; gap: 13px; border-top: 1px solid var(--line-soft); color: var(--accent); }
+ .contact-detail div { min-width: 0; }
+@@ -206,9 +232,10 @@ img { display: block; max-width: 100%; }
+ .contact-detail span { margin-bottom: 2px; color: var(--muted); font: 9px var(--font-mono); text-transform: uppercase; }
+ .contact-detail a, .contact-detail strong { overflow-wrap: anywhere; color: var(--ink); font-size: 12px; font-weight: 500; text-decoration: none; }
+ .contact-detail a:hover { color: var(--accent); }
++.contact-detail-index { width: 22px; color: var(--soft); font: 8px var(--font-mono); }
+ .social-links { display: flex; gap: 9px; }
+-.social-links a { min-height: 39px; padding: 0 12px; display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); color: var(--muted); font-size: 11px; text-decoration: none; transition: color 150ms ease, border-color 150ms ease; }
+-.social-links a:hover { color: var(--accent); border-color: var(--accent); }
++.social-links a { min-height: 39px; padding: 0 2px; display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 11px; text-decoration: none; transition: color 150ms ease; }
++.social-links a:hover { color: var(--accent); }
+ 
+ .site-footer { padding: 44px 0 18px; border-top: 1px solid var(--line); background: var(--surface-muted); }
+ .footer-main { max-width: 510px; padding-bottom: 35px; }
+@@ -236,47 +263,70 @@ img { display: block; max-width: 100%; }
+   .wrap { width: min(var(--wrap), calc(100% - 40px)); }
+   .nav-links { display: none; }
+   .menu-toggle { display: inline-flex; }
+-  .hero { min-height: auto; padding-top: 64px; }
+-  .hero-grid { grid-template-columns: 1fr; gap: 45px; }
+-  .hero-copy { padding: 0; }
+-  .hero h1 { font-size: clamp(70px, 15vw, 112px); }
+-  .hero-visual { width: min(80%, 390px); }
+-  .hero-bottomline { margin-top: 55px; }
++  .hero { padding-top: 30px; }
++  .hero-masthead { grid-template-columns: 1fr auto; }
++  .hero-edition { display: none; }
++  .hero-composition { padding-top: 47px; }
++  .hero-title-block { grid-template-columns: 34px minmax(0, 1fr) 25px; }
++  .hero h1 { font-size: clamp(80px, 16vw, 124px); }
++  .hero-name-last { margin-left: clamp(55px, 12vw, 96px); }
++  .hero-lower { grid-template-columns: minmax(180px, .8fr) minmax(0, 1.2fr) 19px; gap: 24px; margin-top: 35px; }
++  .hero-portrait { max-width: 260px; }
++  .hero-margin-note { font-size: 7px; }
+   .about-grid { grid-template-columns: 1fr; gap: 40px; }
+   .about-portrait { min-height: 0; aspect-ratio: 4 / 3; }
+   .section-heading-split { align-items: start; flex-direction: column; gap: 12px; }
+   .section-intro { max-width: 520px; }
+-  .project-row { grid-template-columns: 1fr; }
+-  .project-art { min-height: 0; aspect-ratio: 1.55; }
+-  .project-content { padding: 24px 3px 30px; }
+-  .project-content h3 { margin-top: 17px; }
++  .projects-composition { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 22px; }
++  .project-entry-secondary { margin-top: 52px; }
++  .project-art { aspect-ratio: 1.42; }
++  .project-entry-secondary .project-art { aspect-ratio: 1.34; }
+   .testimonials-grid { grid-template-columns: 1fr 1fr; }
+   .testimonial-featured { grid-row: auto; grid-column: 1 / -1; min-height: 270px; }
+-  .contact-layout { grid-template-columns: 1fr; }
++  .contact-layout { grid-template-columns: minmax(0, 1fr) minmax(220px, .8fr); gap: 35px; }
+ }
+ 
+ @media (max-width: 520px) {
+   .wrap { width: calc(100% - 36px); }
+   .section { padding-block: 76px; }
+-  .hero { padding-top: 52px; }
+-  .hero h1 { font-size: clamp(65px, 18vw, 90px); }
+-  .hero-description { font-size: 13px; }
+-  .hero-actions { align-items: stretch; }
+-  .hero-actions .button { flex: 1; padding-inline: 11px; font-size: 10px; }
+-  .hero-visual { width: 86%; }
+-  .hero-bottomline { font-size: 8px; gap: 18px; }
+-  .hero-bottomline span:last-child { max-width: 150px; text-align: right; }
++  .hero { padding-top: 25px; }
++  .hero-masthead { gap: 12px; padding-bottom: 12px; }
++  .eyebrow { max-width: 220px; font-size: 8px; }
++  .hero-location { font-size: 8px; }
++  .hero-composition { padding-top: 42px; }
++  .hero-title-block { grid-template-columns: minmax(0, 1fr) 20px; }
++  .hero-index { position: absolute; top: -20px; left: 0; padding: 0; }
++  .hero h1 { grid-column: 1 / -1; font-size: clamp(66px, 18vw, 92px); line-height: .79; }
++  .hero-name-last { margin-left: clamp(48px, 13vw, 72px); }
++  .hero-title-note { position: absolute; right: 0; bottom: 4px; margin: 0; }
++  .hero-lower { grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr); align-items: start; gap: 16px; margin-top: 28px; }
++  .hero-portrait { width: 100%; }
++  .hero-portrait figcaption { flex-direction: column; align-items: flex-start; gap: 4px; font-size: 7px; }
++  .hero-intro { padding-bottom: 0; }
++  .hero-role { font-size: 15px; line-height: 1.35; }
++  .hero-description { margin-top: 10px; font-size: 11px; line-height: 1.65; }
++  .hero-actions { flex-direction: column; gap: 8px; margin-top: 15px; }
++  .hero-actions .button { min-height: 42px; justify-content: space-between; padding-inline: 10px; font-size: 10px; }
++  .hero-cv-link { margin-top: 12px; font-size: 10px; }
++  .hero-margin-note { display: none; }
+   .about-portrait { aspect-ratio: 1 / 1.03; }
+   .section-title { font-size: clamp(37px, 11vw, 52px); }
+-  .skills-grid { grid-template-columns: 1fr; }
+-  .skill-group { min-height: 0; padding: 14px; }
++  .projects-composition { grid-template-columns: minmax(0, 1fr); gap: 36px; }
++  .project-entry-feature, .project-entry-secondary { grid-column: 1; }
++  .project-entry-secondary { margin-top: 0; }
++  .project-art, .project-entry-secondary .project-art { aspect-ratio: 1.8; }
++  .skill-row { grid-template-columns: 25px 82px 1fr; gap: 8px; padding-block: 10px; }
++  .skill-row h3 { font-size: 8px; }
++  .skill-list { gap: 4px 9px; }
++  .skill-list li { font-size: 10px; }
+   .testimonials-grid { grid-template-columns: 1fr; }
+   .testimonial-featured { grid-column: auto; }
+   .testimonial { min-height: 230px; }
+   .experience-item { grid-template-columns: 35px 1fr; gap: 8px; }
+   .experience-meta { flex-wrap: wrap; gap: 9px; }
+   .experience-meta time { padding-left: 9px; }
+-  .contact-panel { padding: 22px 18px; }
++  .contact-layout { grid-template-columns: 1fr; gap: 45px; }
++  .contact-display { font-size: clamp(58px, 15vw, 80px); }
+   .footer-bottom { align-items: flex-start; flex-direction: column; gap: 8px; }
+ }
+ 
 diff --git a/app/layout.tsx b/app/layout.tsx
-index 099e590..a4fb574 100644
+index a4fb574..f9de858 100644
 --- a/app/layout.tsx
 +++ b/app/layout.tsx
-@@ -1,20 +1,33 @@
+@@ -1,5 +1,6 @@
  import type { Metadata } from "next";
--import { Geist, Geist_Mono } from "next/font/google";
-+import localFont from "next/font/local";
+ import localFont from "next/font/local";
++import Script from "next/script";
  import "./globals.css";
  
--const geistSans = Geist({
-+const geistSans = localFont({
-+  src: "../node_modules/next/dist/next-devtools/server/font/geist-latin.woff2",
-+  weight: "100 900",
-+  display: "swap",
-   variable: "--font-geist-sans",
--  subsets: ["latin"],
- });
- 
--const geistMono = Geist_Mono({
-+const geistMono = localFont({
-+  src: "../node_modules/next/dist/next-devtools/server/font/geist-mono-latin.woff2",
-+  weight: "100 900",
-+  display: "swap",
-   variable: "--font-geist-mono",
--  subsets: ["latin"],
- });
- 
- export const metadata: Metadata = {
--  title: "Daniel Mafla Portafolio",
--  description: "Generated by create next app",
-+  title: "Daniel Mafla | Desarrollador de software",
-+  description:
-+    "Portafolio de Daniel Mafla, estudiante de Ingeniería de Software interesado en crear soluciones tecnológicas útiles.",
-+  applicationName: "Daniel Mafla Portfolio",
-+  openGraph: {
-+    title: "Daniel Mafla | Desarrollador de software",
-+    description:
-+      "Proyectos, experiencia académica y perfil profesional de Daniel Mafla.",
-+    type: "website",
-+    locale: "es_CO",
-+  },
- };
- 
- export default function RootLayout({
-@@ -24,10 +37,10 @@ export default function RootLayout({
- }>) {
-   return (
+ const geistSans = localFont({
+@@ -39,8 +40,14 @@ export default function RootLayout({
      <html
--      lang="en"
--      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-+      lang="es"
-+      className={`${geistSans.variable} ${geistMono.variable}`}
+       lang="es"
+       className={`${geistSans.variable} ${geistMono.variable}`}
++      suppressHydrationWarning
      >
--      <body className="min-h-full flex flex-col">{children}</body>
-+      <body>{children}</body>
+-      <body>{children}</body>
++      <body>
++        {children}
++        <Script id="theme-preference" strategy="beforeInteractive">
++          {`try { const saved = localStorage.getItem('daniel-portfolio-theme'); const dark = saved === 'dark' || (saved !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches); document.documentElement.dataset.theme = dark ? 'dark' : 'light'; document.documentElement.style.colorScheme = dark ? 'dark' : 'light'; } catch {}`}
++        </Script>
++      </body>
      </html>
    );
  }
 diff --git a/app/page.tsx b/app/page.tsx
-index f3f4b8c..13cede8 100644
+index 13cede8..0098f98 100644
 --- a/app/page.tsx
 +++ b/app/page.tsx
-@@ -1,79 +1,52 @@
- "use client";
- 
--import { useState } from 'react';
--import { ThemeProvider, useTheme } from '@/context/ThemeContext';
--import Navbar       from '@/components/Navbar';
--import Hero         from '@/components/Hero';
--import About        from '@/components/About';
--import Projects     from '@/components/Projects';
-+import { useEffect, useState } from 'react';
-+import { ThemeProvider } from '@/context/ThemeContext';
-+import Navbar from '@/components/Navbar';
-+import Hero from '@/components/Hero';
-+import About from '@/components/About';
-+import Projects from '@/components/Projects';
- import Testimonials from '@/components/Testimonials';
--import Experience   from '@/components/Experience';
--import Contact      from '@/components/Contact';
--import Footer       from '@/components/Footer';
-+import Experience from '@/components/Experience';
-+import Contact from '@/components/Contact';
-+import Footer from '@/components/Footer';
- 
- function PortfolioContent() {
--  const { darkMode, c, T } = useTheme();
--  const [activeSection, setActiveSection] = useState<string>('inicio');
-+  const [activeSection, setActiveSection] = useState('inicio');
-+
-+  useEffect(() => {
-+    const sections = document.querySelectorAll<HTMLElement>('main section[id]');
-+    const observer = new IntersectionObserver((entries) => {
-+      const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-+      if (visible) setActiveSection(visible.target.id);
-+    }, { rootMargin: '-25% 0px -60% 0px', threshold: [0, 0.15, 0.4, 0.7] });
-+
-+    sections.forEach(section => observer.observe(section));
-+    return () => observer.disconnect();
-+  }, []);
- 
-   const scrollToSection = (id: string) => {
-     setActiveSection(id);
--    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
--  };
--
--  const pageBg: React.CSSProperties = {
--    fontFamily: "'Plus Jakarta Sans', sans-serif",
--    backgroundColor: darkMode ? '#0b0b16' : '#f5f3ff',
--    backgroundImage: darkMode ? `
--      radial-gradient(ellipse 70% 55% at 15% 8%,  rgba(109,40,217,0.40) 0%, transparent 65%),
--      radial-gradient(ellipse 55% 45% at 88% 18%,  rgba(139,92,246,0.25) 0%, transparent 60%),
--      radial-gradient(ellipse 50% 40% at 75% 85%,  rgba(168,85,247,0.30) 0%, transparent 60%),
--      radial-gradient(ellipse 40% 35% at 10% 80%,  rgba(91,33,182,0.22) 0%, transparent 55%)
--    ` : `
--      radial-gradient(ellipse 65% 50% at 12% 6%,   rgba(139,92,246,0.55) 0%, transparent 65%),
--      radial-gradient(ellipse 50% 40% at 90% 15%,  rgba(167,139,250,0.50) 0%, transparent 58%),
--      radial-gradient(ellipse 55% 45% at 78% 88%,  rgba(139,92,246,0.45) 0%, transparent 60%),
--      radial-gradient(ellipse 38% 32% at 8%  82%,  rgba(196,181,253,0.55) 0%, transparent 55%)
--    `,
--    minHeight: '100vh',
--    color: c.text,
--    transition: T,
--    overflowX: 'hidden',
-+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-   };
- 
-   return (
--    <div style={pageBg}>
--      <style>{`
--        @keyframes spin { to { transform: rotate(360deg); } }
--        @keyframes slideInLeft {
--          from { opacity: 0; transform: translateX(-32px); }
--          to   { opacity: 1; transform: translateX(0); }
--        }
--        @keyframes pulseDot {
--          0%, 100% { box-shadow: 0 0 0 0 rgba(124,58,237,0.55); }
--          50%       { box-shadow: 0 0 0 7px rgba(124,58,237,0); }
--        }
--        @keyframes fadeInUp {
--          from { opacity: 0; transform: translateY(16px); }
--          to   { opacity: 1; transform: translateY(0); }
--        }
--      `}</style>
--
-+    <div className="site-shell">
-+      <a className="skip-link" href="#contenido">Saltar al contenido</a>
-       <Navbar activeSection={activeSection} scrollToSection={scrollToSection} />
--      <Hero />
--      <About />
--      <Projects />
--      <Testimonials />
--      <Experience />
--      <Contact />
-+      <main id="contenido">
-+        <Hero />
-+        <About />
-+        <Projects />
-+        <Testimonials />
-+        <Experience />
-+        <Contact />
-+      </main>
-       <Footer />
-     </div>
-   );
- }
- 
- export default function App() {
--  return (
--    <ThemeProvider>
--      <PortfolioContent />
--    </ThemeProvider>
--  );
--}
-\ No newline at end of file
-+  return <ThemeProvider><PortfolioContent /></ThemeProvider>;
-+}
-diff --git a/components/About.tsx b/components/About.tsx
-index 359858b..c321922 100644
---- a/components/About.tsx
-+++ b/components/About.tsx
-@@ -1,121 +1,39 @@
- "use client";
- 
--import { useEffect } from 'react';
-+import Image from 'next/image';
- import { useTheme } from '@/context/ThemeContext';
- 
--export default function About() {
--  const { darkMode, language, isChanging, t, c, T } = useTheme();
--
--  useEffect(() => {
--    const els = document.querySelectorAll('.reveal, .reveal-exp');
--    const obs = new IntersectionObserver((entries, o) => {
--      entries.forEach(entry => {
--        if (entry.isIntersecting) {
--          const el = entry.target as HTMLElement;
--          if (el.classList.contains('reveal-exp')) {
--            const siblings = el.parentElement?.querySelectorAll('.reveal-exp');
--            const idx = Array.from(siblings || []).indexOf(el);
--            el.style.transitionDelay = `${idx * 120}ms`;
--          }
--          el.classList.add('active');
--          o.unobserve(el);
--        }
--      });
--    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
--    els.forEach(el => obs.observe(el));
--
--    const imgWrap = document.querySelector('.about-img-wrap');
--    const shimObs = new IntersectionObserver((entries, o) => {
--      entries.forEach(entry => {
--        if (entry.isIntersecting) {
--          const el = entry.target as HTMLElement;
--          el.classList.add('shimmer-active');
--          el.style.transform = 'scale(1.02)';
--          o.unobserve(el);
--        }
--      });
--    }, { threshold: 0.3 });
--    if (imgWrap) shimObs.observe(imgWrap);
-+const skillCards = [
-+  { skills: ['Python', 'Java', 'JavaScript', 'HTML5', 'CSS3'] },
-+  { skills: ['Next.js', 'Tailwind CSS', 'TypeScript', 'React'] },
-+  { skills: ['Django', 'Java', 'API REST'] },
-+  { skills: ['Git & GitHub', 'Figma', 'VS Code', 'Postman'] },
-+];
- 
--    return () => { obs.disconnect(); shimObs.disconnect(); };
--  }, []);
--
--  const skillCards = [
--    { skills: ['Python', 'Java', 'JavaScript', 'HTML5', 'CSS3'] },
--    { skills: ['Next.js', 'Tailwind CSS', 'TypeScript', 'React'] },
--    { skills: ['Django', 'Java', 'API REST'] },
--    { skills: ['Git & GitHub', 'Figma', 'VS Code', 'Postman'] },
--  ];
-+export default function About() {
-+  const { language, isChanging, t } = useTheme();
- 
-   return (
--    <section id="acerca" style={{ padding: '100px 0', position: 'relative', overflow: 'hidden', background: 'transparent', transition: T }}>
--      <div style={{
--        maxWidth: 1200, margin: '0 auto', padding: '0 24px',
--        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
--        gap: 64, alignItems: 'start', position: 'relative',
--      }}>
--
--        {/* Imagen */}
--        <div className="reveal reveal-d1">
--          <div className="about-img-wrap">
--            <img src="/foto mia traje.jpeg" alt="About" />
--            <div style={{ position: 'absolute', inset: 0, background: c.aboutGrad, pointerEvents: 'none', transition: T }} />
--            <div style={{ position: 'absolute', bottom: 24, left: 20, right: 20, display: 'flex', gap: 8, flexWrap: 'wrap', zIndex: 1 }}>
--              {['Python', 'Java', 'Next.js', 'Django'].map(tag => (
--                <span
--                  key={tag}
--                  style={{ background: c.tagBg, border: `1.5px solid ${c.tagBorder}`, borderRadius: 10, padding: '7px 13px', fontSize: 12, fontWeight: 700, color: c.tagColor, transition: T }}
--                >
--                  {tag}
--                </span>
--              ))}
--            </div>
--          </div>
-+    <section id="acerca" className="section section-anchor">
-+      <div className="wrap about-grid">
-+        <div className="about-portrait">
-+          <Image src="/foto mia traje.jpeg" alt={language === 'es' ? 'Retrato de Daniel Mafla' : 'Portrait of Daniel Mafla'} fill sizes="(max-width: 760px) 100vw, 440px" />
-+          <span className="about-image-note">DANIEL MAFLA <span>·</span> 2026</span>
-         </div>
- 
--        {/* Texto y habilidades */}
--        <div className="reveal reveal-d2">
--          <div
--            className={`pill fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}
--            style={{ background: c.pill.bg, border: `1px solid ${c.pill.border}`, color: c.pill.color, transition: T }}
--          >
--            {t.aboutPill}
--          </div>
--
--          <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 50, fontWeight: 800, color: c.text, lineHeight: 1.08, marginBottom: 22, transition: T }}>
--            <span className="grad-subtle">{t.aboutTitle}</span>
--          </h2>
--
--          <p key={language + 'p1'} className="fade-text" style={{ fontSize: 15, lineHeight: 1.85, color: c.textSoft, marginBottom: 14, transition: T }}>
--            {t.aboutP1}
--          </p>
--          <p key={language + 'p2'} className="fade-text" style={{ fontSize: 15, lineHeight: 1.85, color: c.textSoft, marginBottom: 32, transition: T }}>
--            {t.aboutP2}
--          </p>
--
--          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
--            {skillCards.map((card, i) => (
--              <div
--                key={i}
--                className={`reveal reveal-d${i + 1}`}
--                style={{
--                  background: darkMode ? '#16162a' : '#ffffff',
--                  border: `1.5px solid ${darkMode ? '#2a2a45' : '#e8e4fc'}`,
--                  borderRadius: 18, padding: 18,
--                  boxShadow: darkMode ? '0 2px 12px #00000030' : '0 2px 12px #7c3aed06',
--                  transition: T,
--                }}
--              >
--                <div style={{ fontSize: 11, fontWeight: 700, color: '#7c3aed', letterSpacing: '0.09em', textTransform: 'uppercase', marginBottom: 12 }}>
--                  <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>{t.skillTitles[i]}</span>
--                </div>
--                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
--                  {card.skills.map(s => (
--                    <span key={s} className="chip" style={{ background: c.chip.bg, border: `1px solid ${c.chip.border}`, color: c.chip.color, transition: T }}>
--                      {s}
--                    </span>
--                  ))}
--                </div>
-+        <div className="about-copy">
-+          <p className="section-kicker">{t.aboutPill}</p>
-+          <h2 className="section-title">{t.aboutTitle}<span className="heading-period">.</span></h2>
-+          <p className={`body-copy${isChanging ? ' is-changing' : ''}`}>{t.aboutP1}</p>
-+          <p className={`body-copy${isChanging ? ' is-changing' : ''}`}>{t.aboutP2}</p>
-+
-+          <div className="skills-grid">
-+            {skillCards.map((card, index) => (
-+              <div className="skill-group" key={t.skillTitles[index]}>
-+                <h3 className="mono-label">0{index + 1} / {t.skillTitles[index]}</h3>
-+                <ul className="skill-list">
-+                  {card.skills.map(skill => <li key={skill}>{skill}</li>)}
-+                </ul>
-               </div>
-             ))}
-           </div>
-@@ -123,4 +41,4 @@ export default function About() {
-       </div>
-     </section>
-   );
--}
-\ No newline at end of file
-+}
-diff --git a/components/Contact.tsx b/components/Contact.tsx
-index e121e5a..da09f1b 100644
---- a/components/Contact.tsx
-+++ b/components/Contact.tsx
-@@ -1,229 +1,109 @@
- "use client";
- 
--import { useState, useRef } from 'react';
--import { Mail, Phone, MapPin, Send, CheckCircle, XCircle, Loader } from 'lucide-react';
-+import { FormEvent, useState } from 'react';
-+import { Check, LoaderCircle, Mail, MapPin, Phone, Send, X } from 'lucide-react';
- import { FaGithub, FaLinkedin } from 'react-icons/fa';
- import emailjs from '@emailjs/browser';
- import { useTheme } from '@/context/ThemeContext';
- import { SendStatus } from '@/types';
- 
--const EMAILJS_SERVICE_ID  = 'service_sbytjxj';
-+const EMAILJS_SERVICE_ID = 'service_sbytjxj';
- const EMAILJS_TEMPLATE_ID = 'template_ulhhlwb';
--const EMAILJS_PUBLIC_KEY  = '4o1gDlG0O3pRDalfm';
-+const EMAILJS_PUBLIC_KEY = '4o1gDlG0O3pRDalfm';
- 
- export default function Contact() {
--  const { darkMode, language, isChanging, t, c, T } = useTheme();
--
--  const [formName,    setFormName]    = useState('');
--  const [formEmail,   setFormEmail]   = useState('');
-+  const { t } = useTheme();
-+  const [formName, setFormName] = useState('');
-+  const [formEmail, setFormEmail] = useState('');
-   const [formMessage, setFormMessage] = useState('');
--  const [sendStatus,  setSendStatus]  = useState<SendStatus>('idle');
--  const formRef = useRef<HTMLDivElement>(null);
--
--  const isFormEmpty = !formName.trim() || !formEmail.trim() || !formMessage.trim();
-+  const [sendStatus, setSendStatus] = useState<SendStatus>('idle');
- 
--  const handleSend = async () => {
--    if (isFormEmpty) return;
-+  const handleSend = async (event: FormEvent<HTMLFormElement>) => {
-+    event.preventDefault();
-     setSendStatus('sending');
-     try {
--      await emailjs.send(
--        EMAILJS_SERVICE_ID,
--        EMAILJS_TEMPLATE_ID,
--        { from_name: formName, from_email: formEmail, message: formMessage },
--        EMAILJS_PUBLIC_KEY,
--      );
-+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-+        from_name: formName,
-+        from_email: formEmail,
-+        message: formMessage,
-+      }, EMAILJS_PUBLIC_KEY);
-       setSendStatus('success');
-       setFormName('');
-       setFormEmail('');
-       setFormMessage('');
--      setTimeout(() => setSendStatus('idle'), 4000);
-+      window.setTimeout(() => setSendStatus('idle'), 5000);
-     } catch {
-       setSendStatus('error');
--      setTimeout(() => setSendStatus('idle'), 4000);
-+      window.setTimeout(() => setSendStatus('idle'), 5000);
-     }
-   };
- 
--  const sendBtnContent = () => {
--    if (sendStatus === 'sending') return <><Loader size={17} style={{ animation: 'spin 1s linear infinite' }} /><span>{t.sendingText}</span></>;
--    if (sendStatus === 'success') return <><CheckCircle size={17} /><span>{t.successText}</span></>;
--    if (sendStatus === 'error')   return <><XCircle size={17} /><span>{t.errorText}</span></>;
--    return (
--      <>
--        <Send size={17} />
--        <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>{t.contactSend}</span>
--      </>
--    );
--  };
--
--  const sendBtnBg =
--    sendStatus === 'success' ? 'linear-gradient(135deg, #16a34a, #22c55e)' :
--    sendStatus === 'error'   ? 'linear-gradient(135deg, #dc2626, #ef4444)' :
--    'linear-gradient(135deg, #7c3aed, #a855f7)';
--
--  const cardStyle: React.CSSProperties = {
--    background: darkMode ? '#16162a' : '#ffffff',
--    border: `1.5px solid ${darkMode ? '#2a2a45' : '#e8e4fc'}`,
--    borderRadius: 22,
--    boxShadow: darkMode ? '0 4px 32px #00000050' : '0 4px 24px #7c3aed08',
--    transition: T,
--  };
--
--  const inputStyle: React.CSSProperties = {
--    width: '100%', padding: '12px 16px', borderRadius: 12, fontSize: 14,
--    background: c.contactInput.bg, border: `1.5px solid ${c.contactInput.border}`,
--    color: c.text, outline: 'none', fontFamily: "'Plus Jakarta Sans', sans-serif",
--    transition: T, boxSizing: 'border-box', display: 'block',
--  };
-+  const contacts = [
-+    { icon: Mail, label: t.contactLabels[0], value: 'danielmafla320@gmail.com', href: 'mailto:danielmafla320@gmail.com' },
-+    { icon: Phone, label: t.contactLabels[1], value: '+57 300 136 2838', href: 'tel:+573001362838' },
-+    { icon: MapPin, label: t.contactLabels[2], value: 'Pasto, Colombia', href: null },
-+  ];
- 
-   return (
--    <section id="contacto" style={{ padding: '100px 0', position: 'relative', overflow: 'hidden', background: 'transparent', transition: T }}>
--      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', position: 'relative' }}>
--
--        <div style={{ textAlign: 'center', marginBottom: 60 }} className="reveal">
--          <div
--            className={`pill fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}
--            style={{ display: 'inline-flex', background: c.pill.bg, border: `1px solid ${c.pill.border}`, color: c.pill.color, transition: T }}
--          >
--            {t.contactPill}
-+    <section id="contacto" className="section section-contact section-anchor">
-+      <div className="wrap">
-+        <div className="section-heading section-heading-split">
-+          <div>
-+            <p className="section-kicker">{t.contactPill}</p>
-+            <h2 className="section-title">{t.contactTitle}<span className="heading-period">.</span></h2>
-           </div>
--          <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 50, fontWeight: 800, color: c.text, marginBottom: 10, transition: T }}>
--            <span className="grad">{t.contactTitle}</span>
--          </h2>
--          <p key={language + 'cd'} className="fade-text" style={{ color: c.textMuted, fontSize: 15, transition: T }}>
--            {t.contactDesc}
--          </p>
-+          <p className="section-intro">{t.contactDesc}</p>
-         </div>
- 
--        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 28 }}>
--
--          {/* Formulario */}
--          <div ref={formRef} className="reveal reveal-d1" style={{ ...cardStyle, padding: 36, position: 'relative', overflow: 'hidden' }}>
--
--            {sendStatus === 'success' && (
--              <div style={{ position: 'absolute', inset: 0, zIndex: 10, borderRadius: 22, background: darkMode ? 'rgba(11,11,22,0.97)' : 'rgba(255,255,255,0.97)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, animation: 'fadeInUp 0.4s ease' }}>
--                <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'linear-gradient(135deg, #16a34a, #22c55e)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 32px #22c55e55' }}>
--                  <CheckCircle size={32} color="#fff" />
--                </div>
--                <div style={{ fontSize: 20, fontWeight: 800, color: c.text }}>{t.successText}</div>
--                <div style={{ fontSize: 14, color: c.textMuted }}>{t.successSub}</div>
--              </div>
--            )}
--
--            {sendStatus === 'error' && (
--              <div style={{ position: 'absolute', inset: 0, zIndex: 10, borderRadius: 22, background: darkMode ? 'rgba(11,11,22,0.97)' : 'rgba(255,255,255,0.97)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, animation: 'fadeInUp 0.4s ease' }}>
--                <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'linear-gradient(135deg, #dc2626, #ef4444)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 32px #ef444455' }}>
--                  <XCircle size={32} color="#fff" />
--                </div>
--                <div style={{ fontSize: 20, fontWeight: 800, color: c.text }}>{t.errorText}</div>
--                <div style={{ fontSize: 14, color: c.textMuted }}>{t.errorSub}</div>
--              </div>
--            )}
--
--            <h3 style={{ fontSize: 22, fontWeight: 700, color: c.text, marginBottom: 28, transition: T }}>
--              <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>{t.contactFormTitle}</span>
--            </h3>
--
--            <label style={{ color: c.textMuted, display: 'block', marginBottom: 8, fontSize: 13, fontWeight: 600 }}>
--              <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>{t.contactName}</span>
--            </label>
--            <input
--              style={{ ...inputStyle, marginBottom: 18 }}
--              type="text" placeholder={t.contactNamePH}
--              value={formName} onChange={e => setFormName(e.target.value)}
--              disabled={sendStatus === 'sending'}
--            />
--
--            <label style={{ color: c.textMuted, display: 'block', marginBottom: 8, fontSize: 13, fontWeight: 600 }}>
--              {t.contactEmail}
--            </label>
--            <input
--              style={{ ...inputStyle, marginBottom: 18 }}
--              type="email" placeholder={t.contactEmailPH}
--              value={formEmail} onChange={e => setFormEmail(e.target.value)}
--              disabled={sendStatus === 'sending'}
--            />
--
--            <label style={{ color: c.textMuted, display: 'block', marginBottom: 8, fontSize: 13, fontWeight: 600 }}>
--              <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>{t.contactMsg}</span>
--            </label>
--            <textarea
--              style={{ ...inputStyle, resize: 'vertical', marginBottom: 22 }}
--              placeholder={t.contactMsgPH} rows={5}
--              value={formMessage} onChange={e => setFormMessage(e.target.value)}
--              disabled={sendStatus === 'sending'}
--            />
--
--            <button
--              onClick={handleSend}
--              disabled={sendStatus === 'sending' || isFormEmpty}
--              style={{
--                display: 'flex', alignItems: 'center', gap: 10,
--                padding: '14px 28px', borderRadius: 14, border: 'none',
--                background: isFormEmpty ? (darkMode ? '#2a2a45' : '#e8e4fc') : sendBtnBg,
--                color: isFormEmpty ? c.textMuted : '#fff',
--                fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 15, fontWeight: 700,
--                cursor: isFormEmpty || sendStatus === 'sending' ? 'not-allowed' : 'pointer',
--                transition: 'all 0.35s ease',
--                boxShadow: isFormEmpty ? 'none' : '0 6px 24px #7c3aed33',
--                opacity: sendStatus === 'sending' ? 0.85 : 1,
--                width: '100%', justifyContent: 'center',
--              }}
--            >
--              {sendBtnContent()}
--            </button>
-+        <div className="contact-layout">
-+          <div className="contact-panel">
-+            <h3>{t.contactFormTitle}</h3>
-+            <form className="contact-form" onSubmit={handleSend}>
-+              <label htmlFor="contact-name">{t.contactName}</label>
-+              <input id="contact-name" name="name" autoComplete="name" type="text" placeholder={t.contactNamePH} value={formName} onChange={event => setFormName(event.target.value)} required disabled={sendStatus === 'sending'} />
-+
-+              <label htmlFor="contact-email">{t.contactEmail}</label>
-+              <input id="contact-email" name="email" autoComplete="email" type="email" placeholder={t.contactEmailPH} value={formEmail} onChange={event => setFormEmail(event.target.value)} required disabled={sendStatus === 'sending'} />
-+
-+              <label htmlFor="contact-message">{t.contactMsg}</label>
-+              <textarea id="contact-message" name="message" rows={5} placeholder={t.contactMsgPH} value={formMessage} onChange={event => setFormMessage(event.target.value)} required disabled={sendStatus === 'sending'} />
-+
-+              <button className={`button button-primary contact-submit status-${sendStatus}`} type="submit" disabled={sendStatus === 'sending'}>
-+                {sendStatus === 'sending' ? <LoaderCircle size={17} className="spin" aria-hidden="true" /> : null}
-+                {sendStatus === 'success' ? <Check size={17} aria-hidden="true" /> : null}
-+                {sendStatus === 'error' ? <X size={17} aria-hidden="true" /> : null}
-+                {sendStatus === 'idle' ? <><Send size={16} aria-hidden="true" />{t.contactSend}</> : null}
-+                {sendStatus === 'sending' ? t.sendingText : null}
-+                {sendStatus === 'success' ? t.successText : null}
-+                {sendStatus === 'error' ? t.errorText : null}
-+              </button>
-+              <p className="form-status" aria-live="polite" role="status">
-+                {sendStatus === 'success' ? t.successSub : sendStatus === 'error' ? t.errorSub : ''}
-+              </p>
-+            </form>
-           </div>
- 
--          {/* Info + Redes */}
--          <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
--
--            {/* Información de contacto */}
--            <div className="reveal reveal-d2" style={{ ...cardStyle, padding: 28 }}>
--              <h3 style={{ fontSize: 20, fontWeight: 700, color: c.text, marginBottom: 6, transition: T }}>
--                <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>{t.contactInfoTitle}</span>
--              </h3>
--              <p key={language + 'cid'} className="fade-text" style={{ fontSize: 13, color: c.textMuted, marginBottom: 24, transition: T }}>
--                {t.contactInfoDesc}
--              </p>
--              {[
--                { Icon: Mail,   value: 'danielmafla320@gmail.com' },
--                { Icon: Phone,  value: '+57 300 136 2838' },
--                { Icon: MapPin, value: 'Pasto, Colombia' },
--              ].map(({ Icon, value }, idx, arr) => (
--                <div key={value} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 0', borderBottom: idx < arr.length - 1 ? `1px solid ${c.borderLight}` : 'none', transition: T }}>
--                  <div style={{ width: 40, height: 40, borderRadius: 12, background: c.iconCircle, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: T }}>
--                    <Icon size={18} style={{ color: '#7c3aed' }} />
--                  </div>
--                  <div>
--                    <div style={{ fontSize: 11, fontWeight: 700, color: c.textMuted, textTransform: 'uppercase', letterSpacing: '0.06em', transition: T }}>
--                      <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>{t.contactLabels[idx]}</span>
--                    </div>
--                    <div style={{ fontSize: 14, fontWeight: 600, color: c.text, transition: T }}>{value}</div>
--                  </div>
-+          <aside className="contact-aside">
-+            <div className="contact-panel contact-details">
-+              <p className="mono-label">{t.contactInfoTitle}</p>
-+              <p className="contact-aside-copy">{t.contactInfoDesc}</p>
-+              {contacts.map(({ icon: Icon, label, value, href }) => (
-+                <div className="contact-detail" key={label}>
-+                  <Icon size={17} aria-hidden="true" />
-+                  <div><span>{label}</span>{href ? <a href={href}>{value}</a> : <strong>{value}</strong>}</div>
-                 </div>
-               ))}
-             </div>
--
--            {/* Redes sociales */}
--            <div className="reveal reveal-d3" style={{ ...cardStyle, padding: 28 }}>
--              <h3 style={{ fontSize: 20, fontWeight: 700, color: c.text, marginBottom: 18, transition: T }}>
--                <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>{t.socialTitle}</span>
--              </h3>
--              <div style={{ display: 'flex', gap: 12 }}>
--                {[
--                  { href: 'https://github.com/DanielMafla320', Icon: FaGithub },
--                  { href: 'https://www.linkedin.com/in/daniel-mafla-782541317/?skipRedirect=true', Icon: FaLinkedin },
--                ].map(({ href, Icon }) => (
--                  <a key={href} href={href} target="_blank" rel="noopener noreferrer">
--                    <div className="social-btn" style={{ background: c.socialBtn.bg, border: `1px solid ${c.socialBtn.border}`, color: c.socialBtn.color, transition: T }}>
--                      <Icon size={20} />
--                    </div>
--                  </a>
--                ))}
-+            <div className="contact-panel contact-socials">
-+              <p className="mono-label">{t.socialTitle}</p>
-+              <div className="social-links">
-+                <a href="https://github.com/DanielMafla320" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)"><FaGithub size={18} aria-hidden="true" />GitHub</a>
-+                <a href="https://www.linkedin.com/in/daniel-mafla-782541317/?skipRedirect=true" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)"><FaLinkedin size={18} aria-hidden="true" />LinkedIn</a>
-               </div>
-             </div>
--          </div>
-+          </aside>
-         </div>
-       </div>
-     </section>
-   );
--}
-\ No newline at end of file
-+}
-diff --git a/components/Experience.tsx b/components/Experience.tsx
-index 1529d4f..16c9bbe 100644
---- a/components/Experience.tsx
-+++ b/components/Experience.tsx
-@@ -3,82 +3,33 @@
- import { useTheme } from '@/context/ThemeContext';
- 
- export default function Experience() {
--  const { darkMode, language, isChanging, t, c, T } = useTheme();
-+  const { t } = useTheme();
- 
-   return (
--    <section id="experiencia" style={{ padding: '100px 0', position: 'relative', overflow: 'hidden', background: 'transparent', transition: T }}>
--      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', position: 'relative' }}>
--
--        <div style={{ textAlign: 'center', marginBottom: 60 }} className="reveal">
--          <div
--            className={`pill fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}
--            style={{ display: 'inline-flex', background: c.pill.bg, border: `1px solid ${c.pill.border}`, color: c.pill.color, transition: T }}
--          >
--            {t.expPill}
-+    <section id="experiencia" className="section section-tinted section-anchor">
-+      <div className="wrap">
-+        <div className="section-heading section-heading-split">
-+          <div>
-+            <p className="section-kicker">{t.expPill}</p>
-+            <h2 className="section-title">{t.expTitle}{t.expTitleGrad}<span className="heading-period">.</span></h2>
-           </div>
--          <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 50, fontWeight: 800, color: c.text, marginBottom: 10, transition: T }}>
--            <span key={language + 'et'} className="fade-text">{t.expTitle}</span>
--            <span className="grad-subtle">{t.expTitleGrad}</span>
--          </h2>
--          <p key={language + 'ed'} className="fade-text" style={{ color: c.textMuted, fontSize: 15, transition: T }}>
--            {t.expDesc}
--          </p>
-+          <p className="section-intro">{t.expDesc}</p>
-         </div>
- 
--        <div style={{ maxWidth: 720, margin: '0 auto', position: 'relative' }}>
--          <div className="timeline-line" style={{ background: darkMode ? '#2a2a45' : '#e8e4fc', transition: T }} />
--
--          {t.experience.map((item, i) => (
--            <div key={i} style={{ display: 'flex', gap: 28, marginBottom: 24, paddingLeft: 4 }}>
--              {/* Dot */}
--              <div style={{
--                width: 26, height: 26, borderRadius: '50%',
--                background: darkMode ? '#1e1e38' : '#ede9fe',
--                border: '2px solid #7c3aed',
--                display: 'flex', alignItems: 'center', justifyContent: 'center',
--                flexShrink: 0, marginTop: 6, zIndex: 1, transition: T,
--                animation: 'pulseDot 2.4s ease-in-out infinite',
--                animationDelay: `${i * 0.8}s`,
--              }}>
--                <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#7c3aed' }} />
--              </div>
--
--              {/* Card */}
--              <div
--                className={`reveal reveal-d${i + 1}`}
--                style={{
--                  flex: 1,
--                  background: darkMode ? '#16162a' : '#ffffff',
--                  border: `1.5px solid ${darkMode ? '#2a2a45' : '#e8e4fc'}`,
--                  borderRadius: 22,
--                  boxShadow: darkMode ? '0 4px 32px #00000050' : '0 4px 24px #7c3aed08',
--                  transition: T, padding: 24,
--                  animation: `slideInLeft 0.55s cubic-bezier(0.22,1,0.36,1) both`,
--                  animationDelay: `${0.1 + i * 0.15}s`,
--                }}
--              >
--                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10, flexWrap: 'wrap', gap: 8 }}>
--                  <span style={{
--                    fontSize: 10, fontWeight: 700, color: '#7c3aed',
--                    background: darkMode ? '#1e1e38' : '#ede9fe',
--                    border: `1px solid ${darkMode ? '#3a3a60' : '#c4b5fd55'}`,
--                    borderRadius: 8, padding: '4px 10px',
--                    textTransform: 'uppercase', letterSpacing: '0.08em', transition: T,
--                  }}>
--                    {item.type}
--                  </span>
--                  <span style={{ fontSize: 12, fontWeight: 600, color: c.textMuted, transition: T }}>{item.date}</span>
--                </div>
--                <h3 style={{ fontSize: 16, fontWeight: 700, color: c.text, marginBottom: 4, transition: T }}>{item.title}</h3>
--                <div style={{ fontSize: 13, fontWeight: 600, color: '#7c3aed', marginBottom: 10 }}>{item.company}</div>
--                <p key={language + 'exp' + i} className="fade-text" style={{ fontSize: 13, color: c.textMuted, lineHeight: 1.7, transition: T }}>
--                  {item.desc}
--                </p>
--              </div>
--            </div>
-+        <ol className="experience-list">
-+          {t.experience.map((item, index) => (
-+            <li className="experience-item" key={`${item.date}-${item.title}`}>
-+              <span className="experience-index">0{index + 1}</span>
-+              <article className="experience-entry">
-+                <div className="experience-meta"><span>{item.type}</span><time>{item.date}</time></div>
-+                <h3>{item.title}</h3>
-+                <p className="experience-company">{item.company}</p>
-+                <p className="experience-description">{item.desc}</p>
-+              </article>
-+            </li>
-           ))}
--        </div>
-+        </ol>
-       </div>
-     </section>
-   );
--}
-\ No newline at end of file
-+}
-diff --git a/components/Footer.tsx b/components/Footer.tsx
-index 5038b8c..91306cc 100644
---- a/components/Footer.tsx
-+++ b/components/Footer.tsx
-@@ -1,93 +1,30 @@
- "use client";
- 
--import { Mail, Phone, MapPin } from 'lucide-react';
-+import { ArrowUpRight } from 'lucide-react';
- import { FaGithub, FaLinkedin } from 'react-icons/fa';
- import { useTheme } from '@/context/ThemeContext';
- 
- export default function Footer() {
--  const { darkMode, language, isChanging, t, c, T } = useTheme();
-+  const { language, t } = useTheme();
-+  const year = new Date().getFullYear();
- 
-   return (
--    <footer style={{ background: darkMode ? '#08080f' : '#ede9fe', borderTop: `1px solid ${c.border}`, padding: '60px 0 28px', transition: T }}>
--      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
--        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 40, marginBottom: 48 }}>
--
--          {/* Brand */}
--          <div>
--            <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 20, fontWeight: 800, marginBottom: 14 }}>
--              <span style={{ color: c.text, transition: T }}>Daniel </span>
--              <span className="grad">Mafla</span>
--            </div>
--            <p key={language + 'fd'} className="fade-text" style={{ fontSize: 13, color: c.textMuted, lineHeight: 1.75, transition: T }}>
--              {t.footerDesc}
--            </p>
--          </div>
--
--          {/* Habilidades */}
--          <div>
--            <div style={{ fontSize: 11, fontWeight: 700, color: c.text, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16, transition: T }}>
--              <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>{t.footerSkillsTitle}</span>
--            </div>
--            {t.footerSkills.map(s => (
--              <div
--                key={s}
--                style={{ fontSize: 13, color: c.textMuted, marginBottom: 9, cursor: 'pointer', transition: 'color 0.2s' }}
--                onMouseEnter={e => (e.currentTarget.style.color = '#7c3aed')}
--                onMouseLeave={e => (e.currentTarget.style.color = c.textMuted)}
--              >
--                {s}
--              </div>
--            ))}
--          </div>
--
--          {/* Contacto */}
--          <div>
--            <div style={{ fontSize: 11, fontWeight: 700, color: c.text, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16, transition: T }}>
--              <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>{t.footerContactTitle}</span>
--            </div>
--            {[
--              { Icon: Mail,   v: 'danielmafla320@gmail.com' },
--              { Icon: Phone,  v: '+57 300 136 2838' },
--              { Icon: MapPin, v: 'Pasto, Colombia' },
--            ].map(({ Icon, v }) => (
--              <div
--                key={v}
--                style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: c.textMuted, marginBottom: 10, cursor: 'pointer', transition: 'color 0.2s' }}
--                onMouseEnter={e => (e.currentTarget.style.color = '#7c3aed')}
--                onMouseLeave={e => (e.currentTarget.style.color = c.textMuted)}
--              >
--                <Icon size={14} />{v}
--              </div>
--            ))}
--          </div>
--
--          {/* Redes */}
--          <div>
--            <div style={{ fontSize: 11, fontWeight: 700, color: c.text, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 10, transition: T }}>
--              <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>{t.footerFollowTitle}</span>
--            </div>
--            <div style={{ display: 'flex', gap: 12 }}>
--              {[
--                { href: 'https://github.com/DanielMafla320', Icon: FaGithub },
--                { href: 'https://www.linkedin.com/in/daniel-mafla-782541317/?skipRedirect=true', Icon: FaLinkedin },
--              ].map(({ href, Icon }) => (
--                <a key={href} href={href} target="_blank" rel="noopener noreferrer">
--                  <div className="social-btn" style={{ background: c.socialBtn.bg, border: `1px solid ${c.socialBtn.border}`, color: c.socialBtn.color, transition: T }}>
--                    <Icon size={20} />
--                  </div>
--                </a>
--              ))}
--            </div>
-+    <footer className="site-footer">
-+      <div className="wrap">
-+        <div className="footer-main">
-+          <a className="footer-brand" href="#inicio">Daniel Mafla<span>.</span></a>
-+          <p>{t.footerDesc}</p>
-+          <div className="footer-socials">
-+            <a href="https://github.com/DanielMafla320" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)"><FaGithub size={18} aria-hidden="true" /></a>
-+            <a href="https://www.linkedin.com/in/daniel-mafla-782541317/?skipRedirect=true" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)"><FaLinkedin size={18} aria-hidden="true" /></a>
-           </div>
-         </div>
--
--        {/* Copyright */}
--        <div style={{ borderTop: `1px solid ${c.border}`, paddingTop: 24, textAlign: 'center', transition: T }}>
--          <p key={language + 'fr'} className="fade-text" style={{ fontSize: 13, color: c.textMuted, transition: T }}>
--            {t.footerRights}
--          </p>
-+        <div className="footer-bottom">
-+          <p>© {year} Daniel Mafla. {language === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'}</p>
-+          <a href="#inicio">{language === 'es' ? 'Volver al inicio' : 'Back to top'}<ArrowUpRight size={14} aria-hidden="true" /></a>
-+          <span>{language === 'es' ? 'Diseñado y desarrollado por Daniel' : 'Designed and built by Daniel'}</span>
-         </div>
-       </div>
-     </footer>
-   );
--}
-\ No newline at end of file
-+}
-diff --git a/components/Hero.tsx b/components/Hero.tsx
-index d3b6071..8647dc9 100644
---- a/components/Hero.tsx
-+++ b/components/Hero.tsx
-@@ -1,111 +1,50 @@
- "use client";
- 
--import { useState, useEffect } from 'react';
--import { Download } from 'lucide-react';
-+import Image from 'next/image';
-+import { ArrowDownRight, ArrowRight, Download } from 'lucide-react';
- import { useTheme } from '@/context/ThemeContext';
- 
- export default function Hero() {
--  const { darkMode, isChanging, t, c, T } = useTheme();
--  const [text, setText]           = useState('');
--  const [downloading, setDownloading] = useState(false);
--
--  const handleDownload = () => {
--    setDownloading(true);
--    setTimeout(() => setDownloading(false), 600);
--  };
--
--  useEffect(() => {
--    const words = ['Software Engineering Student', 'Frontend Developer', 'Backend Developer', 'Problem Solver'];
--    let wordIndex = 0, charIndex = 0, isDeleting = false;
--    const type = () => {
--      const w = words[wordIndex];
--      if (isDeleting) { setText(w.substring(0, charIndex - 1)); charIndex--; }
--      else            { setText(w.substring(0, charIndex + 1)); charIndex++; }
--      if (!isDeleting && charIndex === w.length) setTimeout(() => (isDeleting = true), 1500);
--      else if (isDeleting && charIndex === 0)    { isDeleting = false; wordIndex = (wordIndex + 1) % words.length; }
--    };
--    const iv = setInterval(type, isDeleting ? 40 : 80);
--    return () => clearInterval(iv);
--  }, []);
-+  const { language, t } = useTheme();
- 
-   return (
--    <section id="inicio" style={{ padding: '110px 0', position: 'relative', overflow: 'hidden', background: 'transparent', transition: T }}>
--      <div style={{
--        maxWidth: 1200, margin: '0 auto', padding: '0 24px',
--        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
--        gap: 80, alignItems: 'center', position: 'relative',
--      }}>
--        {/* Texto */}
--        <div>
--          <div
--            className={`pill fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}
--            style={{ background: c.pill.bg, border: `1px solid ${c.pill.border}`, color: c.pill.color, transition: T }}
--          >
--            {t.available}
-+    <section id="inicio" className="hero section-anchor">
-+      <div className="wrap hero-grid">
-+        <div className="hero-copy">
-+          <p className="eyebrow"><span className="eyebrow-mark" />{t.available}</p>
-+          <h1>Daniel<br /><span className="serif-word">Mafla</span><span className="heading-period">.</span></h1>
-+          <p className="hero-role">{language === 'es' ? 'Estudiante de Ingeniería de Software' : 'Software Engineering Student'}</p>
-+          <p className="hero-description">{t.heroDesc}</p>
-+          <div className="hero-actions">
-+            <a className="button button-primary" href="#proyectos">
-+              {language === 'es' ? 'Explorar proyectos' : 'Explore projects'}<ArrowRight size={17} aria-hidden="true" />
-+            </a>
-+            <a className="button button-secondary" href="/cv.pdf" download>
-+              <Download size={16} aria-hidden="true" />{t.downloadCV}
-+            </a>
-           </div>
--
--          <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(42px, 8vw, 76px)', fontWeight: 800, lineHeight: 1, color: c.text, marginBottom: 16, transition: T }}>
--            Daniel<br /><span className="grad">Mafla</span>
--          </h1>
--
--          <h2 style={{ fontSize: 20, fontWeight: 600, color: darkMode ? '#a78bfa' : '#7c3aed', marginBottom: 24, transition: T }}>
--            {text}<span className="cursor">|</span>
--          </h2>
--
--          <p
--            key={`hero-desc`}
--            className="fade-text"
--            style={{ fontSize: 15, lineHeight: 1.85, color: c.textSoft, marginBottom: 36, maxWidth: 460, transition: T }}
--          >
--            {t.heroDesc}
--          </p>
--
--          <a href="/cv.pdf" download onClick={handleDownload}>
--            <button className={`btn-primary ${downloading ? 'download-anim' : ''}`}>
--              <Download size={18} />
--              <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>{t.downloadCV}</span>
--            </button>
-+          <a className="hero-contact-link" href="#contacto">
-+            {language === 'es' ? 'Hablemos de una idea' : 'Let’s talk about an idea'}<ArrowDownRight size={15} aria-hidden="true" />
-           </a>
-         </div>
- 
--        {/* Foto */}
--        <div style={{ display: 'flex', justifyContent: 'center' }}>
--          <div style={{ position: 'relative' }}>
--            <div
--              className="profile-img"
--              style={{
--                width: 340, height: 340, borderRadius: '50%', padding: 3,
--                background: 'linear-gradient(135deg, #7c3aed, #a855f7, #c084fc)',
--                boxShadow: darkMode
--                  ? '0 0 80px #7c3aed45, 0 0 140px #a855f730'
--                  : '0 0 80px #7c3aed25, 0 0 140px #a855f715',
--                animation: 'float 4s ease-in-out infinite',
--              }}
--            >
--              <div
--                className="img-inner"
--                style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', background: darkMode ? '#1e1e38' : '#ede9fe' }}
--              >
--                <img src="/foto mia traje.jpeg" alt="Daniel Mafla" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
--              </div>
--            </div>
--
--            <div style={{
--              position: 'absolute', bottom: 10, right: -24,
--              background: 'linear-gradient(135deg, #7c3aed, #a855f7)',
--              borderRadius: 16, padding: '10px 18px',
--              boxShadow: '0 8px 32px #7c3aed33',
--            }}>
--              <div style={{ fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,0.75)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
--                <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>{t.softEng}</span>
--              </div>
--              <div style={{ fontSize: 16, fontWeight: 800, color: '#fff' }}>
--                <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>{t.inProgress}</span>
--              </div>
--            </div>
-+        <div className="hero-visual" aria-label={language === 'es' ? 'Retrato de Daniel Mafla' : 'Portrait of Daniel Mafla'}>
-+          <div className="portrait-frame">
-+            <Image
-+              src="/foto mia traje.jpeg"
-+              alt={language === 'es' ? 'Daniel Mafla con traje' : 'Daniel Mafla wearing a suit'}
-+              fill
-+              priority
-+              sizes="(max-width: 760px) 72vw, 390px"
-+              className="portrait-image"
-+            />
-           </div>
-+          <span className="portrait-index">FIG. 01 / DANIEL M.</span>
-+          <span className="portrait-caption">Pasto, Colombia <span>—</span> {t.inProgress}</span>
-+          <span className="hero-orbit" aria-hidden="true">DM<span>✳</span></span>
-         </div>
-       </div>
-+      <div className="hero-bottomline wrap" aria-hidden="true"><span>{language === 'es' ? 'PORTAFOLIO' : 'PORTFOLIO'} 2026</span><span>{language === 'es' ? 'INGENIERÍA · CREATIVIDAD · CÓDIGO' : 'ENGINEERING · CREATIVITY · CODE'}</span></div>
-     </section>
-   );
--}
-\ No newline at end of file
-+}
-diff --git a/components/Navbar.tsx b/components/Navbar.tsx
-index 63f988a..509cd1d 100644
---- a/components/Navbar.tsx
-+++ b/components/Navbar.tsx
 @@ -1,7 +1,7 @@
  "use client";
  
--import { useState, useEffect, useRef } from 'react';
--import { Globe, Sun, Moon } from 'lucide-react';
-+import { useEffect, useState } from 'react';
-+import { Globe, Menu, Moon, Sun, X } from 'lucide-react';
- import { useTheme } from '@/context/ThemeContext';
+ import { useEffect, useState } from 'react';
+-import { ThemeProvider } from '@/context/ThemeContext';
++import { ThemeProvider, useTheme } from '@/context/ThemeContext';
+ import Navbar from '@/components/Navbar';
+ import Hero from '@/components/Hero';
+ import About from '@/components/About';
+@@ -12,17 +12,33 @@ import Contact from '@/components/Contact';
+ import Footer from '@/components/Footer';
  
- interface NavbarProps {
-@@ -9,168 +9,70 @@ interface NavbarProps {
-   scrollToSection: (id: string) => void;
- }
- 
-+const sections = ['inicio', 'acerca', 'proyectos', 'testimonios', 'experiencia', 'contacto'] as const;
-+
- export default function Navbar({ activeSection, scrollToSection }: NavbarProps) {
--  const { darkMode, toggleDark, language, changeLanguage, isChanging, t, c, T } = useTheme();
--  const [showNav, setShowNav] = useState(true);
-+  const { darkMode, toggleDark, language, changeLanguage, t } = useTheme();
-   const [menuOpen, setMenuOpen] = useState(false);
+ function PortfolioContent() {
++  const { language } = useTheme();
+   const [activeSection, setActiveSection] = useState('inicio');
  
    useEffect(() => {
--    const handleScroll = () => {
--      setShowNav(true);
-+    const closeOnEscape = (event: KeyboardEvent) => {
-+      if (event.key === 'Escape') setMenuOpen(false);
-     };
--    window.addEventListener('scroll', handleScroll);
--    return () => window.removeEventListener('scroll', handleScroll);
-+    window.addEventListener('keydown', closeOnEscape);
-+    return () => window.removeEventListener('keydown', closeOnEscape);
++    if (!('IntersectionObserver' in window)) return;
+     const sections = document.querySelectorAll<HTMLElement>('main section[id]');
++    const revealTargets = document.querySelectorAll<HTMLElement>('[data-reveal]:not([data-reveal="hero"])');
+     const observer = new IntersectionObserver((entries) => {
+       const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+       if (visible) setActiveSection(visible.target.id);
+     }, { rootMargin: '-25% 0px -60% 0px', threshold: [0, 0.15, 0.4, 0.7] });
+ 
+     sections.forEach(section => observer.observe(section));
+-    return () => observer.disconnect();
++    const revealObserver = new IntersectionObserver((entries, currentObserver) => {
++      entries.forEach(entry => {
++        if (entry.isIntersecting) {
++          entry.target.classList.add('is-revealed');
++          currentObserver.unobserve(entry.target);
++        }
++      });
++    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
++    revealTargets.forEach(target => revealObserver.observe(target));
++
++    return () => {
++      observer.disconnect();
++      revealObserver.disconnect();
++    };
    }, []);
  
--  const sections = ['inicio', 'acerca', 'proyectos', 'testimonios', 'experiencia', 'contacto'];
-+  const navigate = (id: string) => {
-+    scrollToSection(id);
-+    setMenuOpen(false);
-+  };
+   const scrollToSection = (id: string) => {
+@@ -32,7 +48,7 @@ function PortfolioContent() {
  
    return (
--    <nav style={{
--      position: 'fixed',
--      top: 0,
--      left: 0,
--      width: '100%',
--      zIndex: 50,
--      transform: showNav ? 'translateY(0)' : 'translateY(-100%)',
--      transition: 'transform 0.35s ease',
--      background: c.navBg,
--      backdropFilter: 'blur(20px)',
--      borderBottom: `1px solid ${c.border}`,
--      boxShadow: darkMode ? '0 1px 20px #00000040' : '0 1px 20px #7c3aed08',
--    }}>
--
--      <div style={{
--        maxWidth: 1200,
--        margin: '0 auto',
--        padding: '0 24px',
--        display: 'flex',
--        justifyContent: 'space-between',
--        alignItems: 'center',
--        height: 64,
--      }}>
--
--        {/* LOGO */}
--        <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 22, fontWeight: 800 }}>
--          <span style={{ color: c.text, transition: T }}>Daniel </span>
--          <span className="grad">Mafla</span>
--        </div>
-+    <header className="site-header">
-+      <nav className="nav-wrap wrap" aria-label={language === 'es' ? 'Navegación principal' : 'Main navigation'}>
-+        <a className="brand" href="#inicio" onClick={() => navigate('inicio')} aria-label="Daniel Mafla, inicio">
-+          DM<span className="brand-period">.</span>
-+        </a>
- 
--        {/* DESKTOP MENU */}
--        <div className="desktop-menu" style={{ display: 'flex', gap: 2, alignItems: 'center' }}>
--          {sections.map(s => (
-+        <div className="nav-links" aria-label={language === 'es' ? 'Secciones' : 'Sections'}>
-+          {sections.map((section, index) => (
-             <button
--              key={s}
--              className={`nav-btn ${activeSection === s ? 'active' : ''}`}
--              onClick={() => scrollToSection(s)}
-+              key={section}
-+              className={`nav-link${activeSection === section ? ' is-active' : ''}`}
-+              type="button"
-+              aria-current={activeSection === section ? 'location' : undefined}
-+              onClick={() => navigate(section)}
-             >
--              {t.nav[s as keyof typeof t.nav]}
-+              <span className="nav-index">0{index + 1}</span>
-+              {t.nav[section]}
-             </button>
-           ))}
-+        </div>
- 
--          {/* DARK MODE */}
--          <button
--            onClick={toggleDark}
--            style={{
--              marginLeft: 10,
--              width: 38,
--              height: 38,
--              borderRadius: 12,
--              display: 'flex',
--              alignItems: 'center',
--              justifyContent: 'center',
--              cursor: 'pointer',
--              border: `1px solid ${darkMode ? '#3a3a60' : '#2a2a45'}`,
--              background: darkMode ? '#1e1e38' : '#1a1a2e',
--              transition: T,
--            }}
--          >
--            {darkMode
--              ? <Sun size={16} style={{ color: '#fbbf24' }} />
--              : <Moon size={16} style={{ color: '#f0eeff' }} />
--            }
-+        <div className="nav-tools">
-+          <button className="icon-button language-button" type="button" onClick={changeLanguage} aria-label={language === 'es' ? 'Switch language to English' : 'Cambiar idioma a español'}>
-+            <Globe size={16} aria-hidden="true" />
-+            <span>{language === 'es' ? 'EN' : 'ES'}</span>
-           </button>
--
--          {/* LANGUAGE */}
--          <button
--            onClick={changeLanguage}
--            style={{
--              marginLeft: 8,
--              display: 'flex',
--              alignItems: 'center',
--              gap: 6,
--              padding: '6px 12px',
--              borderRadius: 12,
--              cursor: 'pointer',
--              fontWeight: 600,
--              background: c.langBtn.bg,
--              border: `1px solid ${c.langBtn.border}`,
--              color: c.langBtn.color,
--              transition: T,
--              fontSize: 13,
--            }}
--          >
--            <Globe size={15} style={{ color: '#7c3aed' }} />
--            <span className={`lang-label ${isChanging ? 'lang-out' : 'lang-in'}`}>
--              {language === 'es' ? 'EN' : 'ES'}
--            </span>
-+          <button className="icon-button theme-button" type="button" onClick={toggleDark} aria-label={darkMode ? (language === 'es' ? 'Activar modo claro' : 'Switch to light theme') : (language === 'es' ? 'Activar modo oscuro' : 'Switch to dark theme')}>
-+            {darkMode ? <Sun size={17} aria-hidden="true" /> : <Moon size={17} aria-hidden="true" />}
-+          </button>
-+          <button className="icon-button menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="mobile-menu" aria-label={menuOpen ? (language === 'es' ? 'Cerrar menú' : 'Close menu') : (language === 'es' ? 'Abrir menú' : 'Open menu')} onClick={() => setMenuOpen(open => !open)}>
-+            {menuOpen ? <X size={19} aria-hidden="true" /> : <Menu size={19} aria-hidden="true" />}
-           </button>
+     <div className="site-shell">
+-      <a className="skip-link" href="#contenido">Saltar al contenido</a>
++      <a className="skip-link" href="#contenido">{language === 'es' ? 'Saltar al contenido' : 'Skip to content'}</a>
+       <Navbar activeSection={activeSection} scrollToSection={scrollToSection} />
+       <main id="contenido">
+         <Hero />
+diff --git a/components/About.tsx b/components/About.tsx
+index c321922..87f489a 100644
+--- a/components/About.tsx
++++ b/components/About.tsx
+@@ -16,21 +16,22 @@ export default function About() {
+   return (
+     <section id="acerca" className="section section-anchor">
+       <div className="wrap about-grid">
+-        <div className="about-portrait">
++        <div className="about-portrait" data-reveal>
+           <Image src="/foto mia traje.jpeg" alt={language === 'es' ? 'Retrato de Daniel Mafla' : 'Portrait of Daniel Mafla'} fill sizes="(max-width: 760px) 100vw, 440px" />
+           <span className="about-image-note">DANIEL MAFLA <span>·</span> 2026</span>
          </div>
-+      </nav>
  
--        {/* HAMBURGER BUTTON (MOBILE) */}
--        <button
--          onClick={() => setMenuOpen(!menuOpen)}
--          className="hamburger"
--          style={{
--            display: 'none',
--            fontSize: 26,
--            background: 'transparent',
--            border: 'none',
--            color: c.text,
--            cursor: 'pointer',
--          }}
--        >
--          ☰
--        </button>
--
--      </div>
--
--      {/* MOBILE MENU */}
--      {menuOpen && (
--        <div style={{
--          position: 'absolute',
--          top: 64,
--          left: 0,
--          width: '100%',
--          background: c.navBg,
--          backdropFilter: 'blur(20px)',
--          borderBottom: `1px solid ${c.border}`,
--          display: 'flex',
--          flexDirection: 'column',
--          padding: 20,
--          gap: 12,
--        }}>
--          {sections.map(s => (
--            <button
--              key={s}
--              onClick={() => {
--                scrollToSection(s);
--                setMenuOpen(false);
--              }}
--              style={{
--                background: 'transparent',
--                border: 'none',
--                textAlign: 'left',
--                fontSize: 16,
--                color: c.text,
--                padding: '10px 0',
--              }}
--            >
--              {t.nav[s as keyof typeof t.nav]}
-+      <div id="mobile-menu" className={`mobile-menu${menuOpen ? ' is-open' : ''}`} hidden={!menuOpen}>
-+        <div className="mobile-menu-inner wrap">
-+          {sections.map((section, index) => (
-+            <button key={section} className="mobile-nav-link" type="button" onClick={() => navigate(section)}>
-+              <span className="nav-index">0{index + 1}</span>{t.nav[section]}
-             </button>
-           ))}
-         </div>
--      )}
--
--    </nav>
-+      </div>
-+    </header>
-   );
--}
-\ No newline at end of file
-+}
-diff --git a/components/Projects.tsx b/components/Projects.tsx
-index 3d008f6..eaf8670 100644
---- a/components/Projects.tsx
-+++ b/components/Projects.tsx
-@@ -1,97 +1,78 @@
+-        <div className="about-copy">
++        <div className="about-copy" data-reveal>
+           <p className="section-kicker">{t.aboutPill}</p>
+           <h2 className="section-title">{t.aboutTitle}<span className="heading-period">.</span></h2>
+           <p className={`body-copy${isChanging ? ' is-changing' : ''}`}>{t.aboutP1}</p>
+           <p className={`body-copy${isChanging ? ' is-changing' : ''}`}>{t.aboutP2}</p>
+ 
+-          <div className="skills-grid">
++          <div className="skills-list">
+             {skillCards.map((card, index) => (
+-              <div className="skill-group" key={t.skillTitles[index]}>
+-                <h3 className="mono-label">0{index + 1} / {t.skillTitles[index]}</h3>
++              <div className="skill-row" key={t.skillTitles[index]}>
++                <span className="skill-index">0{index + 1}</span>
++                <h3>{t.skillTitles[index]}</h3>
+                 <ul className="skill-list">
+                   {card.skills.map(skill => <li key={skill}>{skill}</li>)}
+                 </ul>
+diff --git a/components/Contact.tsx b/components/Contact.tsx
+index da09f1b..665a4f7 100644
+--- a/components/Contact.tsx
++++ b/components/Contact.tsx
+@@ -1,7 +1,7 @@
  "use client";
  
-+import Image from 'next/image';
-+import { ArrowUpRight, AudioLines, Clock3 } from 'lucide-react';
+ import { FormEvent, useState } from 'react';
+-import { Check, LoaderCircle, Mail, MapPin, Phone, Send, X } from 'lucide-react';
++import { ArrowUpRight, Check, LoaderCircle, Mail, MapPin, Phone, Send, X } from 'lucide-react';
+ import { FaGithub, FaLinkedin } from 'react-icons/fa';
+ import emailjs from '@emailjs/browser';
+ import { useTheme } from '@/context/ThemeContext';
+@@ -12,7 +12,7 @@ const EMAILJS_TEMPLATE_ID = 'template_ulhhlwb';
+ const EMAILJS_PUBLIC_KEY = '4o1gDlG0O3pRDalfm';
+ 
+ export default function Contact() {
+-  const { t } = useTheme();
++  const { language, t } = useTheme();
+   const [formName, setFormName] = useState('');
+   const [formEmail, setFormEmail] = useState('');
+   const [formMessage, setFormMessage] = useState('');
+@@ -47,16 +47,15 @@ export default function Contact() {
+   return (
+     <section id="contacto" className="section section-contact section-anchor">
+       <div className="wrap">
+-        <div className="section-heading section-heading-split">
+-          <div>
+-            <p className="section-kicker">{t.contactPill}</p>
+-            <h2 className="section-title">{t.contactTitle}<span className="heading-period">.</span></h2>
+-          </div>
+-          <p className="section-intro">{t.contactDesc}</p>
+-        </div>
++        <header className="contact-heading" data-reveal>
++          <p className="section-kicker">{t.contactPill}</p>
++          <h2 className="contact-display">{t.contactTitle}<span className="heading-period">.</span></h2>
++          <p className="contact-lead">{t.contactDesc}</p>
++        </header>
+ 
+         <div className="contact-layout">
+-          <div className="contact-panel">
++          <div className="contact-form-column" data-reveal>
++            <p className="mono-label">{language === 'es' ? 'MENSAJE DIRECTO' : 'DIRECT MESSAGE'}</p>
+             <h3>{t.contactFormTitle}</h3>
+             <form className="contact-form" onSubmit={handleSend}>
+               <label htmlFor="contact-name">{t.contactName}</label>
+@@ -83,22 +82,23 @@ export default function Contact() {
+             </form>
+           </div>
+ 
+-          <aside className="contact-aside">
+-            <div className="contact-panel contact-details">
+-              <p className="mono-label">{t.contactInfoTitle}</p>
++          <aside className="contact-aside" data-reveal>
++            <div className="contact-methods">
++              <h3 className="mono-label">{t.contactInfoTitle}</h3>
+               <p className="contact-aside-copy">{t.contactInfoDesc}</p>
+-              {contacts.map(({ icon: Icon, label, value, href }) => (
++              {contacts.map(({ icon: Icon, label, value, href }, index) => (
+                 <div className="contact-detail" key={label}>
+-                  <Icon size={17} aria-hidden="true" />
++                  <span className="contact-detail-index">0{index + 1}</span>
++                  <Icon size={16} aria-hidden="true" />
+                   <div><span>{label}</span>{href ? <a href={href}>{value}</a> : <strong>{value}</strong>}</div>
+                 </div>
+               ))}
+             </div>
+-            <div className="contact-panel contact-socials">
+-              <p className="mono-label">{t.socialTitle}</p>
++            <div className="contact-socials">
++              <h3 className="mono-label">{t.socialTitle}</h3>
+               <div className="social-links">
+-                <a href="https://github.com/DanielMafla320" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)"><FaGithub size={18} aria-hidden="true" />GitHub</a>
+-                <a href="https://www.linkedin.com/in/daniel-mafla-782541317/?skipRedirect=true" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)"><FaLinkedin size={18} aria-hidden="true" />LinkedIn</a>
++                <a href="https://github.com/DanielMafla320" target="_blank" rel="noopener noreferrer" aria-label={language === 'es' ? 'GitHub, abre en una pestaña nueva' : 'GitHub, opens in a new tab'}><FaGithub size={17} aria-hidden="true" />GitHub<ArrowUpRight size={13} aria-hidden="true" /></a>
++                <a href="https://www.linkedin.com/in/daniel-mafla-782541317/?skipRedirect=true" target="_blank" rel="noopener noreferrer" aria-label={language === 'es' ? 'LinkedIn, abre en una pestaña nueva' : 'LinkedIn, opens in a new tab'}><FaLinkedin size={17} aria-hidden="true" />LinkedIn<ArrowUpRight size={13} aria-hidden="true" /></a>
+               </div>
+             </div>
+           </aside>
+diff --git a/components/Experience.tsx b/components/Experience.tsx
+index 16c9bbe..d8d7548 100644
+--- a/components/Experience.tsx
++++ b/components/Experience.tsx
+@@ -8,7 +8,7 @@ export default function Experience() {
+   return (
+     <section id="experiencia" className="section section-tinted section-anchor">
+       <div className="wrap">
+-        <div className="section-heading section-heading-split">
++        <div className="section-heading section-heading-split" data-reveal>
+           <div>
+             <p className="section-kicker">{t.expPill}</p>
+             <h2 className="section-title">{t.expTitle}{t.expTitleGrad}<span className="heading-period">.</span></h2>
+@@ -18,7 +18,7 @@ export default function Experience() {
+ 
+         <ol className="experience-list">
+           {t.experience.map((item, index) => (
+-            <li className="experience-item" key={`${item.date}-${item.title}`}>
++            <li className="experience-item" key={`${item.date}-${item.title}`} data-reveal>
+               <span className="experience-index">0{index + 1}</span>
+               <article className="experience-entry">
+                 <div className="experience-meta"><span>{item.type}</span><time>{item.date}</time></div>
+diff --git a/components/Footer.tsx b/components/Footer.tsx
+index 91306cc..ed326af 100644
+--- a/components/Footer.tsx
++++ b/components/Footer.tsx
+@@ -15,8 +15,8 @@ export default function Footer() {
+           <a className="footer-brand" href="#inicio">Daniel Mafla<span>.</span></a>
+           <p>{t.footerDesc}</p>
+           <div className="footer-socials">
+-            <a href="https://github.com/DanielMafla320" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)"><FaGithub size={18} aria-hidden="true" /></a>
+-            <a href="https://www.linkedin.com/in/daniel-mafla-782541317/?skipRedirect=true" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)"><FaLinkedin size={18} aria-hidden="true" /></a>
++            <a href="https://github.com/DanielMafla320" target="_blank" rel="noopener noreferrer" aria-label={language === 'es' ? 'GitHub, abre en una pestaña nueva' : 'GitHub, opens in a new tab'}><FaGithub size={18} aria-hidden="true" /></a>
++            <a href="https://www.linkedin.com/in/daniel-mafla-782541317/?skipRedirect=true" target="_blank" rel="noopener noreferrer" aria-label={language === 'es' ? 'LinkedIn, abre en una pestaña nueva' : 'LinkedIn, opens in a new tab'}><FaLinkedin size={18} aria-hidden="true" /></a>
+           </div>
+         </div>
+         <div className="footer-bottom">
+diff --git a/components/Hero.tsx b/components/Hero.tsx
+index 8647dc9..ed9c013 100644
+--- a/components/Hero.tsx
++++ b/components/Hero.tsx
+@@ -9,42 +9,51 @@ export default function Hero() {
+ 
+   return (
+     <section id="inicio" className="hero section-anchor">
+-      <div className="wrap hero-grid">
+-        <div className="hero-copy">
+-          <p className="eyebrow"><span className="eyebrow-mark" />{t.available}</p>
+-          <h1>Daniel<br /><span className="serif-word">Mafla</span><span className="heading-period">.</span></h1>
+-          <p className="hero-role">{language === 'es' ? 'Estudiante de Ingeniería de Software' : 'Software Engineering Student'}</p>
+-          <p className="hero-description">{t.heroDesc}</p>
+-          <div className="hero-actions">
+-            <a className="button button-primary" href="#proyectos">
+-              {language === 'es' ? 'Explorar proyectos' : 'Explore projects'}<ArrowRight size={17} aria-hidden="true" />
+-            </a>
+-            <a className="button button-secondary" href="/cv.pdf" download>
+-              <Download size={16} aria-hidden="true" />{t.downloadCV}
+-            </a>
+-          </div>
+-          <a className="hero-contact-link" href="#contacto">
+-            {language === 'es' ? 'Hablemos de una idea' : 'Let’s talk about an idea'}<ArrowDownRight size={15} aria-hidden="true" />
+-          </a>
++      <div className="wrap hero-masthead" data-reveal="hero">
++        <p className="eyebrow"><span className="eyebrow-mark" />{t.available}</p>
++        <p className="hero-edition">{language === 'es' ? 'PORTAFOLIO PERSONAL' : 'PERSONAL PORTFOLIO'} <span>—</span> 2026</p>
++        <p className="hero-location">PASTO, COLOMBIA</p>
++      </div>
++
++      <div className="wrap hero-composition">
++        <div className="hero-title-block" data-reveal="hero">
++          <span className="hero-index" aria-hidden="true">01 / DM</span>
++          <h1><span>Daniel</span><span className="hero-name-last">Mafla<span className="heading-period">.</span></span></h1>
++          <span className="hero-title-note">{language === 'es' ? 'PERSONA · CÓDIGO · IDEA' : 'PERSON · CODE · IDEA'}</span>
+         </div>
+ 
+-        <div className="hero-visual" aria-label={language === 'es' ? 'Retrato de Daniel Mafla' : 'Portrait of Daniel Mafla'}>
+-          <div className="portrait-frame">
+-            <Image
+-              src="/foto mia traje.jpeg"
+-              alt={language === 'es' ? 'Daniel Mafla con traje' : 'Daniel Mafla wearing a suit'}
+-              fill
+-              priority
+-              sizes="(max-width: 760px) 72vw, 390px"
+-              className="portrait-image"
+-            />
++        <div className="hero-lower" data-reveal="hero">
++          <figure className="hero-portrait">
++            <div className="portrait-frame">
++              <Image
++                src="/foto mia traje.jpeg"
++                alt={language === 'es' ? 'Retrato de Daniel Mafla con traje' : 'Portrait of Daniel Mafla wearing a suit'}
++                fill
++                priority
++                sizes="(max-width: 760px) 42vw, 310px"
++                className="portrait-image"
++              />
++            </div>
++            <figcaption><span>FIG. 01</span>{language === 'es' ? 'Un retrato, Pasto' : 'A portrait, Pasto'}</figcaption>
++          </figure>
++
++          <div className="hero-intro">
++            <p className="hero-role">{language === 'es' ? 'Estudiante de Ingeniería de Software' : 'Software Engineering Student'}</p>
++            <p className="hero-description">{t.heroDesc}</p>
++            <div className="hero-actions">
++              <a className="button button-primary" href="#proyectos">
++                {language === 'es' ? 'Explorar proyectos' : 'Explore projects'}<ArrowRight size={17} aria-hidden="true" />
++              </a>
++              <a className="button button-secondary" href="#contacto">
++                {language === 'es' ? 'Contacto' : 'Contact'}<ArrowDownRight size={16} aria-hidden="true" />
++              </a>
++            </div>
++            <a className="hero-cv-link" href="/cv.pdf" download><Download size={14} aria-hidden="true" />{t.downloadCV}</a>
+           </div>
+-          <span className="portrait-index">FIG. 01 / DANIEL M.</span>
+-          <span className="portrait-caption">Pasto, Colombia <span>—</span> {t.inProgress}</span>
+-          <span className="hero-orbit" aria-hidden="true">DM<span>✳</span></span>
++
++          <p className="hero-margin-note"><span>SCROLL</span><span aria-hidden="true">↓</span>{language === 'es' ? 'PARA EXPLORAR' : 'TO EXPLORE'}</p>
+         </div>
+       </div>
+-      <div className="hero-bottomline wrap" aria-hidden="true"><span>{language === 'es' ? 'PORTAFOLIO' : 'PORTFOLIO'} 2026</span><span>{language === 'es' ? 'INGENIERÍA · CREATIVIDAD · CÓDIGO' : 'ENGINEERING · CREATIVITY · CODE'}</span></div>
+     </section>
+   );
+ }
+diff --git a/components/Navbar.tsx b/components/Navbar.tsx
+index 509cd1d..f1e018a 100644
+--- a/components/Navbar.tsx
++++ b/components/Navbar.tsx
+@@ -31,7 +31,7 @@ export default function Navbar({ activeSection, scrollToSection }: NavbarProps)
+   return (
+     <header className="site-header">
+       <nav className="nav-wrap wrap" aria-label={language === 'es' ? 'Navegación principal' : 'Main navigation'}>
+-        <a className="brand" href="#inicio" onClick={() => navigate('inicio')} aria-label="Daniel Mafla, inicio">
++        <a className="brand" href="#inicio" onClick={() => navigate('inicio')} aria-label={language === 'es' ? 'Daniel Mafla, inicio' : 'Daniel Mafla, home'}>
+           DM<span className="brand-period">.</span>
+         </a>
+ 
+diff --git a/components/Projects.tsx b/components/Projects.tsx
+index eaf8670..e9e82aa 100644
+--- a/components/Projects.tsx
++++ b/components/Projects.tsx
+@@ -5,8 +5,8 @@ import { ArrowUpRight, AudioLines, Clock3 } from 'lucide-react';
  import { useTheme } from '@/context/ThemeContext';
  
--const projectMeta = [
--  { img: '/reproductor xsound.png', tags: ['Typescript', 'CSS'], link: 'https://reproductor-musica-delta.vercel.app/', comingSoon: false },
--  { img: 'https://images.unsplash.com/photo-1661246627162-feb0269e0c07?w=600&q=80', tags: ['TypeScript', 'CSS'], comingSoon: true },
--];
-+const projectDetails = [
-+  { number: '01', image: '/reproductor xsound.png', tags: ['TypeScript', 'CSS'], href: 'https://reproductor-musica-delta.vercel.app/', status: 'live' },
-+  { number: '02', image: null, tags: ['TypeScript', 'CSS'], href: null, status: 'upcoming' },
-+] as const;
+ const projectDetails = [
+-  { number: '01', image: '/reproductor xsound.png', tags: ['TypeScript', 'CSS'], href: 'https://reproductor-musica-delta.vercel.app/', status: 'live' },
+-  { number: '02', image: null, tags: ['TypeScript', 'CSS'], href: null, status: 'upcoming' },
++  { number: '01', image: '/reproductor xsound.png', tags: ['TypeScript', 'CSS'], href: 'https://reproductor-musica-delta.vercel.app/', status: 'published' },
++  { number: '02', image: null, tags: ['TypeScript', 'CSS'], href: null, status: 'in-progress' },
+ ] as const;
  
  export default function Projects() {
--  const { darkMode, language, isChanging, t, c, T } = useTheme();
--
--  const cardBg     = darkMode ? '#16162a' : '#ffffff';
--  const cardBorder = darkMode ? '#2a2a45'  : '#e8e4fc';
--
--  const handleTilt = (e: React.MouseEvent<HTMLDivElement>) => {
--    const card = e.currentTarget;
--    const rect = card.getBoundingClientRect();
--    const x = e.clientX - rect.left;
--    const y = e.clientY - rect.top;
--    card.style.setProperty('--x', `${x}px`);
--    card.style.setProperty('--y', `${y}px`);
--    const centerX = rect.width  / 2;
--    const centerY = rect.height / 2;
--    const rotateX = -(y - centerY) / 35;
--    const rotateY =  (x - centerX) / 35;
--    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
--    card.classList.add('hovering');
--  };
--
--  const resetTilt = (e: React.MouseEvent<HTMLDivElement>) => {
--    const card = e.currentTarget;
--    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
--    card.classList.remove('hovering');
--  };
-+  const { language, t } = useTheme();
- 
+@@ -15,7 +15,7 @@ export default function Projects() {
    return (
--    <section id="proyectos" style={{ padding: '100px 0', position: 'relative', overflow: 'hidden', background: 'transparent', transition: T }}>
--      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', position: 'relative' }}>
--
--        <div style={{ textAlign: 'center', marginBottom: 60 }} className="reveal">
--          <div
--            className={`pill fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}
--            style={{ display: 'inline-flex', background: c.pill.bg, border: `1px solid ${c.pill.border}`, color: c.pill.color, transition: T }}
--          >
--            {t.projectsPill}
-+    <section id="proyectos" className="section section-tinted section-anchor">
-+      <div className="wrap">
-+        <div className="section-heading section-heading-split">
-+          <div>
-+            <p className="section-kicker">{t.projectsPill}</p>
-+            <h2 className="section-title">{t.projectsTitle}<span className="heading-period">.</span></h2>
-           </div>
--          <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 50, fontWeight: 800, color: c.text, marginBottom: 10, transition: T }}>
--            <span className="grad">{t.projectsTitle}</span>
--          </h2>
--          <p key={language + 'pd'} className="fade-text" style={{ color: c.textMuted, fontSize: 15, transition: T }}>
--            {t.projectsDesc}
--          </p>
-+          <p className="section-intro">{t.projectsDesc}</p>
+     <section id="proyectos" className="section section-tinted section-anchor">
+       <div className="wrap">
+-        <div className="section-heading section-heading-split">
++        <div className="section-heading section-heading-split" data-reveal>
+           <div>
+             <p className="section-kicker">{t.projectsPill}</p>
+             <h2 className="section-title">{t.projectsTitle}<span className="heading-period">.</span></h2>
+@@ -23,26 +23,29 @@ export default function Projects() {
+           <p className="section-intro">{t.projectsDesc}</p>
          </div>
  
--        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 22 }}>
--          {t.projects.map((p, i) => {
--            const meta = projectMeta[i];
--            return (
--              <div
--                key={i}
--                className={`proj-card glass reveal reveal-d${i + 1}`}
--                onMouseMove={handleTilt}
--                onMouseLeave={resetTilt}
--                onClick={() => { if (!meta.comingSoon && meta.link) window.open(meta.link, '_blank'); }}
--                style={{ cursor: meta.comingSoon ? 'not-allowed' : 'pointer', background: cardBg, border: `1.5px solid ${cardBorder}`, transition: T }}
--              >
--                <div className="proj-card-img">
--                  <img src={meta.img} alt={p.title} />
--                  <div className="proj-card-overlay">
--                    <span className="proj-card-overlay-text">→ {meta.comingSoon ? t.projectSoon : t.projectCta}</span>
--                  </div>
-+        <div className="projects-list">
-+          {t.projects.map((project, index) => {
-+            const detail = projectDetails[index];
-+            const content = (
-+              <>
-+                <div className={`project-art${detail.image ? '' : ' project-art-saborify'}`}>
-+                  {detail.image ? (
-+                    <Image src={detail.image} alt={language === 'es' ? `Vista del proyecto ${project.title}` : `${project.title} project preview`} fill sizes="(max-width: 760px) 100vw, 48vw" />
-+                  ) : (
-+                    <div className="saborify-mark" aria-hidden="true"><span>S</span><i /><i /><i /></div>
-+                  )}
-+                  <span className="project-number">{detail.number}</span>
-+                  <span className="project-art-caption">{detail.status === 'live' ? 'MUSIC PLAYER' : 'AI · RECIPES'}</span>
-                 </div>
--                <div style={{ padding: '20px 22px 22px' }}>
--                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
--                    <h3 style={{ fontSize: 16, fontWeight: 700, color: c.text, transition: T }}>{p.title}</h3>
--                    <span className="proj-live-dot">Live</span>
-+                <div className="project-content">
-+                  <div className="project-topline">
-+                    <p className="mono-label">PROJECT / {detail.number}</p>
-+                    <span className={`project-status${detail.status === 'upcoming' ? ' is-upcoming' : ''}`}>
-+                      {detail.status === 'live' ? <AudioLines size={14} aria-hidden="true" /> : <Clock3 size={14} aria-hidden="true" />}
-+                      {detail.status === 'live' ? (language === 'es' ? 'Publicado' : 'Live') : t.projectSoon}
-+                    </span>
-                   </div>
--                  <p key={language + 'proj' + i} className="fade-text" style={{ fontSize: 13, color: c.textMuted, lineHeight: 1.65, marginBottom: 16, transition: T }}>
--                    {p.desc}
--                  </p>
--                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
--                    {meta.tags.map(tag => (
--                      <span key={tag} className="proj-tag" style={{ background: c.badge.bg, border: `1px solid ${c.badge.border}`, color: c.badge.color, transition: T }}>
--                        {tag}
--                      </span>
--                    ))}
-+                  <h3>{project.title}</h3>
-+                  <p className="project-description">{project.desc}</p>
-+                  <div className="project-bottomline">
-+                    <ul className="project-tags" aria-label={language === 'es' ? 'Tecnologías' : 'Technologies'}>
-+                      {detail.tags.map(tag => <li key={tag}>{tag}</li>)}
-+                    </ul>
-+                    {detail.href ? (
-+                      <span className="project-link-label">{t.projectCta}<ArrowUpRight size={16} aria-hidden="true" /></span>
-+                    ) : (
-+                      <span className="project-link-label project-link-muted">{language === 'es' ? 'En desarrollo' : 'In development'}</span>
-+                    )}
-                   </div>
-                 </div>
--              </div>
-+              </>
-+            );
+-        <div className="projects-list">
++        <div className="projects-composition">
+           {t.projects.map((project, index) => {
+             const detail = projectDetails[index];
+-            const content = (
+-              <>
++            const isPublished = detail.status === 'published';
 +
-+            return detail.href ? (
-+              <a className="project-row" href={detail.href} key={project.title} target="_blank" rel="noreferrer noopener" aria-label={`${project.title} — ${t.projectCta} (opens in a new tab)`}>
-+                {content}
-+              </a>
-+            ) : (
-+              <article className="project-row is-not-link" key={project.title} aria-label={`${project.title} — ${t.projectSoon}`}>
-+                {content}
-+              </article>
++            return (
++              <article className={`project-entry${index === 0 ? ' project-entry-feature' : ' project-entry-secondary'}`} key={project.title} data-reveal>
+                 <div className={`project-art${detail.image ? '' : ' project-art-saborify'}`}>
+                   {detail.image ? (
+-                    <Image src={detail.image} alt={language === 'es' ? `Vista del proyecto ${project.title}` : `${project.title} project preview`} fill sizes="(max-width: 760px) 100vw, 48vw" />
++                    <Image src={detail.image} alt={language === 'es' ? `Captura del proyecto ${project.title}` : `${project.title} project screenshot`} fill sizes="(max-width: 760px) 100vw, (max-width: 1050px) 62vw, 700px" />
+                   ) : (
+                     <div className="saborify-mark" aria-hidden="true"><span>S</span><i /><i /><i /></div>
+                   )}
+-                  <span className="project-number">{detail.number}</span>
+-                  <span className="project-art-caption">{detail.status === 'live' ? 'MUSIC PLAYER' : 'AI · RECIPES'}</span>
++                  <span className="project-number">{detail.number} / 02</span>
++                  <span className="project-art-caption">{isPublished ? (language === 'es' ? 'REPRODUCTOR DE MÚSICA' : 'MUSIC PLAYER') : (language === 'es' ? 'RECETAS · INTELIGENCIA ARTIFICIAL' : 'RECIPES · ARTIFICIAL INTELLIGENCE')}</span>
+                 </div>
++
+                 <div className="project-content">
+                   <div className="project-topline">
+-                    <p className="mono-label">PROJECT / {detail.number}</p>
+-                    <span className={`project-status${detail.status === 'upcoming' ? ' is-upcoming' : ''}`}>
+-                      {detail.status === 'live' ? <AudioLines size={14} aria-hidden="true" /> : <Clock3 size={14} aria-hidden="true" />}
+-                      {detail.status === 'live' ? (language === 'es' ? 'Publicado' : 'Live') : t.projectSoon}
++                    <p className="mono-label">{language === 'es' ? 'PROYECTO' : 'PROJECT'} / {detail.number}</p>
++                    <span className={`project-status${isPublished ? '' : ' is-upcoming'}`}>
++                      {isPublished ? <AudioLines size={14} aria-hidden="true" /> : <Clock3 size={14} aria-hidden="true" />}
++                      {isPublished ? (language === 'es' ? 'Publicado' : 'Published') : (language === 'es' ? 'En desarrollo' : 'In development')}
+                     </span>
+                   </div>
+                   <h3>{project.title}</h3>
+@@ -52,22 +55,14 @@ export default function Projects() {
+                       {detail.tags.map(tag => <li key={tag}>{tag}</li>)}
+                     </ul>
+                     {detail.href ? (
+-                      <span className="project-link-label">{t.projectCta}<ArrowUpRight size={16} aria-hidden="true" /></span>
++                      <a className="project-link-label" href={detail.href} target="_blank" rel="noopener noreferrer" aria-label={`${project.title}, ${t.projectCta}; ${language === 'es' ? 'se abre en una pestaña nueva' : 'opens in a new tab'}`}>
++                        <span>{t.projectCta}</span><ArrowUpRight size={16} aria-hidden="true" />
++                      </a>
+                     ) : (
+-                      <span className="project-link-label project-link-muted">{language === 'es' ? 'En desarrollo' : 'In development'}</span>
++                      <span className="project-link-muted">{t.projectSoon}</span>
+                     )}
+                   </div>
+                 </div>
+-              </>
+-            );
+-
+-            return detail.href ? (
+-              <a className="project-row" href={detail.href} key={project.title} target="_blank" rel="noreferrer noopener" aria-label={`${project.title} — ${t.projectCta} (opens in a new tab)`}>
+-                {content}
+-              </a>
+-            ) : (
+-              <article className="project-row is-not-link" key={project.title} aria-label={`${project.title} — ${t.projectSoon}`}>
+-                {content}
+               </article>
              );
            })}
-         </div>
-       </div>
-     </section>
-   );
--}
-\ No newline at end of file
-+}
 diff --git a/components/Testimonials.tsx b/components/Testimonials.tsx
-index 58470e1..b6e977b 100644
+index b6e977b..2a81618 100644
 --- a/components/Testimonials.tsx
 +++ b/components/Testimonials.tsx
-@@ -3,115 +3,32 @@
- import { useTheme } from '@/context/ThemeContext';
- 
- export default function Testimonials() {
--  const { darkMode, language, isChanging, t, c, T } = useTheme();
--
--  const cardBg     = darkMode ? '#16162a' : '#ffffff';
--  const cardBorder = darkMode ? '#2a2a45'  : '#e8e4fc';
--
--  const handleTilt = (e: React.MouseEvent<HTMLDivElement>) => {
--    const card = e.currentTarget;
--    const rect = card.getBoundingClientRect();
--    const x = e.clientX - rect.left;
--    const y = e.clientY - rect.top;
--    card.style.setProperty('--x', `${x}px`);
--    card.style.setProperty('--y', `${y}px`);
--    const centerX = rect.width  / 2;
--    const centerY = rect.height / 2;
--    const rotateX = -(y - centerY) / 35;
--    const rotateY =  (x - centerX) / 35;
--    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
--    card.classList.add('hovering');
--  };
--
--  const resetTilt = (e: React.MouseEvent<HTMLDivElement>) => {
--    const card = e.currentTarget;
--    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
--    card.classList.remove('hovering');
--  };
-+  const { language, t } = useTheme();
- 
+@@ -8,7 +8,7 @@ export default function Testimonials() {
    return (
--    <section id="testimonios" style={{ padding: '100px 0', position: 'relative', overflow: 'hidden', background: 'transparent', transition: T }}>
--      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', position: 'relative' }}>
--
--        <div style={{ textAlign: 'center', marginBottom: 60 }} className="reveal">
--          <div
--            className={`pill fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}
--            style={{ display: 'inline-flex', background: c.pill.bg, border: `1px solid ${c.pill.border}`, color: c.pill.color, transition: T }}
--          >
--            {t.testiPill}
-+    <section id="testimonios" className="section section-anchor">
-+      <div className="wrap">
-+        <div className="section-heading section-heading-split">
-+          <div>
-+            <p className="section-kicker">{t.testiPill}</p>
-+            <h2 className="section-title">{t.testiTitle}{t.testiTitleGrad}<span className="heading-period">.</span></h2>
-           </div>
--          <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 50, fontWeight: 800, color: c.text, marginBottom: 10, transition: T }}>
--            <span key={language + 'tt'} className="fade-text">{t.testiTitle}</span>
--            <span className="grad">{t.testiTitleGrad}</span>
--          </h2>
--          <p key={language + 'td'} className="fade-text" style={{ color: c.textMuted, fontSize: 15, transition: T }}>
--            {t.testiDesc}
--          </p>
-+          <p className="section-intro">{t.testiDesc}</p>
-         </div>
+     <section id="testimonios" className="section section-anchor">
+       <div className="wrap">
+-        <div className="section-heading section-heading-split">
++        <div className="section-heading section-heading-split" data-reveal>
+           <div>
+             <p className="section-kicker">{t.testiPill}</p>
+             <h2 className="section-title">{t.testiTitle}{t.testiTitleGrad}<span className="heading-period">.</span></h2>
+@@ -18,7 +18,7 @@ export default function Testimonials() {
  
--        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 22, alignItems: 'stretch' }}>
--          {t.testimonials.map((testi, i) => (
--            <div
--              key={i}
--              className={`testimonial-card glass reveal reveal-d${i + 1}`}
--              onMouseMove={handleTilt}
--              onMouseLeave={resetTilt}
--              style={{
--                    borderRadius: 20,
--                    padding: 28,
--                    position: 'relative',
--                    background: cardBg,
--                    border: `1.5px solid ${cardBorder}`,
--                    display: 'flex',
--                    flexDirection: 'column',
--                    gap: 14,
--                    minHeight: 280,
--                    boxSizing: 'border-box',
--                    overflow: 'hidden'
--                                }}
--                                >
--                    <div className="testi-quote" style={{     position: 'absolute',
--                        top: 8,
--                        left: 16,
--                        fontSize: 60,
--                        opacity: 0.08,
--                        pointerEvents: 'none' }}>
--                    "
--                    </div>
--
--                    <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
--                    <div style={{ display: 'flex', gap: 10 }}>
--                        {[...Array(5)].map((_, j) => (
--                        <span key={j} style={{ color: '#a855f7', fontSize: 14 }}>★</span>
--                        ))}
--                    </div>
--
--                    <p style={{ fontSize: 14, lineHeight: 1.6, color: c.textSoft }}>
--                        "{testi.text}"
--                    </p>
--                    </div>
--
--                    <div className="testi-author" style={{
--                    display: 'flex',
--                    alignItems: 'center',
--                    gap: 12,
--                    marginTop: 'auto'
--                    }}>
--                <div>
--                  <div style={{ fontSize: 14, fontWeight: 700, color: c.text, transition: T }}>{testi.name}</div>
--                  <div
--                    key={language + 'tr' + i}
--                    className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}
--                    style={{ fontSize: 12, fontWeight: 600, color: '#7c3aed' }}
--                  >
--                    {testi.role}
--                  </div>
--                </div>
--              </div>
--            </div>
-+        <div className="testimonials-grid">
-+          {t.testimonials.map((testimonial, index) => (
-+            <figure className={`testimonial${index === 0 ? ' testimonial-featured' : ''}`} key={testimonial.name}>
-+              <span className="testimonial-index">0{index + 1} / {language === 'es' ? 'NOTA' : 'NOTE'}</span>
-+              <blockquote>{testimonial.text}</blockquote>
-+              <figcaption>
-+                <span className="testimonial-initial" aria-hidden="true">{testimonial.name.charAt(0)}</span>
-+                <span><strong>{testimonial.name}</strong><small>{testimonial.role}</small></span>
-+              </figcaption>
-+            </figure>
-           ))}
-         </div>
-       </div>
-     </section>
-   );
--}
-\ No newline at end of file
-+}
+         <div className="testimonials-grid">
+           {t.testimonials.map((testimonial, index) => (
+-            <figure className={`testimonial${index === 0 ? ' testimonial-featured' : ''}`} key={testimonial.name}>
++            <figure className={`testimonial${index === 0 ? ' testimonial-featured' : ''}`} key={testimonial.name} data-reveal>
+               <span className="testimonial-index">0{index + 1} / {language === 'es' ? 'NOTA' : 'NOTE'}</span>
+               <blockquote>{testimonial.text}</blockquote>
+               <figcaption>
 diff --git a/context/ThemeContext.tsx b/context/ThemeContext.tsx
-index def267e..255b5e1 100644
+index 255b5e1..8dd5ad5 100644
 --- a/context/ThemeContext.tsx
 +++ b/context/ThemeContext.tsx
 @@ -1,6 +1,6 @@
  "use client";
  
--import { createContext, useContext, useState, ReactNode } from 'react';
-+import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
++import { createContext, useContext, useEffect, useState, useSyncExternalStore, type ReactNode } from 'react';
  import { translations } from '@/data/translations';
  import { Language } from '@/types';
  
-@@ -17,43 +17,43 @@ interface ThemeContextType {
- 
- function buildColors(darkMode: boolean) {
-   return darkMode ? {
--    bg: '#0b0b16', bgAlt: '#0b0b16', surface: '#13131f',
--    border: '#2a2a45', borderLight: '#1e1e38',
--    text: '#f0eeff', textMuted: '#9090b0', textSoft: '#7070a0',
--    pill:         { bg: '#1e1e38', border: '#3a3a60', color: '#c4b5fd' },
--    chip:         { bg: '#1e1e38', border: '#3a3a60', color: '#a78bfa' },
--    card:         { bg: '#16162a', border: '#2a2a45' },
--    navBg: '#0b0b16dd', footer: '#08080f',
--    badge:        { bg: '#1e1e38', border: '#3a3a60', color: '#a78bfa' },
--    skillCard:    { bg: '#16162a', border: '#2a2a45' },
--    contactInput: { bg: '#13131f', border: '#2a2a45' },
--    timelineLine: '#2a2a45',
--    aboutGrad: 'linear-gradient(to top, #0b0b16f0 0%, transparent 55%)',
--    tagBg: '#1e1e38', tagColor: '#a78bfa', tagBorder: '#3a3a60',
--    socialBtn:    { bg: '#1e1e38', border: '#3a3a60', color: '#a78bfa' },
--    langBtn:      { bg: '#1e1e38', border: '#3a3a60', color: '#a78bfa' },
--    iconCircle: '#1e1e38', dotNode: '#1e1e38',
--    expBadge:     { bg: '#1e1e38', border: '#3a3a60' },
-+    bg: '#0f0e13', bgAlt: '#131219', surface: '#17161d',
-+    border: '#2d2b38', borderLight: '#24222d',
-+    text: '#eceaf2', textMuted: '#b4b0c0', textSoft: '#a5a2b2',
-+    pill:         { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
-+    chip:         { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
-+    card:         { bg: '#17161d', border: '#2d2b38' },
-+    navBg: '#0f0e13eF', footer: '#0b0a0f',
-+    badge:        { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
-+    skillCard:    { bg: '#17161d', border: '#2d2b38' },
-+    contactInput: { bg: '#131219', border: '#393743' },
-+    timelineLine: '#393743',
-+    aboutGrad: 'linear-gradient(to top, #0f0e13 0%, transparent 70%)',
-+    tagBg: '#211d2d', tagColor: '#c7b2ff', tagBorder: '#393149',
-+    socialBtn:    { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
-+    langBtn:      { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
-+    iconCircle: '#211d2d', dotNode: '#211d2d',
-+    expBadge:     { bg: '#211d2d', border: '#393149' },
-     blobOpacity: 0.22, sectionDivider: 'transparent',
-   } : {
--    bg: '#f5f3ff', bgAlt: '#f5f3ff', surface: '#ffffff',
--    border: '#e8e4fc', borderLight: '#f0eeff',
--    text: '#1a1a2e', textMuted: '#9090b0', textSoft: '#6868a0',
--    pill:         { bg: '#ede9fe', border: '#c4b5fd55', color: '#7c3aed' },
--    chip:         { bg: '#f5f3ff', border: '#e8e4fc',   color: '#7c3aed' },
--    card:         { bg: '#ffffff', border: '#e8e4fc' },
--    navBg: '#f5f3ffdd', footer: '#f0eeff',
--    badge:        { bg: '#ede9fe', border: '#c4b5fd55', color: '#7c3aed' },
--    skillCard:    { bg: '#ffffff', border: '#e8e4fc' },
--    contactInput: { bg: '#f9f8ff', border: '#e8e4fc' },
--    timelineLine: '#e8e4fc',
--    aboutGrad: 'linear-gradient(to top, #f5f3fff0 0%, transparent 55%)',
--    tagBg: '#f5f3ffee', tagColor: '#7c3aed', tagBorder: '#a855f755',
--    socialBtn:    { bg: '#ede9fe', border: '#c4b5fd55', color: '#7c3aed' },
--    langBtn:      { bg: '#ede9fe', border: '#c4b5fd55', color: '#7c3aed' },
--    iconCircle: '#ede9fe', dotNode: '#ede9fe',
--    expBadge:     { bg: '#ede9fe', border: '#c4b5fd55' },
--    blobOpacity: 1, sectionDivider: '#e8e4fc',
-+    bg: '#f4f2ee', bgAlt: '#efede8', surface: '#ffffff',
-+    border: '#d9d5ce', borderLight: '#e8e5df',
-+    text: '#16151a', textMuted: '#5c5966', textSoft: '#5c5966',
-+    pill:         { bg: '#eee8f8', border: '#d7c8ed', color: '#5b21b6' },
-+    chip:         { bg: '#f4f2ee', border: '#d9d5ce', color: '#5b21b6' },
-+    card:         { bg: '#ffffff', border: '#d9d5ce' },
-+    navBg: '#f4f2eeed', footer: '#eeece7',
-+    badge:        { bg: '#eee8f8', border: '#d7c8ed', color: '#5b21b6' },
-+    skillCard:    { bg: '#ffffff', border: '#d9d5ce' },
-+    contactInput: { bg: '#f8f7f4', border: '#d9d5ce' },
-+    timelineLine: '#d9d5ce',
-+    aboutGrad: 'linear-gradient(to top, #f4f2ee 0%, transparent 70%)',
-+    tagBg: '#eee8f8', tagColor: '#5b21b6', tagBorder: '#d7c8ed',
-+    socialBtn:    { bg: '#ffffff', border: '#d9d5ce', color: '#5b21b6' },
-+    langBtn:      { bg: '#ffffff', border: '#d9d5ce', color: '#5b21b6' },
-+    iconCircle: '#eee8f8', dotNode: '#eee8f8',
-+    expBadge:     { bg: '#eee8f8', border: '#d7c8ed' },
-+    blobOpacity: 1, sectionDivider: '#d9d5ce',
-   };
+@@ -11,74 +11,67 @@ interface ThemeContextType {
+   changeLanguage: () => void;
+   isChanging: boolean;
+   t: typeof translations['es'];
+-  c: ReturnType<typeof buildColors>;
+-  T: string;
  }
  
-@@ -78,7 +78,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
- 
-   const t    = translations[language];
-   const c    = buildColors(darkMode);
--  const T    = 'all 0.4s ease';
-+  const T    = 'color 180ms ease, background-color 180ms ease, border-color 180ms ease';
+-function buildColors(darkMode: boolean) {
+-  return darkMode ? {
+-    bg: '#0f0e13', bgAlt: '#131219', surface: '#17161d',
+-    border: '#2d2b38', borderLight: '#24222d',
+-    text: '#eceaf2', textMuted: '#b4b0c0', textSoft: '#a5a2b2',
+-    pill:         { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
+-    chip:         { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
+-    card:         { bg: '#17161d', border: '#2d2b38' },
+-    navBg: '#0f0e13eF', footer: '#0b0a0f',
+-    badge:        { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
+-    skillCard:    { bg: '#17161d', border: '#2d2b38' },
+-    contactInput: { bg: '#131219', border: '#393743' },
+-    timelineLine: '#393743',
+-    aboutGrad: 'linear-gradient(to top, #0f0e13 0%, transparent 70%)',
+-    tagBg: '#211d2d', tagColor: '#c7b2ff', tagBorder: '#393149',
+-    socialBtn:    { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
+-    langBtn:      { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
+-    iconCircle: '#211d2d', dotNode: '#211d2d',
+-    expBadge:     { bg: '#211d2d', border: '#393149' },
+-    blobOpacity: 0.22, sectionDivider: 'transparent',
+-  } : {
+-    bg: '#f4f2ee', bgAlt: '#efede8', surface: '#ffffff',
+-    border: '#d9d5ce', borderLight: '#e8e5df',
+-    text: '#16151a', textMuted: '#5c5966', textSoft: '#5c5966',
+-    pill:         { bg: '#eee8f8', border: '#d7c8ed', color: '#5b21b6' },
+-    chip:         { bg: '#f4f2ee', border: '#d9d5ce', color: '#5b21b6' },
+-    card:         { bg: '#ffffff', border: '#d9d5ce' },
+-    navBg: '#f4f2eeed', footer: '#eeece7',
+-    badge:        { bg: '#eee8f8', border: '#d7c8ed', color: '#5b21b6' },
+-    skillCard:    { bg: '#ffffff', border: '#d9d5ce' },
+-    contactInput: { bg: '#f8f7f4', border: '#d9d5ce' },
+-    timelineLine: '#d9d5ce',
+-    aboutGrad: 'linear-gradient(to top, #f4f2ee 0%, transparent 70%)',
+-    tagBg: '#eee8f8', tagColor: '#5b21b6', tagBorder: '#d7c8ed',
+-    socialBtn:    { bg: '#ffffff', border: '#d9d5ce', color: '#5b21b6' },
+-    langBtn:      { bg: '#ffffff', border: '#d9d5ce', color: '#5b21b6' },
+-    iconCircle: '#eee8f8', dotNode: '#eee8f8',
+-    expBadge:     { bg: '#eee8f8', border: '#d7c8ed' },
+-    blobOpacity: 1, sectionDivider: '#d9d5ce',
+-  };
++const THEME_STORAGE_KEY = 'daniel-portfolio-theme';
++let sessionPreference: boolean | null = null;
 +
-+  useEffect(() => {
-+    document.documentElement.lang = language;
-+    document.documentElement.dataset.theme = darkMode ? 'dark' : 'light';
-+    document.documentElement.style.colorScheme = darkMode ? 'dark' : 'light';
-+  }, [darkMode, language]);
++function getThemeSnapshot() {
++  if (sessionPreference !== null) return sessionPreference;
++  try {
++    const saved = window.localStorage.getItem(THEME_STORAGE_KEY);
++    if (saved === 'dark') return true;
++    if (saved === 'light') return false;
++  } catch {
++    // The operating system preference is the fallback.
++  }
++  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+ }
+ 
+-export { buildColors };
++function subscribeToTheme(callback: () => void) {
++  const media = window.matchMedia('(prefers-color-scheme: dark)');
++  const notify = () => callback();
++  const handleStorage = () => {
++    sessionPreference = null;
++    callback();
++  };
++  media.addEventListener('change', notify);
++  window.addEventListener('storage', handleStorage);
++  window.addEventListener('portfolio-theme-change', notify);
++  return () => {
++    media.removeEventListener('change', notify);
++    window.removeEventListener('storage', handleStorage);
++    window.removeEventListener('portfolio-theme-change', notify);
++  };
++}
+ 
+ const ThemeContext = createContext<ThemeContextType | null>(null);
+ 
+ export function ThemeProvider({ children }: { children: ReactNode }) {
+-  const [darkMode, setDarkMode]       = useState(false);
+-  const [language, setLanguage]       = useState<Language>('es');
+-  const [isChanging, setIsChanging]   = useState(false);
++  const darkMode = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, () => false);
++  const [language, setLanguage] = useState<Language>('es');
++  const [isChanging, setIsChanging] = useState(false);
+ 
+-  const toggleDark = () => setDarkMode(prev => !prev);
++  const toggleDark = () => {
++    const next = !darkMode;
++    sessionPreference = next;
++    try {
++      window.localStorage.setItem(THEME_STORAGE_KEY, next ? 'dark' : 'light');
++    } catch {
++      // The selected theme still applies for this session if storage is unavailable.
++    }
++    window.dispatchEvent(new Event('portfolio-theme-change'));
++  };
+ 
+   const changeLanguage = () => {
+     setIsChanging(true);
+-    setTimeout(() => {
+-      setLanguage(prev => prev === 'es' ? 'en' : 'es');
++    window.setTimeout(() => {
++      setLanguage(previous => previous === 'es' ? 'en' : 'es');
+       setIsChanging(false);
+     }, 250);
+   };
+ 
+-  const t    = translations[language];
+-  const c    = buildColors(darkMode);
+-  const T    = 'color 180ms ease, background-color 180ms ease, border-color 180ms ease';
++  const t = translations[language];
+ 
+   useEffect(() => {
+     document.documentElement.lang = language;
+@@ -87,14 +80,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
+   }, [darkMode, language]);
  
    return (
-     <ThemeContext.Provider value={{ darkMode, toggleDark, language, changeLanguage, isChanging, t, c, T }}>
-@@ -91,4 +97,4 @@ export function useTheme() {
-   const ctx = useContext(ThemeContext);
-   if (!ctx) throw new Error('useTheme must be used inside ThemeProvider');
-   return ctx;
+-    <ThemeContext.Provider value={{ darkMode, toggleDark, language, changeLanguage, isChanging, t, c, T }}>
++    <ThemeContext.Provider value={{ darkMode, toggleDark, language, changeLanguage, isChanging, t }}>
+       {children}
+     </ThemeContext.Provider>
+   );
+ }
+ 
+ export function useTheme() {
+-  const ctx = useContext(ThemeContext);
+-  if (!ctx) throw new Error('useTheme must be used inside ThemeProvider');
+-  return ctx;
++  const context = useContext(ThemeContext);
++  if (!context) throw new Error('useTheme must be used inside ThemeProvider');
++  return context;
+ }
+diff --git a/hooks/useScrollNav.ts b/hooks/useScrollNav.ts
+deleted file mode 100644
+index e69de29..0000000
+diff --git a/hooks/useTypingEffect.ts b/hooks/useTypingEffect.ts
+deleted file mode 100644
+index 42bc22e..0000000
+--- a/hooks/useTypingEffect.ts
++++ /dev/null
+@@ -1,42 +0,0 @@
+-import { useEffect, useState } from "react";
+-
+-export function useTypingEffect() {
+-  const [text, setText] = useState("");
+-
+-  useEffect(() => {
+-    const words = [
+-      "Software Engineering Student",
+-      "Frontend Developer",
+-      "Backend Developer",
+-      "Problem Solver",
+-    ];
+-
+-    let wordIndex = 0;
+-    let charIndex = 0;
+-    let isDeleting = false;
+-
+-    const type = () => {
+-      const word = words[wordIndex];
+-
+-      if (isDeleting) {
+-        setText(word.substring(0, charIndex - 1));
+-        charIndex--;
+-      } else {
+-        setText(word.substring(0, charIndex + 1));
+-        charIndex++;
+-      }
+-
+-      if (!isDeleting && charIndex === word.length) {
+-        isDeleting = true;
+-      } else if (isDeleting && charIndex === 0) {
+-        isDeleting = false;
+-        wordIndex = (wordIndex + 1) % words.length;
+-      }
+-    };
+-
+-    const interval = setInterval(type, isDeleting ? 40 : 80);
+-    return () => clearInterval(interval);
+-  }, []);
+-
+-  return text;
 -}
 \ No newline at end of file
-+}

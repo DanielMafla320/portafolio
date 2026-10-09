@@ -31,7 +31,7 @@ export default function Navbar({ activeSection, scrollToSection }: NavbarProps) 
   return (
     <header className="site-header">
       <nav className="nav-wrap wrap" aria-label={language === 'es' ? 'Navegación principal' : 'Main navigation'}>
-        <a className="brand" href="#inicio" onClick={() => navigate('inicio')} aria-label="Daniel Mafla, inicio">
+        <a className="brand" href="#inicio" onClick={() => navigate('inicio')} aria-label={language === 'es' ? 'Daniel Mafla, inicio' : 'Daniel Mafla, home'}>
           DM<span className="brand-period">.</span>
         </a>
 

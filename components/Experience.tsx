@@ -8,7 +8,7 @@ export default function Experience() {
   return (
     <section id="experiencia" className="section section-tinted section-anchor">
       <div className="wrap">
-        <div className="section-heading section-heading-split">
+        <div className="section-heading section-heading-split" data-reveal>
           <div>
             <p className="section-kicker">{t.expPill}</p>
             <h2 className="section-title">{t.expTitle}{t.expTitleGrad}<span className="heading-period">.</span></h2>
@@ -18,7 +18,7 @@ export default function Experience() {
 
         <ol className="experience-list">
           {t.experience.map((item, index) => (
-            <li className="experience-item" key={`${item.date}-${item.title}`}>
+            <li className="experience-item" key={`${item.date}-${item.title}`} data-reveal>
               <span className="experience-index">0{index + 1}</span>
               <article className="experience-entry">
                 <div className="experience-meta"><span>{item.type}</span><time>{item.date}</time></div>
