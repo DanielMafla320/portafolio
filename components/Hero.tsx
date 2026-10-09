@@ -50,8 +50,6 @@ export default function Hero() {
             </div>
             <a className="hero-cv-link" href="/cv.pdf" download><Download size={14} aria-hidden="true" />{t.downloadCV}</a>
           </div>
-
-          <p className="hero-margin-note"><span>SCROLL</span><span aria-hidden="true">↓</span>{language === 'es' ? 'PARA EXPLORAR' : 'TO EXPLORE'}</p>
         </div>
       </div>
     </section>
