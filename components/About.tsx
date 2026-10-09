@@ -1,125 +1,64 @@
 "use client";
 
-import { useEffect } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 
+const skillCards = [
+  { skills: ['Python', 'Java', 'JavaScript', 'HTML5', 'CSS3'] },
+  { skills: ['Next.js', 'Tailwind CSS', 'TypeScript', 'React'] },
+  { skills: ['Django', 'Java', 'API REST'] },
+  { skills: ['Git & GitHub', 'Figma', 'VS Code', 'Postman'] },
+];
+
 export default function About() {
-  const { darkMode, language, isChanging, t, c, T } = useTheme();
-
-  useEffect(() => {
-    const els = document.querySelectorAll('.reveal, .reveal-exp');
-    const obs = new IntersectionObserver((entries, o) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target as HTMLElement;
-          if (el.classList.contains('reveal-exp')) {
-            const siblings = el.parentElement?.querySelectorAll('.reveal-exp');
-            const idx = Array.from(siblings || []).indexOf(el);
-            el.style.transitionDelay = `${idx * 120}ms`;
-          }
-          el.classList.add('active');
-          o.unobserve(el);
-        }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-    els.forEach(el => obs.observe(el));
-
-    const imgWrap = document.querySelector('.about-img-wrap');
-    const shimObs = new IntersectionObserver((entries, o) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target as HTMLElement;
-          el.classList.add('shimmer-active');
-          el.style.transform = 'scale(1.02)';
-          o.unobserve(el);
-        }
-      });
-    }, { threshold: 0.3 });
-    if (imgWrap) shimObs.observe(imgWrap);
-
-    return () => { obs.disconnect(); shimObs.disconnect(); };
-  }, []);
-
-  const skillCards = [
-    { skills: ['Python', 'Java', 'JavaScript', 'HTML5', 'CSS3'] },
-    { skills: ['Next.js', 'Tailwind CSS', 'TypeScript', 'React'] },
-    { skills: ['Django', 'Next.js', 'API REST'] },
-    { skills: ['Git & GitHub', 'Figma', 'VS Code', 'Postman'] },
-  ];
+  const { language, t } = useTheme();
 
   return (
-    <section id="acerca" style={{ padding: '100px 0', position: 'relative', overflow: 'hidden', background: 'transparent', transition: T }}>
-      <div style={{
-        maxWidth: 1200, margin: '0 auto', padding: '0 24px',
-        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: 64, alignItems: 'start', position: 'relative',
-      }}>
+    <section id="acerca" className="section section-anchor about-section">
+      <div className="wrap about-editorial">
+        <header className="about-heading" data-reveal>
+          <p className="section-kicker">{t.aboutPill}</p>
+          <h2 className="section-title">{t.aboutTitle}<span className="heading-period">.</span></h2>
+        </header>
 
-        {/* Imagen */}
-        <div className="reveal reveal-d1">
-          <div className="about-img-wrap">
-            <img src="/foto mia traje.jpeg" alt="About" />
-            <div style={{ position: 'absolute', inset: 0, background: c.aboutGrad, pointerEvents: 'none', transition: T }} />
-            <div style={{ position: 'absolute', bottom: 24, left: 20, right: 20, display: 'flex', gap: 8, flexWrap: 'wrap', zIndex: 1 }}>
-              {['Python', 'Java', 'Next.js', 'Django'].map(tag => (
-                <span
-                  key={tag}
-                  style={{ background: c.tagBg, border: `1.5px solid ${c.tagBorder}`, borderRadius: 10, padding: '7px 13px', fontSize: 12, fontWeight: 700, color: c.tagColor, transition: T }}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
+        <figure className="about-art" data-reveal="right" aria-hidden="true">
+          <svg className="about-artwork" viewBox="0 0 600 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path className="art-plane" d="M93 435 209 135 466 102 522 345 378 473 173 500Z" />
+            <path className="art-contour" d="M81 446C144 358 151 257 230 183c59-56 133-76 198-46 58 26 86 79 71 129-12 41-49 69-89 72-37 3-68-18-75-49-6-25 7-49 28-63" />
+            <path className="art-ribbon-under" d="M109 456c58-92 75-194 146-266 58-58 136-82 203-52 66 29 100 91 81 151-14 47-57 80-105 82-45 2-82-24-90-61-7-29 7-58 32-74" />
+            <path className="art-ribbon" d="M109 456c58-92 75-194 146-266 58-58 136-82 203-52 66 29 100 91 81 151-14 47-57 80-105 82-45 2-82-24-90-61-7-29 7-58 32-74" />
+            <path className="art-fold" d="m209 135 58 55m199-88-31 91m87 152-98-6M173 500l-7-66" />
+            <path className="art-datum" d="M65 480h126m254-359h91M470 414v82" />
+            <path className="art-detail" d="M446 454h42m-21-21v42" />
+          </svg>
+          <figcaption className="about-art-caption">
+            <span>02 / {language === 'es' ? 'PERFIL' : 'PROFILE'}</span>
+            <span>PASTO, COLOMBIA</span>
+          </figcaption>
+        </figure>
+
+        <div className="about-copy">
+          <p className="body-copy" data-reveal>{t.aboutP1}</p>
+          <p className="body-copy" data-reveal>{t.aboutP2}</p>
         </div>
 
-        {/* Texto y habilidades */}
-        <div className="reveal reveal-d2">
-          <div
-            className={`pill fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}
-            style={{ background: c.pill.bg, border: `1px solid ${c.pill.border}`, color: c.pill.color, transition: T }}
-          >
-            {t.aboutPill}
-          </div>
+        <section className="about-skills" aria-labelledby="about-skills-title">
+          <header className="skills-heading" data-reveal="left">
+            <p className="skills-overline">{language === 'es' ? 'HABILIDADES' : 'SKILLS'}</p>
+            <h3 id="about-skills-title">{language === 'es' ? 'Tecnologías' : 'Technologies'}<span className="heading-period">.</span></h3>
+          </header>
 
-          <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 50, fontWeight: 800, color: c.text, lineHeight: 1.08, marginBottom: 22, transition: T }}>
-            <span className="grad-subtle">{t.aboutTitle}</span>
-          </h2>
-
-          <p key={language + 'p1'} className="fade-text" style={{ fontSize: 15, lineHeight: 1.85, color: c.textSoft, marginBottom: 14, transition: T }}>
-            {t.aboutP1}
-          </p>
-          <p key={language + 'p2'} className="fade-text" style={{ fontSize: 15, lineHeight: 1.85, color: c.textSoft, marginBottom: 32, transition: T }}>
-            {t.aboutP2}
-          </p>
-
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
-            {skillCards.map((card, i) => (
-              <div
-                key={i}
-                className={`reveal reveal-d${i + 1}`}
-                style={{
-                  background: darkMode ? '#16162a' : '#ffffff',
-                  border: `1.5px solid ${darkMode ? '#2a2a45' : '#e8e4fc'}`,
-                  borderRadius: 18, padding: 18,
-                  boxShadow: darkMode ? '0 2px 12px #00000030' : '0 2px 12px #7c3aed06',
-                  transition: T,
-                }}
-              >
-                <div style={{ fontSize: 11, fontWeight: 700, color: '#7c3aed', letterSpacing: '0.09em', textTransform: 'uppercase', marginBottom: 12 }}>
-                  <span className={`fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}>{t.skillTitles[i]}</span>
-                </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                  {card.skills.map(s => (
-                    <span key={s} className="chip" style={{ background: c.chip.bg, border: `1px solid ${c.chip.border}`, color: c.chip.color, transition: T }}>
-                      {s}
-                    </span>
-                  ))}
-                </div>
+          <div className="skills-list">
+            {skillCards.map((card, index) => (
+              <div className="skill-row" key={t.skillTitles[index]} data-reveal>
+                <span className="skill-index" aria-hidden="true">0{index + 1}</span>
+                <h4>{t.skillTitles[index]}</h4>
+                <ul className="skill-list">
+                  {card.skills.map(skill => <li key={skill}>{skill}</li>)}
+                </ul>
               </div>
             ))}
           </div>
-        </div>
+        </section>
       </div>
     </section>
   );
