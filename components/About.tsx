@@ -43,7 +43,7 @@ export default function About() {
   const skillCards = [
     { skills: ['Python', 'Java', 'JavaScript', 'HTML5', 'CSS3'] },
     { skills: ['Next.js', 'Tailwind CSS', 'TypeScript', 'React'] },
-    { skills: ['Django', 'Next.js', 'API REST'] },
+    { skills: ['Django', 'Java', 'API REST'] },
     { skills: ['Git & GitHub', 'Figma', 'VS Code', 'Postman'] },
   ];
 
