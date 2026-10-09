@@ -16,13 +16,13 @@ export default function Hero() {
       </div>
 
       <div className="wrap hero-composition">
-        <div className="hero-title-block" data-reveal="hero">
-          <span className="hero-index" aria-hidden="true">01 / DM</span>
-          <h1><span>Daniel</span><span className="hero-name-last">Mafla<span className="heading-period">.</span></span></h1>
-          <span className="hero-title-note">{language === 'es' ? 'PERSONA · CÓDIGO · IDEA' : 'PERSON · CODE · IDEA'}</span>
-        </div>
+        <div className="hero-stage" data-reveal="hero">
+          <span className="hero-index" aria-hidden="true">01 / {language === 'es' ? 'INICIO' : 'HOME'}</span>
+          <h1 className="hero-name">
+            <span className="hero-name-first">Daniel</span>
+            <span className="hero-name-last">Mafla<span className="heading-period">.</span></span>
+          </h1>
 
-        <div className="hero-lower" data-reveal="hero">
           <figure className="hero-portrait">
             <div className="portrait-frame">
               <Image
@@ -30,7 +30,7 @@ export default function Hero() {
                 alt={language === 'es' ? 'Retrato de Daniel Mafla con traje' : 'Portrait of Daniel Mafla wearing a suit'}
                 fill
                 priority
-                sizes="(max-width: 760px) 42vw, 310px"
+                sizes="(max-width: 520px) 60vw, (max-width: 780px) 30vw, 280px"
                 className="portrait-image"
               />
             </div>
