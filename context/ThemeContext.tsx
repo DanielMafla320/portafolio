@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { translations } from '@/data/translations';
 import { Language } from '@/types';
 
@@ -17,43 +17,43 @@ interface ThemeContextType {
 
 function buildColors(darkMode: boolean) {
   return darkMode ? {
-    bg: '#0b0b16', bgAlt: '#0b0b16', surface: '#13131f',
-    border: '#2a2a45', borderLight: '#1e1e38',
-    text: '#f0eeff', textMuted: '#9090b0', textSoft: '#7070a0',
-    pill:         { bg: '#1e1e38', border: '#3a3a60', color: '#c4b5fd' },
-    chip:         { bg: '#1e1e38', border: '#3a3a60', color: '#a78bfa' },
-    card:         { bg: '#16162a', border: '#2a2a45' },
-    navBg: '#0b0b16dd', footer: '#08080f',
-    badge:        { bg: '#1e1e38', border: '#3a3a60', color: '#a78bfa' },
-    skillCard:    { bg: '#16162a', border: '#2a2a45' },
-    contactInput: { bg: '#13131f', border: '#2a2a45' },
-    timelineLine: '#2a2a45',
-    aboutGrad: 'linear-gradient(to top, #0b0b16f0 0%, transparent 55%)',
-    tagBg: '#1e1e38', tagColor: '#a78bfa', tagBorder: '#3a3a60',
-    socialBtn:    { bg: '#1e1e38', border: '#3a3a60', color: '#a78bfa' },
-    langBtn:      { bg: '#1e1e38', border: '#3a3a60', color: '#a78bfa' },
-    iconCircle: '#1e1e38', dotNode: '#1e1e38',
-    expBadge:     { bg: '#1e1e38', border: '#3a3a60' },
+    bg: '#0f0e13', bgAlt: '#131219', surface: '#17161d',
+    border: '#2d2b38', borderLight: '#24222d',
+    text: '#eceaf2', textMuted: '#b4b0c0', textSoft: '#a5a2b2',
+    pill:         { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
+    chip:         { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
+    card:         { bg: '#17161d', border: '#2d2b38' },
+    navBg: '#0f0e13eF', footer: '#0b0a0f',
+    badge:        { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
+    skillCard:    { bg: '#17161d', border: '#2d2b38' },
+    contactInput: { bg: '#131219', border: '#393743' },
+    timelineLine: '#393743',
+    aboutGrad: 'linear-gradient(to top, #0f0e13 0%, transparent 70%)',
+    tagBg: '#211d2d', tagColor: '#c7b2ff', tagBorder: '#393149',
+    socialBtn:    { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
+    langBtn:      { bg: '#211d2d', border: '#393149', color: '#c7b2ff' },
+    iconCircle: '#211d2d', dotNode: '#211d2d',
+    expBadge:     { bg: '#211d2d', border: '#393149' },
     blobOpacity: 0.22, sectionDivider: 'transparent',
   } : {
-    bg: '#f5f3ff', bgAlt: '#f5f3ff', surface: '#ffffff',
-    border: '#e8e4fc', borderLight: '#f0eeff',
-    text: '#1a1a2e', textMuted: '#9090b0', textSoft: '#6868a0',
-    pill:         { bg: '#ede9fe', border: '#c4b5fd55', color: '#7c3aed' },
-    chip:         { bg: '#f5f3ff', border: '#e8e4fc',   color: '#7c3aed' },
-    card:         { bg: '#ffffff', border: '#e8e4fc' },
-    navBg: '#f5f3ffdd', footer: '#f0eeff',
-    badge:        { bg: '#ede9fe', border: '#c4b5fd55', color: '#7c3aed' },
-    skillCard:    { bg: '#ffffff', border: '#e8e4fc' },
-    contactInput: { bg: '#f9f8ff', border: '#e8e4fc' },
-    timelineLine: '#e8e4fc',
-    aboutGrad: 'linear-gradient(to top, #f5f3fff0 0%, transparent 55%)',
-    tagBg: '#f5f3ffee', tagColor: '#7c3aed', tagBorder: '#a855f755',
-    socialBtn:    { bg: '#ede9fe', border: '#c4b5fd55', color: '#7c3aed' },
-    langBtn:      { bg: '#ede9fe', border: '#c4b5fd55', color: '#7c3aed' },
-    iconCircle: '#ede9fe', dotNode: '#ede9fe',
-    expBadge:     { bg: '#ede9fe', border: '#c4b5fd55' },
-    blobOpacity: 1, sectionDivider: '#e8e4fc',
+    bg: '#f4f2ee', bgAlt: '#efede8', surface: '#ffffff',
+    border: '#d9d5ce', borderLight: '#e8e5df',
+    text: '#16151a', textMuted: '#5c5966', textSoft: '#5c5966',
+    pill:         { bg: '#eee8f8', border: '#d7c8ed', color: '#5b21b6' },
+    chip:         { bg: '#f4f2ee', border: '#d9d5ce', color: '#5b21b6' },
+    card:         { bg: '#ffffff', border: '#d9d5ce' },
+    navBg: '#f4f2eeed', footer: '#eeece7',
+    badge:        { bg: '#eee8f8', border: '#d7c8ed', color: '#5b21b6' },
+    skillCard:    { bg: '#ffffff', border: '#d9d5ce' },
+    contactInput: { bg: '#f8f7f4', border: '#d9d5ce' },
+    timelineLine: '#d9d5ce',
+    aboutGrad: 'linear-gradient(to top, #f4f2ee 0%, transparent 70%)',
+    tagBg: '#eee8f8', tagColor: '#5b21b6', tagBorder: '#d7c8ed',
+    socialBtn:    { bg: '#ffffff', border: '#d9d5ce', color: '#5b21b6' },
+    langBtn:      { bg: '#ffffff', border: '#d9d5ce', color: '#5b21b6' },
+    iconCircle: '#eee8f8', dotNode: '#eee8f8',
+    expBadge:     { bg: '#eee8f8', border: '#d7c8ed' },
+    blobOpacity: 1, sectionDivider: '#d9d5ce',
   };
 }
 
@@ -78,7 +78,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   const t    = translations[language];
   const c    = buildColors(darkMode);
-  const T    = 'all 0.4s ease';
+  const T    = 'color 180ms ease, background-color 180ms ease, border-color 180ms ease';
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+    document.documentElement.dataset.theme = darkMode ? 'dark' : 'light';
+    document.documentElement.style.colorScheme = darkMode ? 'dark' : 'light';
+  }, [darkMode, language]);
 
   return (
     <ThemeContext.Provider value={{ darkMode, toggleDark, language, changeLanguage, isChanging, t, c, T }}>

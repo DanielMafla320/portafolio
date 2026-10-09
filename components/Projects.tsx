@@ -1,93 +1,74 @@
 "use client";
 
+import Image from 'next/image';
+import { ArrowUpRight, AudioLines, Clock3 } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 
-const projectMeta = [
-  { img: '/reproductor xsound.png', tags: ['Typescript', 'CSS'], link: 'https://reproductor-musica-delta.vercel.app/', comingSoon: false },
-  { img: 'https://images.unsplash.com/photo-1661246627162-feb0269e0c07?w=600&q=80', tags: ['TypeScript', 'CSS'], comingSoon: true },
-];
+const projectDetails = [
+  { number: '01', image: '/reproductor xsound.png', tags: ['TypeScript', 'CSS'], href: 'https://reproductor-musica-delta.vercel.app/', status: 'live' },
+  { number: '02', image: null, tags: ['TypeScript', 'CSS'], href: null, status: 'upcoming' },
+] as const;
 
 export default function Projects() {
-  const { darkMode, language, isChanging, t, c, T } = useTheme();
-
-  const cardBg     = darkMode ? '#16162a' : '#ffffff';
-  const cardBorder = darkMode ? '#2a2a45'  : '#e8e4fc';
-
-  const handleTilt = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    card.style.setProperty('--x', `${x}px`);
-    card.style.setProperty('--y', `${y}px`);
-    const centerX = rect.width  / 2;
-    const centerY = rect.height / 2;
-    const rotateX = -(y - centerY) / 35;
-    const rotateY =  (x - centerX) / 35;
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
-    card.classList.add('hovering');
-  };
-
-  const resetTilt = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
-    card.classList.remove('hovering');
-  };
+  const { language, t } = useTheme();
 
   return (
-    <section id="proyectos" style={{ padding: '100px 0', position: 'relative', overflow: 'hidden', background: 'transparent', transition: T }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', position: 'relative' }}>
-
-        <div style={{ textAlign: 'center', marginBottom: 60 }} className="reveal">
-          <div
-            className={`pill fade-t ${isChanging ? 'lang-out' : 'lang-in'}`}
-            style={{ display: 'inline-flex', background: c.pill.bg, border: `1px solid ${c.pill.border}`, color: c.pill.color, transition: T }}
-          >
-            {t.projectsPill}
+    <section id="proyectos" className="section section-tinted section-anchor">
+      <div className="wrap">
+        <div className="section-heading section-heading-split">
+          <div>
+            <p className="section-kicker">{t.projectsPill}</p>
+            <h2 className="section-title">{t.projectsTitle}<span className="heading-period">.</span></h2>
           </div>
-          <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 50, fontWeight: 800, color: c.text, marginBottom: 10, transition: T }}>
-            <span className="grad">{t.projectsTitle}</span>
-          </h2>
-          <p key={language + 'pd'} className="fade-text" style={{ color: c.textMuted, fontSize: 15, transition: T }}>
-            {t.projectsDesc}
-          </p>
+          <p className="section-intro">{t.projectsDesc}</p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 22 }}>
-          {t.projects.map((p, i) => {
-            const meta = projectMeta[i];
-            return (
-              <div
-                key={i}
-                className={`proj-card glass reveal reveal-d${i + 1}`}
-                onMouseMove={handleTilt}
-                onMouseLeave={resetTilt}
-                onClick={() => { if (!meta.comingSoon && meta.link) window.open(meta.link, '_blank'); }}
-                style={{ cursor: meta.comingSoon ? 'not-allowed' : 'pointer', background: cardBg, border: `1.5px solid ${cardBorder}`, transition: T }}
-              >
-                <div className="proj-card-img">
-                  <img src={meta.img} alt={p.title} />
-                  <div className="proj-card-overlay">
-                    <span className="proj-card-overlay-text">→ {meta.comingSoon ? t.projectSoon : t.projectCta}</span>
+        <div className="projects-list">
+          {t.projects.map((project, index) => {
+            const detail = projectDetails[index];
+            const content = (
+              <>
+                <div className={`project-art${detail.image ? '' : ' project-art-saborify'}`}>
+                  {detail.image ? (
+                    <Image src={detail.image} alt={language === 'es' ? `Vista del proyecto ${project.title}` : `${project.title} project preview`} fill sizes="(max-width: 760px) 100vw, 48vw" />
+                  ) : (
+                    <div className="saborify-mark" aria-hidden="true"><span>S</span><i /><i /><i /></div>
+                  )}
+                  <span className="project-number">{detail.number}</span>
+                  <span className="project-art-caption">{detail.status === 'live' ? 'MUSIC PLAYER' : 'AI · RECIPES'}</span>
+                </div>
+                <div className="project-content">
+                  <div className="project-topline">
+                    <p className="mono-label">PROJECT / {detail.number}</p>
+                    <span className={`project-status${detail.status === 'upcoming' ? ' is-upcoming' : ''}`}>
+                      {detail.status === 'live' ? <AudioLines size={14} aria-hidden="true" /> : <Clock3 size={14} aria-hidden="true" />}
+                      {detail.status === 'live' ? (language === 'es' ? 'Publicado' : 'Live') : t.projectSoon}
+                    </span>
+                  </div>
+                  <h3>{project.title}</h3>
+                  <p className="project-description">{project.desc}</p>
+                  <div className="project-bottomline">
+                    <ul className="project-tags" aria-label={language === 'es' ? 'Tecnologías' : 'Technologies'}>
+                      {detail.tags.map(tag => <li key={tag}>{tag}</li>)}
+                    </ul>
+                    {detail.href ? (
+                      <span className="project-link-label">{t.projectCta}<ArrowUpRight size={16} aria-hidden="true" /></span>
+                    ) : (
+                      <span className="project-link-label project-link-muted">{language === 'es' ? 'En desarrollo' : 'In development'}</span>
+                    )}
                   </div>
                 </div>
-                <div style={{ padding: '20px 22px 22px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-                    <h3 style={{ fontSize: 16, fontWeight: 700, color: c.text, transition: T }}>{p.title}</h3>
-                    <span className="proj-live-dot">Live</span>
-                  </div>
-                  <p key={language + 'proj' + i} className="fade-text" style={{ fontSize: 13, color: c.textMuted, lineHeight: 1.65, marginBottom: 16, transition: T }}>
-                    {p.desc}
-                  </p>
-                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                    {meta.tags.map(tag => (
-                      <span key={tag} className="proj-tag" style={{ background: c.badge.bg, border: `1px solid ${c.badge.border}`, color: c.badge.color, transition: T }}>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              </>
+            );
+
+            return detail.href ? (
+              <a className="project-row" href={detail.href} key={project.title} target="_blank" rel="noreferrer noopener" aria-label={`${project.title} — ${t.projectCta} (opens in a new tab)`}>
+                {content}
+              </a>
+            ) : (
+              <article className="project-row is-not-link" key={project.title} aria-label={`${project.title} — ${t.projectSoon}`}>
+                {content}
+              </article>
             );
           })}
         </div>
