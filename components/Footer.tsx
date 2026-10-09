@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="wrap">
-        <div className="footer-main">
+        <div className="footer-main" data-reveal>
           <a className="footer-brand" href="#inicio">Daniel Mafla<span>.</span></a>
           <p>{t.footerDesc}</p>
           <div className="footer-socials">
@@ -19,7 +19,7 @@ export default function Footer() {
             <a href="https://www.linkedin.com/in/daniel-mafla-782541317/?skipRedirect=true" target="_blank" rel="noopener noreferrer" aria-label={language === 'es' ? 'LinkedIn, abre en una pestaña nueva' : 'LinkedIn, opens in a new tab'}><FaLinkedin size={18} aria-hidden="true" /></a>
           </div>
         </div>
-        <div className="footer-bottom">
+        <div className="footer-bottom" data-reveal>
           <p>© {year} Daniel Mafla. {language === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'}</p>
           <a href="#inicio">{language === 'es' ? 'Volver al inicio' : 'Back to top'}<ArrowUpRight size={14} aria-hidden="true" /></a>
           <span>{language === 'es' ? 'Diseñado y desarrollado por Daniel' : 'Designed and built by Daniel'}</span>

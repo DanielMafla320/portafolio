@@ -54,7 +54,7 @@ export default function Contact() {
         </header>
 
         <div className="contact-layout">
-          <div className="contact-form-column" data-reveal>
+          <div className="contact-form-column" data-reveal="left">
             <p className="mono-label">{language === 'es' ? 'MENSAJE DIRECTO' : 'DIRECT MESSAGE'}</p>
             <h3>{t.contactFormTitle}</h3>
             <form className="contact-form" onSubmit={handleSend}>
@@ -82,7 +82,7 @@ export default function Contact() {
             </form>
           </div>
 
-          <aside className="contact-aside" data-reveal>
+          <aside className="contact-aside" data-reveal="right">
             <div className="contact-methods">
               <h3 className="mono-label">{t.contactInfoTitle}</h3>
               <p className="contact-aside-copy">{t.contactInfoDesc}</p>

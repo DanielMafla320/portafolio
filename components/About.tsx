@@ -10,7 +10,7 @@ const skillCards = [
 ];
 
 export default function About() {
-  const { language, isChanging, t } = useTheme();
+  const { language, t } = useTheme();
 
   return (
     <section id="acerca" className="section section-anchor about-section">
@@ -20,7 +20,7 @@ export default function About() {
           <h2 className="section-title">{t.aboutTitle}<span className="heading-period">.</span></h2>
         </header>
 
-        <figure className="about-art" data-reveal aria-hidden="true">
+        <figure className="about-art" data-reveal="right" aria-hidden="true">
           <svg className="about-artwork" viewBox="0 0 600 560" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path className="art-plane" d="M93 435 209 135 466 102 522 345 378 473 173 500Z" />
             <path className="art-contour" d="M81 446C144 358 151 257 230 183c59-56 133-76 198-46 58 26 86 79 71 129-12 41-49 69-89 72-37 3-68-18-75-49-6-25 7-49 28-63" />
@@ -36,13 +36,13 @@ export default function About() {
           </figcaption>
         </figure>
 
-        <div className="about-copy" data-reveal>
-          <p className={`body-copy${isChanging ? ' is-changing' : ''}`}>{t.aboutP1}</p>
-          <p className={`body-copy${isChanging ? ' is-changing' : ''}`}>{t.aboutP2}</p>
+        <div className="about-copy">
+          <p className="body-copy" data-reveal>{t.aboutP1}</p>
+          <p className="body-copy" data-reveal>{t.aboutP2}</p>
         </div>
 
         <section className="about-skills" aria-labelledby="about-skills-title">
-          <header className="skills-heading" data-reveal>
+          <header className="skills-heading" data-reveal="left">
             <p className="skills-overline">{language === 'es' ? 'HABILIDADES' : 'SKILLS'}</p>
             <h3 id="about-skills-title">{language === 'es' ? 'Tecnologías' : 'Technologies'}<span className="heading-period">.</span></h3>
           </header>

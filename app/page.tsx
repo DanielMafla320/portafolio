@@ -12,7 +12,7 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
 function PortfolioContent() {
-  const { language } = useTheme();
+  const { language, isChanging } = useTheme();
   const [activeSection, setActiveSection] = useState('inicio');
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function PortfolioContent() {
           currentObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+    }, { threshold: 0.08, rootMargin: '0px' });
     revealTargets.forEach(target => revealObserver.observe(target));
 
     return () => {
@@ -50,7 +50,7 @@ function PortfolioContent() {
     <div className="site-shell">
       <a className="skip-link" href="#contenido">{language === 'es' ? 'Saltar al contenido' : 'Skip to content'}</a>
       <Navbar activeSection={activeSection} scrollToSection={scrollToSection} />
-      <main id="contenido">
+      <main id="contenido" className={isChanging ? 'is-language-changing' : undefined}>
         <Hero />
         <About />
         <Projects />

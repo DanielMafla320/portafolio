@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, useSyncExternalStore, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
 import { translations } from '@/data/translations';
 import { Language } from '@/types';
 
@@ -14,6 +14,7 @@ interface ThemeContextType {
 }
 
 const THEME_STORAGE_KEY = 'daniel-portfolio-theme';
+const LANGUAGE_TRANSITION_MS = 180;
 let sessionPreference: boolean | null = null;
 
 function getThemeSnapshot() {
@@ -51,6 +52,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const darkMode = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, () => false);
   const [language, setLanguage] = useState<Language>('es');
   const [isChanging, setIsChanging] = useState(false);
+  const languageChangeTimer = useRef<number | undefined>(undefined);
 
   const toggleDark = () => {
     const next = !darkMode;
@@ -65,10 +67,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   const changeLanguage = () => {
     setIsChanging(true);
-    window.setTimeout(() => {
-      setLanguage(previous => previous === 'es' ? 'en' : 'es');
+    setLanguage(previous => previous === 'es' ? 'en' : 'es');
+    window.clearTimeout(languageChangeTimer.current);
+    languageChangeTimer.current = window.setTimeout(() => {
       setIsChanging(false);
-    }, 250);
+      languageChangeTimer.current = undefined;
+    }, LANGUAGE_TRANSITION_MS);
   };
 
   const t = translations[language];
@@ -78,6 +82,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     document.documentElement.dataset.theme = darkMode ? 'dark' : 'light';
     document.documentElement.style.colorScheme = darkMode ? 'dark' : 'light';
   }, [darkMode, language]);
+
+  useEffect(() => () => window.clearTimeout(languageChangeTimer.current), []);
 
   return (
     <ThemeContext.Provider value={{ darkMode, toggleDark, language, changeLanguage, isChanging, t }}>

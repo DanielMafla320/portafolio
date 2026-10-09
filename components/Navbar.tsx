@@ -12,7 +12,7 @@ interface NavbarProps {
 const sections = ['inicio', 'acerca', 'proyectos', 'testimonios', 'experiencia', 'contacto'] as const;
 
 export default function Navbar({ activeSection, scrollToSection }: NavbarProps) {
-  const { darkMode, toggleDark, language, changeLanguage, t } = useTheme();
+  const { darkMode, toggleDark, language, changeLanguage, isChanging, t } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -51,12 +51,15 @@ export default function Navbar({ activeSection, scrollToSection }: NavbarProps) 
         </div>
 
         <div className="nav-tools">
-          <button className="icon-button language-button" type="button" onClick={changeLanguage} aria-label={language === 'es' ? 'Switch language to English' : 'Cambiar idioma a español'}>
+          <button className={`icon-button language-button${isChanging ? ' is-changing' : ''}`} type="button" onClick={changeLanguage} aria-label={language === 'es' ? 'Switch language to English' : 'Cambiar idioma a español'}>
             <Globe size={16} aria-hidden="true" />
             <span>{language === 'es' ? 'EN' : 'ES'}</span>
           </button>
           <button className="icon-button theme-button" type="button" onClick={toggleDark} aria-label={darkMode ? (language === 'es' ? 'Activar modo claro' : 'Switch to light theme') : (language === 'es' ? 'Activar modo oscuro' : 'Switch to dark theme')}>
-            {darkMode ? <Sun size={17} aria-hidden="true" /> : <Moon size={17} aria-hidden="true" />}
+            <span className="theme-icon-stack" aria-hidden="true">
+              <Moon className="theme-icon-moon" size={17} />
+              <Sun className="theme-icon-sun" size={17} />
+            </span>
           </button>
           <button className="icon-button menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="mobile-menu" aria-label={menuOpen ? (language === 'es' ? 'Cerrar menú' : 'Close menu') : (language === 'es' ? 'Abrir menú' : 'Open menu')} onClick={() => setMenuOpen(open => !open)}>
             {menuOpen ? <X size={19} aria-hidden="true" /> : <Menu size={19} aria-hidden="true" />}
