@@ -5,7 +5,7 @@ import { ArrowUpRight, AudioLines, Clock3 } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 
 const projectDetails = [
-  { number: '01', image: '/reproductor xsound.png', tags: ['TypeScript', 'CSS'], href: 'https://reproductor-musica-delta.vercel.app/', status: 'published' },
+  { number: '01', image: '/reproductor xsound.jpeg', tags: ['TypeScript', 'CSS'], href: 'https://reproductor-musica-delta.vercel.app/', status: 'published' },
   { number: '02', image: null, tags: ['TypeScript', 'CSS'], href: null, status: 'in-progress' },
 ] as const;
 
